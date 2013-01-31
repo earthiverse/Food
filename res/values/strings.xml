@@ -4,5 +4,6 @@
     <string name="hello_world">Hello world!</string>
     <string name="menu_settings">Settings</string>
     <string name="title_activity_main">Food!</string>
+    <string name="how_much_do_i_like_food">I like food a lot.</string>
 
 </resources>
