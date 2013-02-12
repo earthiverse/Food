@@ -4,6 +4,6 @@
     
     <!-- Main Activity -->
     <string name="title_activity_main">料理!</string>
-    <string name="hello_world">こんにちは</string>
+    <string name="hello_world">こんにちは、世界</string>
     <string name="how_much_do_i_like_food">私は料理が大好き！</string>
 </resources>
