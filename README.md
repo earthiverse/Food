@@ -1,8 +1,5 @@
 Food
 ====
-Test project, please ignore. <br />
-Android 4.1 API Level 16
-
 	Reasonable Recipes: Recipes based on the ingredients in your cupboard!
 	Copyright (C) 2013 Thomas Dawson, Amshu Gongal, Kent Rasmussen, Chris Solinas
 
@@ -18,3 +15,5 @@ Android 4.1 API Level 16
 
 	You should have received a copy of the GNU General Public License
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+Target Android API: Android 4.1 API Level 16
