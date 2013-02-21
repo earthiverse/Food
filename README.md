@@ -3,7 +3,7 @@ Food
 Test project, please ignore. <br />
 Android 4.1 API Level 16
 
-  Reasonable Recipes: Recipes based on the ingredients in your cupboard!
+	Reasonable Recipes: Recipes based on the ingredients in your cupboard!
 	Copyright (C) 2013 Thomas Dawson, Amshu Gongal, Kent Rasmussen, Chris Solinas
 
 	This program is free software: you can redistribute it and/or modify
