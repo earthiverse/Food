@@ -1,5 +1,7 @@
-Food
-====
+# Reasonable Recipes
+
+## License
+
 	Reasonable Recipes: Recipes based on the ingredients in your cupboard!
 	Copyright (C) 2013 Thomas Dawson, Amshu Gongal, Kent Rasmussen, Chris Solinas
 
@@ -16,4 +18,10 @@ Food
 	You should have received a copy of the GNU General Public License
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+## General Info
+
 Target Android API: Android 4.1 API Level 16
+
+## Changelog
+
+Initial release has not happened yet, please be patient while we work on this project!
