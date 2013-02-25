@@ -19,3 +19,8 @@ local.properties
 .classpath
 .project
 
+# Windows Database Files
+Thumbs.db
+
+# Linux Backup Files
+*~
