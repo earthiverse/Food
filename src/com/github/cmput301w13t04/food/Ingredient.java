@@ -12,6 +12,7 @@ public class Ingredient {
 		this.description = description;
 		this.photo = photo;
 	}
+	
 	 public String getName() {
 	    return name;
 	  }

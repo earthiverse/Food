@@ -17,6 +17,7 @@ public class Photo {
     return photographer;
   }
 
+	
   public void setTitle(String Photographer) {
     this.photographer = Photographer;
   }
@@ -28,7 +29,13 @@ public class Photo {
   public void setDescription(String description) {
     this.description = description;
   }
-
+  
+  public Bitmap getPhoto(){
+    return photo;
+  }
+  public void setPhoto(Bitmap img){
+    this.ImageData = img;
+  }
   
  
 	
