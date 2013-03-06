@@ -102,20 +102,38 @@
     </HorizontalScrollView>
 
     <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="@string/hello_world"
-        tools:context=".MainActivity" />
-
-    <TextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:text="@string/how_much_do_i_like_food" />
+
+    <Button
+        android:id="@+id/viewIngredient"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/viewRecipe"
+        android:layout_below="@+id/viewRecipe"
+        android:layout_marginTop="22dp"
+        android:text="View Ingredient" />
+
+    <Button
+        android:id="@+id/addIngredient"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/viewIngredient"
+        android:layout_below="@+id/viewIngredient"
+        android:layout_marginTop="22dp"
+        android:text="Add Ingredient" />
+
+    <Button
+        android:id="@+id/viewRecipe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/horizontalScrollView1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="46dp"
+        android:text="View Recipe" />
 
 </RelativeLayout>
