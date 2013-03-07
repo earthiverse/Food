@@ -10,7 +10,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import androidgenous.food.R;
 
 public class MainActivity extends Activity {
 

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="androidgenous.food"
+    package="com.github.cmput301w13t04.food"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -24,15 +24,15 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="androidgenous.food.ViewRecipe"
+            android:name="com.github.cmput301w13t04.food.ViewRecipe"
             android:label="@string/title_activity_view_recipe" >
         </activity>
         <activity
-            android:name="androidgenous.food.ViewIngredient"
+            android:name="com.github.cmput301w13t04.food.ViewIngredient"
             android:label="@string/title_activity_view_ingredient" >
         </activity>
         <activity
-            android:name="androidgenous.food.AddIngredient"
+            android:name="com.github.cmput301w13t04.food.AddIngredient"
             android:label="@string/title_activity_add_ingredient" >
         </activity>
     </application>
