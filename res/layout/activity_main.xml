@@ -105,7 +105,8 @@
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
+        android:layout_centerHorizontal="true"
+        
         android:layout_alignParentTop="true"
         android:text="@string/how_much_do_i_like_food" />
 
@@ -113,19 +114,20 @@
         android:id="@+id/viewIngredient"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/viewRecipe"
+     
+        android:layout_centerHorizontal="true"
         android:layout_below="@+id/viewRecipe"
         android:layout_marginTop="22dp"
-        android:text="View Ingredient" />
+        android:text="@string/view_ingredient" />
 
     <Button
         android:id="@+id/addIngredient"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/viewIngredient"
+        android:layout_centerHorizontal="true"
         android:layout_below="@+id/viewIngredient"
         android:layout_marginTop="22dp"
-        android:text="Add Ingredient" />
+        android:text="@string/add_ingredient" />
 
     <Button
         android:id="@+id/viewRecipe"
@@ -134,6 +136,6 @@
         android:layout_below="@+id/horizontalScrollView1"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="46dp"
-        android:text="View Recipe" />
+        android:text="@string/view_recipe" />
 
 </RelativeLayout>

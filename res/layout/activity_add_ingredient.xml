@@ -12,7 +12,7 @@
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Add Ingredient" 
+        android:text="@string/add_ingredient" 
         android:textAppearance="?android:attr/textAppearanceLarge"/>
 
     <EditText
@@ -54,7 +54,7 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/editText2"
         android:layout_alignParentLeft="true"
-        android:text="Name"
+        android:text="@string/name"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <TextView
@@ -64,7 +64,7 @@
         android:layout_alignBaseline="@+id/editText2"
         android:layout_alignBottom="@+id/editText2"
         android:layout_alignParentLeft="true"
-        android:text="Quantity"
+        android:text="@string/quantity"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <TextView
@@ -74,7 +74,7 @@
         android:layout_alignBaseline="@+id/editText3"
         android:layout_alignBottom="@+id/editText3"
         android:layout_alignParentLeft="true"
-        android:text="Description"
+        android:text="@string/description"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <Button
@@ -84,6 +84,6 @@
         android:layout_alignParentBottom="true"
         android:layout_alignRight="@+id/editText3"
         android:layout_marginBottom="20dp"
-        android:text="Finish" />
+        android:text="@string/finish" />
 
 </RelativeLayout>
