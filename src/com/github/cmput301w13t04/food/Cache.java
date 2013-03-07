@@ -1,11 +1,10 @@
 package com.github.cmput301w13t04.food;
 
-import java.io.BufferedReader;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -57,34 +56,34 @@ public class Cache {
 		String ingList = gson.toJson(Ingredients);
 		String recipeList = gson.toJson(Recipes);
 
-		Log.d("Testing", ingList);
+		Log.d("Testing", ingList + "inSave");
 		Log.d("Testing", recipeList);
 
 		try {
 			FileOutputStream rOut = context.openFileOutput(recipeFile, Context.MODE_PRIVATE);
 			FileOutputStream ingOut = context.openFileOutput(ingredientFile, Context.MODE_PRIVATE);
-			OutputStreamWriter writer; 
+			OutputStreamWriter iWriter, rWriter; 
 
 
 			if(this.hasIngredients()){
-				writer = new OutputStreamWriter(ingOut);
-				writer.write(ingList);
-				writer.flush();
-				writer.close();
+				iWriter = new OutputStreamWriter(ingOut);
+				iWriter.write(ingList);
+				iWriter.flush();
+				iWriter.close();
 			}
 
 			if(this.hasRecipes()){
-				writer = new OutputStreamWriter(rOut);
-				writer.write(recipeList);
-				writer.flush();
-				writer.close();
+				rWriter = new OutputStreamWriter(rOut);
+				rWriter.write(recipeList);
+				rWriter.flush();
+				rWriter.close();
 			}
 			
 			rOut.close();
 			ingOut.close();
 
 		} catch (IOException e) {
-			//e.printStackTrace();
+			e.printStackTrace();
 		}
 	}
 
@@ -100,34 +99,56 @@ public class Cache {
 		StringBuffer fileContent;
 		byte[] buffer;
 		
-		File file;
+		File fileR = new File(context.getFilesDir(), recipeFile);
+		File fileI = new File(context.getFilesDir(), ingredientFile);
+		
+		if(!fileR.exists()){
+			try {
+				fileR.createNewFile();
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+		}
+		
+		if(!fileI.exists()){
+			try {
+				fileI.createNewFile();
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+		}
 
 		try {
 			FileInputStream rIn = context.openFileInput(recipeFile);
 			FileInputStream ingIn = context.openFileInput(ingredientFile);
 			
 			fileContent = new StringBuffer("");
-			buffer = new byte[4096];
+			buffer = new byte[1];
 			while(ingIn.read(buffer) != -1)
 				fileContent.append(new String(buffer));
 			
-			Log.d("Testing", fileContent.toString());
-			Ingredients = gson.fromJson(fileContent.toString(), ingredientList);
+			//Log.d("Testing", fileContent.toString());
 			
+			if(fileI.length() != 0){
+				Ingredients = gson.fromJson(fileContent.toString(), ingredientList);
+				Log.d("Testing", Ingredients.get(0).getName() + " inLoad");
+			}
 			
 			fileContent = new StringBuffer("");
-			buffer = new byte[4096];
+			buffer = new byte[1];
 			while(rIn.read(buffer) != -1)
 				fileContent.append(new String(buffer));
 
-			Recipes = gson.fromJson(fileContent.toString(), rList);
+			Log.d("Testing", fileContent.toString());
+			
+			if(fileR.length() != 0)
+				Recipes = gson.fromJson(fileContent.toString(), rList);
 
-
+		
 
 		} catch (IOException e) {
-			file = new File(recipeFile);
-			file = new File(ingredientFile);
 		}
+		
 	}
 
 	/**

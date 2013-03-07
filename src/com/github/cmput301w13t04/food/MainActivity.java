@@ -64,22 +64,27 @@ public class MainActivity extends Activity {
 
 	public void testCache(){
 		Cache cache = new Cache(this);
-		Ingredient i;
-		i = new Ingredient("Onion", 1 , "A tasty, savoury vegetable", null);
+		Ingredient i, i2;
+		i = new Ingredient("Onion", 1 , "A tasty vegetable", null);
+		i2 = new Ingredient("Apple", 2, "A tasty fruit", null);
 		Log.d("Testing", i.getName());
 		String success = "The cache has ingredients";
-		String failure = "add inredient failed";
+		String failure = "add ingredient failed";
 		cache.addIngredient(i);
 		if(cache.hasIngredients())
 			Log.d("Testing", success);
 		else
 			Log.d("Testing", failure);
 		cache.save();
-		//cache = new Cache(this);
-		if(cache.hasIngredients())
-			Log.d("Testing", success);
+		Cache cache2 = new Cache(this);
+	
+		if(cache2.hasIngredients())
+			Log.d("Testing", "cache has been saved");
 		else
 			Log.d("Testing", failure);
+		
+		cache2.addIngredient(i2);
+		cache2.save();
 	}
 
 
