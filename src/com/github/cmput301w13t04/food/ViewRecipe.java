@@ -1,7 +1,5 @@
 package com.github.cmput301w13t04.food;
 
-import com.github.cmput301w13t04.food.R;
-
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
