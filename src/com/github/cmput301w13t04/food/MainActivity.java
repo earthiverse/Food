@@ -6,8 +6,10 @@ import android.os.Bundle;
 import android.accounts.Account;
 import android.accounts.AccountManager;
 import android.app.Activity;
+import android.content.Intent;
 import android.util.Log;
 import android.view.Menu;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
@@ -27,12 +29,13 @@ public class MainActivity extends Activity {
         return true;
     }
     
+    /* TESTING: This function does random stuff. Nothing important. */
     public void doStuff() {
-    	LinearLayout imageView = (LinearLayout) findViewById(R.id.image_scroll);
+    	//LinearLayout imageView = (LinearLayout) findViewById(R.id.image_scroll);
     	
-    	ImageView image = new ImageView(this);
-    	image.setImageResource(R.drawable.ic_action_emo_wink);
-    	imageView.addView(image);
+    	//ImageView image = new ImageView(this);
+    	//image.setImageResource(R.drawable.ic_action_emo_wink);
+    	//imageView.addView(image);
     	
     	Recipe arecipe = new Recipe("Recipe Title", new User("test@test.test"), "I'm just testing this recipe, please ignore it.", 30, null);
     	Log.d("Testing", new Gson().toJson(arecipe));
@@ -60,5 +63,16 @@ public class MainActivity extends Activity {
     	AccountManager am = AccountManager.get(this);
     	Account[] accounts = am.getAccountsByType("com.google");
     	Log.d("Testing", accounts[0].name);
+    }
+    
+    /* TESTING: Manually create and show recipe */
+    public void showRecipe(View view) {
+    	// TODO: Create Recipe
+    	
+    	// TODO: Parcel Recipe
+    	
+    	// Start Viewing Recipe
+		Intent intent = new Intent(MainActivity.this, ViewRecipe.class);
+		startActivity(intent);
     }
 }
