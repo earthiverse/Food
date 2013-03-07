@@ -16,7 +16,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge"/>
 
     <EditText
-        android:id="@+id/editText1"
+        android:id="@+id/add_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView1"
@@ -26,11 +26,11 @@
         android:inputType="textMultiLine" />
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/add_quantity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/editText1"
-        android:layout_below="@+id/editText1"
+        android:layout_alignLeft="@+id/add_name"
+        android:layout_below="@+id/add_name"
         android:layout_marginTop="16dp"
         android:ems="10"
         android:inputType="date" >
@@ -39,12 +39,13 @@
     </EditText>
 
     <EditText
-        android:id="@+id/editText3"
+        android:id="@+id/add_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/editText2"
+        android:layout_below="@+id/add_quantity"
         android:layout_marginTop="20dp"
         android:layout_toRightOf="@+id/textView4"
+        android:hint="@string/optional"
         android:ems="10"
         android:inputType="textMultiLine" />
 
@@ -52,7 +53,7 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/editText2"
+        android:layout_above="@+id/add_quantity"
         android:layout_alignParentLeft="true"
         android:text="@string/name"
         android:textAppearance="?android:attr/textAppearanceLarge" />
@@ -61,8 +62,8 @@
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/editText2"
-        android:layout_alignBottom="@+id/editText2"
+        android:layout_alignBaseline="@+id/add_quantity"
+        android:layout_alignBottom="@+id/add_quantity"
         android:layout_alignParentLeft="true"
         android:text="@string/quantity"
         android:textAppearance="?android:attr/textAppearanceLarge" />
@@ -71,8 +72,8 @@
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/editText3"
-        android:layout_alignBottom="@+id/editText3"
+        android:layout_alignBaseline="@+id/add_description"
+        android:layout_alignBottom="@+id/add_description"
         android:layout_alignParentLeft="true"
         android:text="@string/description"
         android:textAppearance="?android:attr/textAppearanceLarge" />
@@ -82,8 +83,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/editText3"
+        android:layout_alignRight="@+id/add_description"
         android:layout_marginBottom="20dp"
-        android:text="@string/finish" />
+        android:text="@string/add_ingredient" 
+        android:onClick="finishActivity"/>
 
 </RelativeLayout>

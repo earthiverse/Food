@@ -21,5 +21,6 @@
    	<string name="description">Description</string>
    	<string name="finish">Finish</string>  
    	<string name="ingredients_on_hand">Ingredients On Hand</string>  
+   	<string name="optional">Optional</string>
 
 </resources>
