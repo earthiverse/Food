@@ -9,6 +9,7 @@ public class Recipe {
 	private int time;
 	private ArrayList<Photo> pictures;
 	private ArrayList<Step> steps;
+	private long id;
 
 	public Recipe(String title, User author, String description, int time,
 			ArrayList<Photo> pictures) {
@@ -17,6 +18,17 @@ public class Recipe {
 		this.description = description;
 		this.time = time;
 		this.pictures = pictures;
+		this.id = System.nanoTime();
+	}
+	
+	public Recipe(String title, User author, String description, int time,
+			ArrayList<Photo> pictures, long id) {
+		this.title = title;
+		this.author = author;
+		this.description = description;
+		this.time = time;
+		this.pictures = pictures;
+		this.id = id;
 	}
 
 	public String getTitle() {
@@ -65,5 +77,9 @@ public class Recipe {
 
 	public void removeStep(Step step) {
 		steps.remove(step);
+	}
+	
+	public long getId(){
+		return this.id;
 	}
 }
