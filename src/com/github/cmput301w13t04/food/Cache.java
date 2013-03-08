@@ -109,7 +109,7 @@ public class Cache {
 	 * @param ing the Ingredient object to be removed
 	 */
 	public void removeIngredient(Ingredient ing) {
-		Recipes.remove(ing);
+		Ingredients.remove(ing);
 	}
 
 	/**
@@ -165,7 +165,7 @@ public class Cache {
 	 * @param id the id of the Recipe object you would like
 	 * @return The Recipe object that the caller requested, or null if it doesn't exist
 	 */
-	public Recipe getRecipe(int id){
+	public Recipe getRecipe(long id){
 
 		for(int i = 0; i < this.recipeCount(); i++){
 			if(Recipes.get(i).getId() == id){
@@ -177,6 +177,15 @@ public class Cache {
 	}
 	
 	/**
+	 * Get an ingredient based on position in the cache
+	 * @param pos The position of the Ingredient object wanted
+	 * @return The Ingredient object from the position that was requested
+	 */
+	public Ingredient getIngredient(int pos){
+		return this.Ingredients.get(pos);
+	}
+	
+	/*
 	 * For debug.
 	 */
 	public void printRecipeList() {
@@ -187,7 +196,7 @@ public class Cache {
 		}
 	}
 	
-	/**
+	/*
 	 * For debug.
 	 */
 	public void printIngredientList() {

@@ -3,9 +3,9 @@ package com.github.cmput301w13t04.food;
 import java.util.ArrayList;
 
 public class Recipe {
-	private String title;
-	private User author;
-	private String description;
+	private String title;	// the title of the recipe
+	private User author;	// the author of the recipe
+	private String description; 
 	private int time;
 	private ArrayList<Photo> pictures;
 	private ArrayList<Step> steps;
@@ -19,6 +19,7 @@ public class Recipe {
 		this.time = time;
 		this.pictures = pictures;
 		this.id = System.nanoTime();
+		this.steps = new ArrayList<Step>();
 	}
 	
 	public Recipe(String title, User author, String description, int time,
@@ -31,10 +32,18 @@ public class Recipe {
 		this.id = id;
 	}
 
+	/**
+	 * Get the title of the Recipe object
+	 * @return a string containing the title
+	 */
 	public String getTitle() {
 		return title;
 	}
 
+	/**
+	 * Set a new title for the Recipe object
+	 * @param title The new title of the Recipe object
+	 */
 	public void setTitle(String title) {
 		this.title = title;
 	}
@@ -75,6 +84,10 @@ public class Recipe {
 		steps.add(step);
 	}
 
+	public int stepCount(){
+		return steps.size();
+	}
+	
 	public void removeStep(Step step) {
 		steps.remove(step);
 	}
