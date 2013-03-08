@@ -11,14 +11,14 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-public class ViewRecipe extends FragmentActivity implements
-		ActionBar.TabListener {
+public class ViewRecipe extends FragmentActivity implements ActionBar.TabListener {
+
+	public static Recipe recipe;
 
 	SectionsPagerAdapter mSectionsPagerAdapter;
 	ViewPager mViewPager;
@@ -27,16 +27,33 @@ public class ViewRecipe extends FragmentActivity implements
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
+		// Load Cache
+		Cache cache = new Cache();
+		cache.load(this);
+		
+		cache.printRecipeList();
+
+		// Load Recipe from ID
+		long recipeID = this.getIntent().getLongExtra("RECIPE_ID", -1);
+		recipe = cache.getRecipe(recipeID);
+		if (recipe == null) {
+			// TODO: Get recipe from database
+			
+			// ELSE ERROR:
+			// TODO: Toast 'Recipe not found!'
+			finish();
+		}
+		
+		// ELSE: We've got our recipe!
+
 		// Setup View
 		setContentView(R.layout.activity_view_recipe);
 
 		// Setup ActionBar
 		final ActionBar actionBar = getActionBar();
+		actionBar.setDisplayShowHomeEnabled(false);
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-		// actionBar.setTitle( <!-- RECIPE TITLE HERE --> );
-
-		// TODO: We're temporarily making fake ingredients.
-		getIntent().putExtra("KENT_TEST", "IS A SUCCESS");
+		actionBar.setTitle(recipe.getTitle());
 
 		// Setup Tab Navigation
 		mSectionsPagerAdapter = new SectionsPagerAdapter(
@@ -87,16 +104,14 @@ public class ViewRecipe extends FragmentActivity implements
 				fragment = new RecipeDescriptionFragment();
 
 				// Pass Current Recipe
-				attachBundle(fragment);
 
 				return fragment;
-				
+
 			// Second Tab: Ingredients
 			case 1:
 				fragment = new RecipeIngredientsFragment();
 
 				// Pass Current Recipe
-				attachBundle(fragment);
 
 				return fragment;
 
@@ -105,7 +120,6 @@ public class ViewRecipe extends FragmentActivity implements
 				fragment = new RecipeStepFragment();
 
 				// Pass Current Recipe
-				attachBundle(fragment);
 
 				return fragment;
 			}
@@ -133,13 +147,6 @@ public class ViewRecipe extends FragmentActivity implements
 			}
 			return null;
 		}
-
-		public void attachBundle(Fragment fragment) {
-			Bundle bundle = getIntent().getExtras();
-			Log.d("BUNDLE", bundle.toString());
-			// bundle.get(key) containing
-		}
-
 	}
 
 	/* Description Fragment */
@@ -154,9 +161,11 @@ public class ViewRecipe extends FragmentActivity implements
 					R.layout.fragment_recipe_description, container, false);
 
 			TextView dummyTextView = (TextView) rootView
-					.findViewById(R.id.section_label);
+					.findViewById(R.id.recipe_description);		
 
-			dummyTextView.setText("Description goes here");
+			this.getActivity().getIntent();
+			
+			dummyTextView.setText(recipe.getDescription());
 
 			return rootView;
 		}
