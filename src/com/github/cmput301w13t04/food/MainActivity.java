@@ -76,6 +76,9 @@ public class MainActivity extends Activity {
 		else
 			Log.d("Testing", failure);
 		cache.save();
+		cache.printIngredientList();
+		cache.printRecipeList();
+		
 		Cache cache2 = new Cache(this);
 	
 		if(cache2.hasIngredients())
@@ -85,6 +88,8 @@ public class MainActivity extends Activity {
 		
 		cache2.addIngredient(i2);
 		cache2.save();
+		cache2.printIngredientList();
+		cache2.printRecipeList();
 	}
 
 

@@ -1,6 +1,9 @@
 package com.github.cmput301w13t04.food;
 
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.EOFException;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -20,8 +23,8 @@ public class Cache {
 	private ArrayList<Ingredient> Ingredients;
 	private Context context;
 
-	private final String recipeFile = "recipeData.gson";
-	private final String ingredientFile = "recipeData.gson";
+	private final String recipeFilename = "recipeData.gson";
+	private final String ingredientFilename = "recipeData.gson";
 
 	public Cache(Context context) {
 		Recipes = new ArrayList<Recipe>();
@@ -51,104 +54,76 @@ public class Cache {
 	 * Save the cache to file in order to make changes persist
 	 */
 	public void save() {
-
 		Gson gson = new Gson();
-		String ingList = gson.toJson(Ingredients);
-		String recipeList = gson.toJson(Recipes);
-
-		Log.d("Testing", ingList + "inSave");
-		Log.d("Testing", recipeList);
 
 		try {
-			FileOutputStream rOut = context.openFileOutput(recipeFile, Context.MODE_PRIVATE);
-			FileOutputStream ingOut = context.openFileOutput(ingredientFile, Context.MODE_PRIVATE);
-			OutputStreamWriter iWriter, rWriter; 
+			// Save Ingredient List to File
+			DataOutputStream ingredientOut = new DataOutputStream(context.openFileOutput(this.ingredientFilename, Context.MODE_PRIVATE));
+			Log.d("Write", "Wrote: " + gson.toJson(this.Ingredients));
+			ingredientOut.writeUTF(gson.toJson(this.Ingredients));
+			ingredientOut.flush();
+			ingredientOut.close();
 
-
-			if(this.hasIngredients()){
-				iWriter = new OutputStreamWriter(ingOut);
-				iWriter.write(ingList);
-				iWriter.flush();
-				iWriter.close();
-			}
-
-			if(this.hasRecipes()){
-				rWriter = new OutputStreamWriter(rOut);
-				rWriter.write(recipeList);
-				rWriter.flush();
-				rWriter.close();
-			}
+			// Save Recipe List to File
+//			DataOutputStream recipeOut = new DataOutputStream(context.openFileOutput(this.recipeFilename, Context.MODE_PRIVATE));
+//			Log.d("Write", "Wrote: " + gson.toJson(this.Recipes));
+//			recipeOut.writeUTF(gson.toJson(this.Recipes));
+//			recipeOut.flush();
+//			recipeOut.close();
 			
-			rOut.close();
-			ingOut.close();
-
-		} catch (IOException e) {
-			e.printStackTrace();
+		} catch(Exception e) {
+			Log.d("Testing", "Error in Cache Save!");
+			Log.d("Testing", e.getMessage());
 		}
+
 	}
 
 	/**
 	 * Load the cache from file
 	 */
 	public void load() {
-
 		Gson gson = new Gson();
-		Type ingredientList = new TypeToken<ArrayList<Ingredient>>(){}.getType();
-		Type rList = new TypeToken<ArrayList<Recipe>>(){}.getType();
-
-		StringBuffer fileContent;
-		byte[] buffer;
 		
-		File fileR = new File(context.getFilesDir(), recipeFile);
-		File fileI = new File(context.getFilesDir(), ingredientFile);
 		
-		if(!fileR.exists()){
-			try {
-				fileR.createNewFile();
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			}
-		}
-		
-		if(!fileI.exists()){
-			try {
-				fileI.createNewFile();
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			}
-		}
-
 		try {
-			FileInputStream rIn = context.openFileInput(recipeFile);
-			FileInputStream ingIn = context.openFileInput(ingredientFile);
-			
-			fileContent = new StringBuffer("");
-			buffer = new byte[1];
-			while(ingIn.read(buffer) != -1)
-				fileContent.append(new String(buffer));
-			
-			//Log.d("Testing", fileContent.toString());
-			
-			if(fileI.length() != 0){
-				Ingredients = gson.fromJson(fileContent.toString(), ingredientList);
-				Log.d("Testing", Ingredients.get(0).getName() + " inLoad");
-			}
-			
-			fileContent = new StringBuffer("");
-			buffer = new byte[1];
-			while(rIn.read(buffer) != -1)
-				fileContent.append(new String(buffer));
+			// Load Ingredient List from File
+			StringBuffer ingredientData = new StringBuffer("");
+			DataInputStream ingredientIn = new DataInputStream(context.openFileInput(this.ingredientFilename));
+			try {
+				
+				for (;;)
+					ingredientData.append(ingredientIn.readUTF());
+				
+			} catch (EOFException e) {
 
-			Log.d("Testing", fileContent.toString());
+				// Finished Reading File, Convert from JSON to Object
+				Log.d("File", "Read Ingredients: " + ingredientData.toString());
+				this.Ingredients = gson.fromJson(ingredientData.toString(), new TypeToken<ArrayList<Ingredient>>(){}.getType());
+				
+		    }
+			ingredientIn.close();
 			
-			if(fileR.length() != 0)
-				Recipes = gson.fromJson(fileContent.toString(), rList);
-
-		
-
-		} catch (IOException e) {
+			// Load Recipe List from File
+//			StringBuffer recipeData = new StringBuffer("");
+//			DataInputStream recipeIn = new DataInputStream(context.openFileInput(this.recipeFilename));
+//			try {
+//				
+//				for (;;)
+//					recipeData.append(recipeIn.readUTF());
+//				
+//			} catch (EOFException e) {
+//
+//				// Finished Reading File, Convert from JSON to Object
+//				Log.d("File", "Read Recipe: " + recipeData.toString());
+//				this.Recipes = gson.fromJson(recipeData.toString(), new TypeToken<ArrayList<Recipe>>(){}.getType());
+//				
+//		    }
+//			recipeIn.close();
+			
+		} catch(Exception e) {
+			Log.d("Testing", "Error in Cache Load!");
+			Log.d("Testing", e.getMessage());
 		}
-		
 	}
 
 	/**
@@ -229,6 +204,28 @@ public class Cache {
 		}
 
 		return null;
+	}
+	
+	/**
+	 * For debug.
+	 */
+	public void printRecipeList() {
+		Log.i("Recipe", "# of Recipes: " + String.valueOf(this.recipeCount()));
+		
+		for(int i = 0; i < this.recipeCount(); i++){
+			Log.i("Recipe", "Name: " + Recipes.get(i).getTitle());
+		}
+	}
+	
+	/**
+	 * For debug.
+	 */
+	public void printIngredientList() {
+		Log.i("Ingredient", "# of Ingredients: " + String.valueOf(this.ingredientCount()));
+		
+		for(int i = 0; i < this.ingredientCount(); i++){
+			Log.i("Ingredient", "Name: " + Ingredients.get(i).getName() + "\nDescription:" + Ingredients.get(i).getDescription());
+		}
 	}
 
 }
