@@ -63,7 +63,8 @@ public class MainActivity extends Activity {
 	}
 
 	public void testCache(){
-		Cache cache = new Cache(this);
+		Cache cache = new Cache();
+		cache.load(this);
 		Ingredient i, i2;
 		i = new Ingredient("Onion", 1 , "A tasty vegetable", null);
 		i2 = new Ingredient("Apple", 2, "A tasty fruit", null);
@@ -75,11 +76,12 @@ public class MainActivity extends Activity {
 			Log.d("Testing", success);
 		else
 			Log.d("Testing", failure);
-		cache.save();
+		cache.save(this);
 		cache.printIngredientList();
 		cache.printRecipeList();
 		
-		Cache cache2 = new Cache(this);
+		Cache cache2 = new Cache();
+		cache2.load(this);
 	
 		if(cache2.hasIngredients())
 			Log.d("Testing", "cache has been saved");
@@ -87,7 +89,7 @@ public class MainActivity extends Activity {
 			Log.d("Testing", failure);
 		
 		cache2.addIngredient(i2);
-		cache2.save();
+		cache2.save(this);
 		cache2.printIngredientList();
 		cache2.printRecipeList();
 	}

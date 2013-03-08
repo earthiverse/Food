@@ -21,17 +21,13 @@ public class Cache {
 
 	private ArrayList<Recipe> Recipes;
 	private ArrayList<Ingredient> Ingredients;
-	private Context context;
 
 	private final String recipeFilename = "recipeData.gson";
 	private final String ingredientFilename = "recipeData.gson";
 
-	public Cache(Context context) {
+	public Cache() {
 		Recipes = new ArrayList<Recipe>();
 		Ingredients = new ArrayList<Ingredient>();
-		this.context = context;
-
-		this.load();
 	}
 
 	/**
@@ -53,8 +49,10 @@ public class Cache {
 	/**
 	 * Save the cache to file in order to make changes persist
 	 */
-	public void save() {
+	public void save(Context context) {
 		Gson gson = new Gson();
+		
+		Log.d("Write", "Testing Everything2JSON: " + gson.toJson(this));
 
 		try {
 			// Save Ingredient List to File
@@ -81,9 +79,8 @@ public class Cache {
 	/**
 	 * Load the cache from file
 	 */
-	public void load() {
+	public void load(Context context) {
 		Gson gson = new Gson();
-		
 		
 		try {
 			// Load Ingredient List from File
