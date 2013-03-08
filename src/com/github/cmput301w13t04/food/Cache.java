@@ -4,26 +4,18 @@ package com.github.cmput301w13t04.food;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.EOFException;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStreamWriter;
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 import android.content.Context;
 import android.util.Log;
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
 public class Cache {
 
 	private ArrayList<Recipe> Recipes;
 	private ArrayList<Ingredient> Ingredients;
-
-	private final String recipeFilename = "recipeData.gson";
-	private final String ingredientFilename = "recipeData.gson";
+	
+	private String jsonFilename = "cache.json";
 
 	public Cache() {
 		Recipes = new ArrayList<Recipe>();
@@ -51,23 +43,14 @@ public class Cache {
 	 */
 	public void save(Context context) {
 		Gson gson = new Gson();
-		
-		Log.d("Write", "Testing Everything2JSON: " + gson.toJson(this));
 
 		try {
-			// Save Ingredient List to File
-			DataOutputStream ingredientOut = new DataOutputStream(context.openFileOutput(this.ingredientFilename, Context.MODE_PRIVATE));
-			Log.d("Write", "Wrote: " + gson.toJson(this.Ingredients));
-			ingredientOut.writeUTF(gson.toJson(this.Ingredients));
-			ingredientOut.flush();
-			ingredientOut.close();
-
-			// Save Recipe List to File
-//			DataOutputStream recipeOut = new DataOutputStream(context.openFileOutput(this.recipeFilename, Context.MODE_PRIVATE));
-//			Log.d("Write", "Wrote: " + gson.toJson(this.Recipes));
-//			recipeOut.writeUTF(gson.toJson(this.Recipes));
-//			recipeOut.flush();
-//			recipeOut.close();
+			// Save Cache to File
+			DataOutputStream dataOut = new DataOutputStream(context.openFileOutput(this.jsonFilename, Context.MODE_PRIVATE));
+			Log.d("Write", "Wrote: " + gson.toJson(this));
+			dataOut.writeUTF(gson.toJson(this));
+			dataOut.flush();
+			dataOut.close();
 			
 		} catch(Exception e) {
 			Log.d("Testing", "Error in Cache Save!");
@@ -83,39 +66,29 @@ public class Cache {
 		Gson gson = new Gson();
 		
 		try {
-			// Load Ingredient List from File
-			StringBuffer ingredientData = new StringBuffer("");
-			DataInputStream ingredientIn = new DataInputStream(context.openFileInput(this.ingredientFilename));
+			// Load Cache from File
+			StringBuffer cacheData = new StringBuffer("");
+			DataInputStream dataIn = new DataInputStream(context.openFileInput(this.jsonFilename));
 			try {
 				
 				for (;;)
-					ingredientData.append(ingredientIn.readUTF());
+					cacheData.append(dataIn.readUTF());
 				
 			} catch (EOFException e) {
 
 				// Finished Reading File, Convert from JSON to Object
-				Log.d("File", "Read Ingredients: " + ingredientData.toString());
-				this.Ingredients = gson.fromJson(ingredientData.toString(), new TypeToken<ArrayList<Ingredient>>(){}.getType());
+				Log.d("File", "Read Ingredients: " + cacheData.toString());
+				
+				// Create temporary cache
+				Cache tempCache = new Cache();
+				tempCache = gson.fromJson(cacheData.toString(), Cache.class);
+				
+				// Copy important info from temporary cache
+				this.Ingredients = tempCache.Ingredients;
+				this.Recipes = tempCache.Recipes;
 				
 		    }
-			ingredientIn.close();
-			
-			// Load Recipe List from File
-//			StringBuffer recipeData = new StringBuffer("");
-//			DataInputStream recipeIn = new DataInputStream(context.openFileInput(this.recipeFilename));
-//			try {
-//				
-//				for (;;)
-//					recipeData.append(recipeIn.readUTF());
-//				
-//			} catch (EOFException e) {
-//
-//				// Finished Reading File, Convert from JSON to Object
-//				Log.d("File", "Read Recipe: " + recipeData.toString());
-//				this.Recipes = gson.fromJson(recipeData.toString(), new TypeToken<ArrayList<Recipe>>(){}.getType());
-//				
-//		    }
-//			recipeIn.close();
+			dataIn.close();
 			
 		} catch(Exception e) {
 			Log.d("Testing", "Error in Cache Load!");
