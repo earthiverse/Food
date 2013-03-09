@@ -8,6 +8,7 @@ public class Recipe {
 	private String description; 
 	private int time;
 	private ArrayList<Photo> pictures;
+	private ArrayList<Ingredient> ingredients;
 	private ArrayList<Step> steps;
 	private long id;
 
@@ -78,6 +79,14 @@ public class Recipe {
 
 	public void removePicture(int index) {
 		pictures.remove(index);
+	}
+
+	public ArrayList<Ingredient> getIngredients() {
+		return ingredients;
+	}
+
+	public void addIngredient(Ingredient ingredient) {
+		this.ingredients.add(ingredient);
 	}
 
 	public void addStep(Step step) {
