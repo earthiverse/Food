@@ -7,7 +7,7 @@ public class Recipe {
 	private User author;
 	private String description;
 	private int time;
-	private ArrayList<Photo> pictures;
+	private ArrayList<Photo> photos;
 	private ArrayList<Ingredient> ingredients;
 	private ArrayList<Step> steps;
 	private long id;
@@ -18,14 +18,36 @@ public class Recipe {
 		this.description = description;
 		this.time = time;
 		this.id = System.nanoTime();
+		
+		this.steps = new ArrayList<Step>();
+		this.ingredients = new ArrayList<Ingredient>();
+		this.photos = new ArrayList<Photo>();
 	}
 	
-	public Recipe(String title, User author, String description, int time, long id) {
+	public Recipe(String title, User author, String description, int time, ArrayList<Step> steps, ArrayList<Ingredient> ingredients, ArrayList<Photo> photos, long id) {
 		this.title = title;
 		this.author = author;
 		this.description = description;
 		this.time = time;
 		this.id = id;
+		
+		if(steps == null) {
+			this.steps = new ArrayList<Step>();
+		} else {
+			this.steps = steps;
+		}
+		
+		if(ingredients == null) {
+			this.ingredients = new ArrayList<Ingredient>();
+		} else {
+			this.ingredients = ingredients;
+		}
+		
+		if(photos == null) {
+			this.photos = new ArrayList<Photo>();
+		} else {
+			this.photos = photos;
+		}
 	}
 
 	/**
@@ -69,11 +91,11 @@ public class Recipe {
 	}
 
 	public void addPicture(Photo photo) {
-		pictures.add(photo);
+		photos.add(photo);
 	}
 
 	public void removePicture(int index) {
-		pictures.remove(index);
+		photos.remove(index);
 	}
 
 	public ArrayList<Ingredient> getIngredients() {

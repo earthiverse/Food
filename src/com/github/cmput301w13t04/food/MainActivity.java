@@ -101,7 +101,19 @@ public class MainActivity extends Activity {
 		Cache cache = new Cache();
 		
 		//Testing: Create fake recipe
-		Recipe recipe = new Recipe("Kent's Super Recipe", new User("krasmuss@ualberta.ca"), "The best recipe ever.", 30, 1337);
+		Recipe recipe = new Recipe("Kent's Super Recipe", new User("krasmuss@ualberta.ca"), "The best recipe ever.", 30, null, null, null, 1337);
+		
+		Ingredient strawberry = new Ingredient("Strawberry", 5, "Yummy red fruit", null);
+		Ingredient sugar = new Ingredient("Sugar", 10, "Delicious white substance", null);
+		recipe.addIngredient(strawberry);
+		recipe.addIngredient(sugar);
+		
+		Step one = new Step("Gather Pots and Pans", "Get a large pan for our delicious baked goods.");
+		Step two = new Step("Mix!", "Throw strawberries and sugar in to large pan!");
+		
+		recipe.addStep(one);
+		recipe.addStep(two);
+		
 		cache.addRecipe(recipe);
 		cache.save(view.getContext());
 
