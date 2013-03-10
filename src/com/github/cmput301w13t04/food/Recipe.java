@@ -31,23 +31,20 @@ public class Recipe {
 		this.time = time;
 		this.id = id;
 		
-		if(steps == null) {
+		if(steps == null)
 			this.steps = new ArrayList<Step>();
-		} else {
+		else
 			this.steps = steps;
-		}
 		
-		if(ingredients == null) {
+		if(ingredients == null)
 			this.ingredients = new ArrayList<Ingredient>();
-		} else {
+		else
 			this.ingredients = ingredients;
-		}
 		
-		if(photos == null) {
+		if(photos == null)
 			this.photos = new ArrayList<Photo>();
-		} else {
+		else
 			this.photos = photos;
-		}
 	}
 
 	/**
@@ -120,5 +117,9 @@ public class Recipe {
 	
 	public long getId(){
 		return this.id;
+	}
+
+	public ArrayList<Step> getSteps() {
+		return this.steps;
 	}
 }

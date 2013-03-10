@@ -20,5 +20,8 @@
     <string name="recipe_title_description">Description</string>
     <string name="recipe_title_ingredients">Ingredients</string>
     <string name="recipe_title_steps">Steps</string>
-
+    
+    <!-- Ingredient -->
+	<string name="ingredient_quantity">Quantity: </string>
+	
 </resources>

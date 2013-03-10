@@ -2,11 +2,11 @@ package com.github.cmput301w13t04.food;
 
 public class Ingredient {
 	private String name;
-	private int quantity;
+	private String quantity;
 	private String description;
 	private Photo photo;
 
-	public Ingredient(String name, int quantity, String description, Photo photo) {
+	public Ingredient(String name, String quantity, String description, Photo photo) {
 		this.name = name;
 		this.quantity = quantity;
 		this.description = description;
@@ -29,11 +29,11 @@ public class Ingredient {
 		this.description = description;
 	}
 
-	public int getQuantity() {
+	public String getQuantity() {
 		return quantity;
 	}
 
-	public void setQuantity(int Quantity) {
+	public void setQuantity(String Quantity) {
 		this.quantity = Quantity;
 	}
 

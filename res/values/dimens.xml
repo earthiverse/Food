@@ -7,5 +7,8 @@
     <!-- List Margins -->
     <dimen name="list_item_height">46dp</dimen>
     <dimen name="list_icon_margin">4dp</dimen>
+    
+    <!-- Recipe Steps -->
+    <dimen name="step_padding">4dp</dimen>
 
 </resources>

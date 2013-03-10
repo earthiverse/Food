@@ -11,12 +11,15 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 import android.widget.TextView;
 
-public class ViewRecipe extends FragmentActivity implements ActionBar.TabListener {
+public class ViewRecipe extends FragmentActivity implements
+		ActionBar.TabListener {
 
 	public static Recipe recipe;
 
@@ -30,7 +33,7 @@ public class ViewRecipe extends FragmentActivity implements ActionBar.TabListene
 		// Load Cache
 		Cache cache = new Cache();
 		cache.load(this);
-		
+
 		cache.printRecipeList();
 
 		// Load Recipe from ID
@@ -38,12 +41,12 @@ public class ViewRecipe extends FragmentActivity implements ActionBar.TabListene
 		recipe = cache.getRecipe(recipeID);
 		if (recipe == null) {
 			// TODO: Get recipe from database
-			
+
 			// ELSE ERROR:
 			// TODO: Toast 'Recipe not found!'
 			finish();
 		}
-		
+
 		// ELSE: We've got our recipe!
 
 		// Setup View
@@ -51,9 +54,11 @@ public class ViewRecipe extends FragmentActivity implements ActionBar.TabListene
 
 		// Setup ActionBar
 		final ActionBar actionBar = getActionBar();
-		actionBar.setDisplayShowHomeEnabled(false);
+		actionBar.setDisplayUseLogoEnabled(true);
+		actionBar.setLogo(R.drawable.shrimpdumpling);	// TODO: Get actual picture from recipe
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 		actionBar.setTitle(recipe.getTitle());
+		actionBar.setSubtitle(recipe.getAuthor().getUsername());
 
 		// Setup Tab Navigation
 		mSectionsPagerAdapter = new SectionsPagerAdapter(
@@ -107,7 +112,7 @@ public class ViewRecipe extends FragmentActivity implements ActionBar.TabListene
 
 				return fragment;
 
-			// Second Tab: Ingredients
+				// Second Tab: Ingredients
 			case 1:
 				fragment = new RecipeIngredientsFragment();
 
@@ -115,7 +120,7 @@ public class ViewRecipe extends FragmentActivity implements ActionBar.TabListene
 
 				return fragment;
 
-			// Third Tab: Steps
+				// Third Tab: Steps
 			case 2:
 				fragment = new RecipeStepFragment();
 
@@ -161,10 +166,8 @@ public class ViewRecipe extends FragmentActivity implements ActionBar.TabListene
 					R.layout.fragment_recipe_description, container, false);
 
 			TextView dummyTextView = (TextView) rootView
-					.findViewById(R.id.recipe_description);		
+					.findViewById(R.id.recipe_description);
 
-			this.getActivity().getIntent();
-			
 			dummyTextView.setText(recipe.getDescription());
 
 			return rootView;
@@ -182,8 +185,8 @@ public class ViewRecipe extends FragmentActivity implements ActionBar.TabListene
 			View rootView = inflater.inflate(
 					R.layout.fragment_recipe_ingredients, container, false);
 
-			// TODO: Populate ingredients
-			// savedInstanceState.get(key);
+			ListView list = (ListView) rootView.findViewById(R.id.ingredient_list);
+			list.setAdapter(new IngredientAdapter(list.getContext(), R.layout.item_ingredient, recipe.getIngredients()));
 
 			return rootView;
 		}
@@ -200,10 +203,8 @@ public class ViewRecipe extends FragmentActivity implements ActionBar.TabListene
 			View rootView = inflater.inflate(R.layout.fragment_recipe_steps,
 					container, false);
 
-			TextView dummyTextView = (TextView) rootView
-					.findViewById(R.id.recipe_steps_test);
-
-			dummyTextView.setText("Recipe steps go here");
+			ListView list = (ListView) rootView.findViewById(R.id.step_list);
+			list.setAdapter(new StepAdapter(list.getContext(), R.layout.item_step, recipe.getSteps()));
 
 			return rootView;
 		}

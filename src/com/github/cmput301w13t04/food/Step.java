@@ -11,6 +11,17 @@ public class Step {
 	public Step(String name, String description) {
 		this.name = name;
 		this.description = description;
+		this.photos = new ArrayList<Photo>();
+	}
+	
+	public Step(String name, String description, ArrayList<Photo> photos) {
+		this.name = name;
+		this.description = description;
+		
+		if(photos == null)
+			this.photos = new ArrayList<Photo>();
+		else
+			this.photos = photos;
 	}
 
 	public String getDescription() {
