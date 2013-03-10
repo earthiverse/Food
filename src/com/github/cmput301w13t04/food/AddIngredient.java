@@ -6,7 +6,11 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
-
+/**
+ * Gets input from the user and saves it to the cache.
+ * @author Gongal
+ *
+ */
 public class AddIngredient extends Activity {
 
 	@Override
@@ -21,7 +25,9 @@ public class AddIngredient extends Activity {
 		getMenuInflater().inflate(R.menu.add_ingredient, menu);
 		return true;
 	}
-	
+	/**
+	 * Gets input from user, checks if user entered both name and quantity.
+	 */
 	public void saveData(){
 	  EditText name =(EditText) findViewById(R.id.add_name);
 	  EditText quantity =(EditText) findViewById(R.id.add_quantity);
@@ -36,7 +42,7 @@ public class AddIngredient extends Activity {
 	    Ingredient ingredient = new Ingredient(nameIngredient, quantityVal, descriptionIngredient, photo);
 	    Cache cache = new Cache();
 	    cache.addIngredient(ingredient);
-	    cache.save();
+	    cache.save(this);
 	    Toast.makeText(getApplicationContext(), "New entry added! ", Toast.LENGTH_SHORT).show();
 	  }
 	  else{
