@@ -3,9 +3,9 @@ package com.github.cmput301w13t04.food;
 import java.util.ArrayList;
 
 public class Recipe {
-	private String title;	// the title of the recipe
-	private User author;	// the author of the recipe
-	private String description; 
+	private String title; // the title of the recipe
+	private User author; // the author of the recipe
+	private String description;
 	private int time;
 	private ArrayList<Photo> photos;
 	private ArrayList<Ingredient> ingredients;
@@ -18,30 +18,32 @@ public class Recipe {
 		this.description = description;
 		this.time = time;
 		this.id = System.nanoTime();
-		
+
 		this.steps = new ArrayList<Step>();
 		this.ingredients = new ArrayList<Ingredient>();
 		this.photos = new ArrayList<Photo>();
 	}
-	
-	public Recipe(String title, User author, String description, int time, ArrayList<Step> steps, ArrayList<Ingredient> ingredients, ArrayList<Photo> photos, long id) {
+
+	public Recipe(String title, User author, String description, int time,
+			ArrayList<Step> steps, ArrayList<Ingredient> ingredients,
+			ArrayList<Photo> photos, long id) {
 		this.title = title;
 		this.author = author;
 		this.description = description;
 		this.time = time;
 		this.id = id;
-		
-		if(steps == null)
+
+		if (steps == null)
 			this.steps = new ArrayList<Step>();
 		else
 			this.steps = steps;
-		
-		if(ingredients == null)
+
+		if (ingredients == null)
 			this.ingredients = new ArrayList<Ingredient>();
 		else
 			this.ingredients = ingredients;
-		
-		if(photos == null)
+
+		if (photos == null)
 			this.photos = new ArrayList<Photo>();
 		else
 			this.photos = photos;
@@ -49,6 +51,7 @@ public class Recipe {
 
 	/**
 	 * Get the title of the Recipe object
+	 * 
 	 * @return a string containing the title
 	 */
 	public String getTitle() {
@@ -57,7 +60,9 @@ public class Recipe {
 
 	/**
 	 * Set a new title for the Recipe object
-	 * @param title The new title of the Recipe object
+	 * 
+	 * @param title
+	 *            The new title of the Recipe object
 	 */
 	public void setTitle(String title) {
 		this.title = title;
@@ -103,27 +108,19 @@ public class Recipe {
 		this.ingredients.add(ingredient);
 	}
 
-	public ArrayList<Ingredient> getIngredients() {
-		return ingredients;
-	}
-
-	public void addIngredient(Ingredient ingredient) {
-		this.ingredients.add(ingredient);
-	}
-
 	public void addStep(Step step) {
 		steps.add(step);
 	}
 
-	public int stepCount(){
+	public int stepCount() {
 		return steps.size();
 	}
-	
+
 	public void removeStep(Step step) {
 		steps.remove(step);
 	}
-	
-	public long getId(){
+
+	public long getId() {
 		return this.id;
 	}
 
