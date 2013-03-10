@@ -4,111 +4,14 @@
     android:layout_height="match_parent"
     tools:context="com.github.cmput301w13t04.food.MainActivity" >
 
-    <HorizontalScrollView
-        android:id="@+id/horizontalScrollView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" >
-        
-        <LinearLayout
-            android:id="@+id/image_scroll"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
-	<!-- 
-    <ImageView
-        android:id="@+id/imageView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_action_emo_angry" />
-
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/imageView1"
-        android:src="@drawable/ic_action_emo_basic" />
-
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/imageView2"
-        android:src="@drawable/ic_action_emo_cool" />
-
-    <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/imageView3"
-        android:src="@drawable/ic_action_emo_cry" />
-
-    <ImageView
-        android:id="@+id/imageView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/imageView4"
-        android:src="@drawable/ic_action_emo_err" />
-
-    <ImageView
-        android:id="@+id/imageView6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/imageView5"
-        android:src="@drawable/ic_action_emo_evil" />
-
-    <ImageView
-        android:id="@+id/imageView7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/imageView6"
-        android:src="@drawable/ic_action_emo_kiss" />
-
-    <ImageView
-        android:id="@+id/imageView8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/imageView7"
-        android:src="@drawable/ic_action_emo_laugh" />
-
-    <ImageView
-        android:id="@+id/imageView9"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/imageView8"
-        android:src="@drawable/ic_action_emo_shame" />
-
-    <ImageView
-        android:id="@+id/imageView10"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/imageView9"
-        android:src="@drawable/ic_action_emo_tongue" />
-
-    <ImageView
-        android:id="@+id/imageView11"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/imageView10"
-        android:src="@drawable/ic_action_emo_wink" />
-
-    <ImageView
-        android:id="@+id/imageView12"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/imageView11"
-        android:src="@drawable/ic_action_emo_wonder" />
-     -->
-    </LinearLayout>
-    
-    </HorizontalScrollView>
-
-    <TextView
-        android:id="@+id/textView1"
+    <Button
+        android:id="@+id/viewRecipe"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        
-        android:layout_alignParentTop="true"
-        android:text="@string/how_much_do_i_like_food" />
+        android:layout_marginTop="46dp"
+        android:text="Recipe Book"
+        android:onClick="showRecipeList" />
 
     <Button
         android:id="@+id/viewIngredient"
@@ -118,24 +21,25 @@
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/viewRecipe"
         android:layout_marginTop="22dp"
-        android:text="@string/view_ingredient" />
+        android:text="Pantry"
+        android:onClick="showIngredientList" />
 
     <Button
         android:id="@+id/addIngredient"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/viewIngredient"
-        android:layout_marginTop="22dp"
-        android:text="@string/add_ingredient" />
+        android:layout_alignLeft="@+id/viewIngredient"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="106dp"
+        android:text="Add Ingredient" />
 
     <Button
-        android:id="@+id/viewRecipe"
+        android:id="@+id/button1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/horizontalScrollView1"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="46dp"
-        android:text="@string/view_recipe" />
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:onClick="populateTestData"
+        android:text="Populate Test Data" />
 
 </RelativeLayout>

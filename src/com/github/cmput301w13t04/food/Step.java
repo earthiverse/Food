@@ -8,12 +8,20 @@ public class Step {
 	private String description;
 	private ArrayList<Photo> photos;
 
-	public Step(String name, String description,
-			ArrayList<Photo> photos) {
-
+	public Step(String name, String description) {
 		this.name = name;
 		this.description = description;
-		this.photos = photos;
+		this.photos = new ArrayList<Photo>();
+	}
+	
+	public Step(String name, String description, ArrayList<Photo> photos) {
+		this.name = name;
+		this.description = description;
+		
+		if(photos == null)
+			this.photos = new ArrayList<Photo>();
+		else
+			this.photos = photos;
 	}
 
 	public String getDescription() {
@@ -30,6 +38,14 @@ public class Step {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public void addPhoto(Photo photo) {
+		this.photos.add(photo);
+	}
+	
+	public void removePhoto(int index) {
+		this.photos.remove(index);
 	}
 
 }

@@ -1,7 +1,14 @@
 <resources>
 
-    <!-- Default screen margins, per the Android Design guidelines. -->
+    <!-- Screen Margins -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+    
+    <!-- List Margins -->
+    <dimen name="list_item_height">46dp</dimen>
+    <dimen name="list_icon_margin">4dp</dimen>
+    
+    <!-- Recipe Steps -->
+    <dimen name="step_padding">4dp</dimen>
 
 </resources>
