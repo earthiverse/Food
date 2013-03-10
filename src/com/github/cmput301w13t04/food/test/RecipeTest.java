@@ -17,7 +17,7 @@ public class RecipeTest {
 
 		u1 = new User("dud@ualberta.ca");
 
-		Recipe r = new Recipe("Onion soup", u1, "A tasty, zesty soup", 8, null);
+		Recipe r = new Recipe("Onion soup", u1, "A tasty, zesty soup", 8);
 		
 		String title = r.getTitle();
 		assertEquals(title, "Onion soup");
@@ -34,7 +34,7 @@ public class RecipeTest {
 
 		u1 = new User("dud@ualberta.ca");
 
-		Recipe r = new Recipe("Onion soup", u1, "A tasty, zesty soup", 8, null);
+		Recipe r = new Recipe("Onion soup", u1, "A tasty, zesty soup", 8);
 		
 		String desc = r.getDescription();
 		assertEquals(desc, "A tasty, zesty soup");
@@ -51,7 +51,7 @@ public class RecipeTest {
 
 		u1 = new User("dud@ualberta.ca");
 
-		Recipe r = new Recipe("Onion soup", u1, "A tasty, zesty soup", 8, null);
+		Recipe r = new Recipe("Onion soup", u1, "A tasty, zesty soup", 8);
 		
 		int time = r.getTime();
 		assertEquals(time, 8);
@@ -69,7 +69,7 @@ public class RecipeTest {
 		u1 = new User("dud@ualberta.ca");
 		u2 = new User("bobloblaw@ualberta.ca");
 		
-		Recipe r = new Recipe("Onion soup", u1, "A tasty, zesty soup", 8, null);
+		Recipe r = new Recipe("Onion soup", u1, "A tasty, zesty soup", 8);
 		
 		User author = r.getAuthor();
 		assertEquals(author, u1);
@@ -86,7 +86,7 @@ public class RecipeTest {
 
 		u1 = new User("dud@ualberta.ca");
 
-		Recipe r = new Recipe("Onion soup", u1, "A tasty, zesty soup", 8, null);
+		Recipe r = new Recipe("Onion soup", u1, "A tasty, zesty soup", 8);
 		Step step = new Step("Add onions", "Add onions to pan", null);
 		
 		r.addStep(step);
@@ -107,7 +107,7 @@ public class RecipeTest {
 		
 		long id = 1;
 
-		Recipe r = new Recipe("Onion soup", u1, "A tasty, zesty soup", 8, null, id);
+		Recipe r = new Recipe("Onion soup", u1, "A tasty, zesty soup", 8, null, null, null, id);
 		
 		assertEquals(r.getId(), id);
 	}

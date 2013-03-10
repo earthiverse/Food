@@ -18,12 +18,12 @@ public class CacheTest extends TestCase {
 
 		Cache cache = new Cache();
 		Ingredient i, i2;
-		i = new Ingredient("Onion", 1, "A tasty vegetable", null);
+		i = new Ingredient("Onion", "1", "A tasty vegetable", null);
 		cache.addIngredient(i);
 
 		assertTrue(cache.hasIngredients());
 
-		i2 = new Ingredient("Apple", 1, "A tasty fruit", null);
+		i2 = new Ingredient("Apple", "1", "A tasty fruit", null);
 		cache.addIngredient(i2);
 
 		assertEquals(2, cache.ingredientCount());
@@ -35,8 +35,8 @@ public class CacheTest extends TestCase {
 
 		Cache cache = new Cache();
 		Ingredient i, i2;
-		i = new Ingredient("Onion", 1, "A tasty vegetable", null);
-		i2 = new Ingredient("Apple", 1, "A tasty fruit", null);
+		i = new Ingredient("Onion", "1", "A tasty vegetable", null);
+		i2 = new Ingredient("Apple", "1", "A tasty fruit", null);
 
 		cache.addIngredient(i);
 		cache.addIngredient(i2);
@@ -58,8 +58,8 @@ public class CacheTest extends TestCase {
 
 		Cache cache = new Cache();
 		Ingredient i, i2;
-		i = new Ingredient("Onion", 1, "A tasty vegetable", null);
-		i2 = new Ingredient("Apple", 1, "A tasty fruit", null);
+		i = new Ingredient("Onion", "1", "A tasty vegetable", null);
+		i2 = new Ingredient("Apple", "1", "A tasty fruit", null);
 
 		cache.addIngredient(i);
 		cache.addIngredient(i2);
@@ -89,12 +89,12 @@ public class CacheTest extends TestCase {
 		u1 = new User("dud@ualberta.ca");
 		u2 = new User("bobloblaw@ualberta.ca");
 
-		r = new Recipe("Onion soup", u1, "A tasty, zesty soup", 8, null);
+		r = new Recipe("Onion soup", u1, "A tasty, zesty soup", 8);
 		cache.addRecipe(r);
 
 		assertTrue(cache.hasRecipes());
 
-		r2 = new Recipe("Apple soup", u2, "A tasty fruit soup", 3, null);
+		r2 = new Recipe("Apple soup", u2, "A tasty fruit soup", 3);
 		cache.addRecipe(r2);
 
 		assertEquals(2, cache.recipeCount());
@@ -112,8 +112,8 @@ public class CacheTest extends TestCase {
 		u1 = new User("dud@ualberta.ca");
 		u2 = new User("bobloblaw@ualberta.ca");
 
-		r = new Recipe("Onion soup", u1, "A tasty, zesty soup", 8, null);
-		r2 = new Recipe("Apple soup", u2, "A tasty fruit soup", 3, null);
+		r = new Recipe("Onion soup", u1, "A tasty, zesty soup", 8);
+		r2 = new Recipe("Apple soup", u2, "A tasty fruit soup", 3);
 
 		long id = r.getId();
 
@@ -142,8 +142,8 @@ public class CacheTest extends TestCase {
 		u1 = new User("dud@ualberta.ca");
 		u2 = new User("bobloblaw@ualberta.ca");
 
-		r = new Recipe("Onion soup", u1, "A tasty, zesty soup", 8, null);
-		r2 = new Recipe("Apple soup", u2, "A tasty fruit soup", 3, null);
+		r = new Recipe("Onion soup", u1, "A tasty, zesty soup", 8);
+		r2 = new Recipe("Apple soup", u2, "A tasty fruit soup", 3);
 
 		cache.addRecipe(r);
 		cache.addRecipe(r2);

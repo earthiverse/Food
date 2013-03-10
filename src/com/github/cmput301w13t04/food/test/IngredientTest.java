@@ -10,7 +10,7 @@ public class IngredientTest {
 
 	@Test
 	public void testGetName() {
-		Ingredient i = new Ingredient("Onion", 1, "A tasty vegetable", null);
+		Ingredient i = new Ingredient("Onion", "1", "A tasty vegetable", null);
 		
 		String name, newName;
 		
@@ -29,7 +29,7 @@ public class IngredientTest {
 
 	@Test
 	public void testGetDescription() {
-		Ingredient i = new Ingredient("Onion", 1, "A tasty vegetable", null);
+		Ingredient i = new Ingredient("Onion", "1", "A tasty vegetable", null);
 		
 		String desc, newDesc;
 		
@@ -50,21 +50,21 @@ public class IngredientTest {
 	@Test
 	public void testGetQuantity() {
 
-		Ingredient i = new Ingredient("Onion", 1, "A tasty vegetable", null);
+		Ingredient i = new Ingredient("Onion", "1", "A tasty vegetable", null);
 		
-		int q, newQ;
+		String q, newQ;
 		
 		q = i.getQuantity();
-		newQ = 2;
+		newQ = "2";
 		
-		assertEquals(q, 1);
-		assertFalse(q == newQ);
+		assertEquals(q, "1");
+		assertFalse(q.equals(newQ));
 		
 		i.setQuantity(newQ);
 		q = i.getQuantity();
 		
 		assertEquals(q, newQ);
-		assertFalse(q == 1);
+		assertFalse(q.equals("1"));
 	}
 
 }
