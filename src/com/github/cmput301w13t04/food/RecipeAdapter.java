@@ -43,7 +43,7 @@ public class RecipeAdapter extends ArrayAdapter<Recipe> {
 
 			TextView name = (TextView) view.findViewById(R.id.step_title);
 			if (name != null) {
-				//name.setText(step.getName());
+				name.setText(recipe.getTitle());
 			}
 
 			TextView description = (TextView) view
