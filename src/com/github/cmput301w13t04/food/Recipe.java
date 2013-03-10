@@ -3,9 +3,9 @@ package com.github.cmput301w13t04.food;
 import java.util.ArrayList;
 
 public class Recipe {
-	private String title;
-	private User author;
-	private String description;
+	private String title;	// the title of the recipe
+	private User author;	// the author of the recipe
+	private String description; 
 	private int time;
 	private ArrayList<Photo> photos;
 	private ArrayList<Ingredient> ingredients;
@@ -93,6 +93,14 @@ public class Recipe {
 
 	public void removePicture(int index) {
 		photos.remove(index);
+	}
+
+	public ArrayList<Ingredient> getIngredients() {
+		return ingredients;
+	}
+
+	public void addIngredient(Ingredient ingredient) {
+		this.ingredients.add(ingredient);
 	}
 
 	public ArrayList<Ingredient> getIngredients() {
