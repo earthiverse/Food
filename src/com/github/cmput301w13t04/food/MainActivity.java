@@ -16,7 +16,7 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
-		doStuff();
+		//doStuff();
 		testCache();
 	}
 
@@ -160,6 +160,13 @@ public class MainActivity extends Activity {
 	
 	public void showRecipeList(View view) {
 		Intent intent = new Intent(MainActivity.this, Activity_ViewRecipeList.class);
+		startActivity(intent);
+	}
+	
+	public void showIngredientList(View view){
+		
+		// show what's in the pantry
+		Intent intent = new Intent(MainActivity.this, Activity_ViewIngredientList.class);
 		startActivity(intent);
 	}
 }
