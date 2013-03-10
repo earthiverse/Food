@@ -2,8 +2,13 @@ package com.github.cmput301w13t04.food;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Intent;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ListView;
 import android.support.v4.app.NavUtils;
 
 public class Activity_ViewRecipeList extends Activity {
@@ -14,12 +19,26 @@ public class Activity_ViewRecipeList extends Activity {
 		setContentView(R.layout.activity_view_recipe_list);
 		// Show the Up button in the action bar.
 		setupActionBar();
-		
+
 		Cache cache = new Cache();
 		cache.load(this);
-		
-		
-		//TODO: Populate list.
+
+		// Populate Recipe List
+		ListView list = (ListView) findViewById(R.id.recipe_list);
+		list.setAdapter(new RecipeAdapter(list.getContext(),
+				R.layout.item_recipe, cache.getRecipes()));
+
+		list.setOnItemClickListener(new OnItemClickListener() {
+
+			public void onItemClick(AdapterView<?> arg0, View arg1,
+					int position, long id) {
+				Intent intent = new Intent(Activity_ViewRecipeList.this, ViewRecipe.class);
+				intent.putExtra("RECIPE_ID", id);
+				startActivity(intent);
+
+			}
+
+		});
 	}
 
 	/**

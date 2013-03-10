@@ -39,7 +39,7 @@ public class StepAdapter extends ArrayAdapter<Step> {
 		// Display ingredient
 		if (step != null) {
 
-			// TODO:
+			// TODO: Populate Step Image
 
 			TextView name = (TextView) view.findViewById(R.id.step_title);
 			if (name != null) {

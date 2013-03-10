@@ -21,6 +21,11 @@ public class RecipeAdapter extends ArrayAdapter<Recipe> {
 
 		this.layout = textViewResourceId;
 	}
+	
+	@Override
+	public long getItemId(int position) {
+		return recipes.get(position).getId();
+	}
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
@@ -34,27 +39,22 @@ public class RecipeAdapter extends ArrayAdapter<Recipe> {
 		}
 
 		// Grab ingredient from list
-		Recipe step = recipes.get(position);
+		Recipe recipe = recipes.get(position);
 
-		// Display ingredient
-		if (step != null) {
+		// Display recipe
+		if (recipe != null) {
+			
+			// TODO: Populate Recipe Image
 
-			// TODO:
-
-			TextView name = (TextView) view.findViewById(R.id.step_title);
+			TextView name = (TextView) view.findViewById(R.id.recipe_name);
 			if (name != null) {
-				name.setText(step.getName());
+				name.setText(recipe.getTitle());
 			}
 
 			TextView description = (TextView) view
-					.findViewById(R.id.step_description);
+					.findViewById(R.id.recipe_description);
 			if (description != null) {
-				description.setText(step.getDescription());
-			}
-
-			TextView number = (TextView) view.findViewById(R.id.step_number);
-			if (number != null) {
-				number.setText(String.valueOf(position + 1) + ". ");
+				description.setText(recipe.getDescription());
 			}
 		}
 

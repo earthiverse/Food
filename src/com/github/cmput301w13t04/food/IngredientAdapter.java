@@ -38,7 +38,7 @@ public class IngredientAdapter extends ArrayAdapter<Ingredient> {
 		// Display ingredient
 		if (ingredient != null) {
 
-			// TODO: Grab and Display Image
+			// TODO: Populate Ingredient Image
 
 			TextView quantity = (TextView) view
 					.findViewById(R.id.ingredient_quantity);

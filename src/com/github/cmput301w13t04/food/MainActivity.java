@@ -158,11 +158,8 @@ public class MainActivity extends Activity {
 		cache.save(view.getContext());
 	}
 	
-	public void showRecipe(View view) {
-
-		// Start Viewing Recipe
-		Intent intent = new Intent(MainActivity.this, ViewRecipe.class);
-		intent.putExtra("RECIPE_ID", (long) 1337);
+	public void showRecipeList(View view) {
+		Intent intent = new Intent(MainActivity.this, Activity_ViewRecipeList.class);
 		startActivity(intent);
 	}
 }
