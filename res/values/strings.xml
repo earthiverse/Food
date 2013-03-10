@@ -14,6 +14,15 @@
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_view_ingredient">ViewIngredient</string>
     <string name="title_activity_add_ingredient">AddIngredient</string>
+    <string name="view_ingredient">View Ingredient</string>
+    <string name="view_recipe">View Recipe</string>
+    <string name="add_ingredient">Add Ingredient</string>
+   	<string name="name">Name</string> 
+   	<string name="quantity">Quantity</string> 
+   	<string name="description">Description</string>
+   	<string name="finish">Finish</string>  
+   	<string name="ingredients_on_hand">Ingredients On Hand</string>  
+   	<string name="optional">Optional</string>
 
     <!-- Recipe -->
     <string name="title_activity_view_recipe">Recipe Viewer</string>
