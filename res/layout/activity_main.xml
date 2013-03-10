@@ -5,31 +5,30 @@
     tools:context="com.github.cmput301w13t04.food.MainActivity" >
 
     <Button
+        android:id="@+id/viewRecipe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="46dp"
+        android:text="Recipe Book"
+        android:onClick="showRecipe" />
+
+    <Button
         android:id="@+id/viewIngredient"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/viewRecipe"
         android:layout_below="@+id/viewRecipe"
         android:layout_marginTop="22dp"
-        android:text="View Ingredient" />
+        android:text="Pantry" />
 
     <Button
         android:id="@+id/addIngredient"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/viewIngredient"
-        android:layout_below="@+id/viewIngredient"
-        android:layout_marginTop="22dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="106dp"
         android:text="Add Ingredient" />
-
-    <Button
-        android:id="@+id/viewRecipe"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/horizontalScrollView1"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="46dp"
-        android:text="View Recipe"
-        android:onClick="showRecipe" />
 
 </RelativeLayout>

@@ -97,7 +97,7 @@ public class MainActivity extends Activity {
 	}
 
 	/* TESTING: Manually create and show recipe */
-	public void showRecipe(View view) {
+	public void populateTestData(View view) {
 		Cache cache = new Cache();
 		
 		//Testing: Create fake recipe
@@ -146,7 +146,19 @@ public class MainActivity extends Activity {
 		recipe.addStep(seven);
 		
 		cache.addRecipe(recipe);
+		
+		//Testing: Add fake ingredients
+		Ingredient chicken = new Ingredient("Chicken", "1", null, null);
+		Ingredient cow = new Ingredient("Cow", "1", null, null);
+		Ingredient pig = new Ingredient("Pig", "1", null, null);
+		cache.addIngredient(chicken);
+		cache.addIngredient(cow);
+		cache.addIngredient(pig);
+		
 		cache.save(view.getContext());
+	}
+	
+	public void showRecipe(View view) {
 
 		// Start Viewing Recipe
 		Intent intent = new Intent(MainActivity.this, ViewRecipe.class);

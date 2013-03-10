@@ -165,10 +165,13 @@ public class ViewRecipe extends FragmentActivity implements
 			View rootView = inflater.inflate(
 					R.layout.fragment_recipe_description, container, false);
 
-			TextView dummyTextView = (TextView) rootView
+			TextView recipe_description = (TextView) rootView
 					.findViewById(R.id.recipe_description);
+			recipe_description.setText(recipe.getDescription());
 
-			dummyTextView.setText(recipe.getDescription());
+			TextView recipe_time = (TextView) rootView
+					.findViewById(R.id.recipe_time);
+			recipe_time.setText(String.valueOf(recipe.getTime()));
 
 			return rootView;
 		}
