@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
 
+/* The class that allows us to view ingredients in our UI */
 public class ViewIngredient extends Activity {
 
   @Override

@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+/* A class that is used to view the recipe list in our UI*/
 public class RecipeAdapter extends ArrayAdapter<Recipe> {
 	private ArrayList<Recipe> recipes;
 	private int layout;

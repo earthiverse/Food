@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+/* The adapter to view the steps of a recipe in our UI */
 public class StepAdapter extends ArrayAdapter<Step> {
 	private ArrayList<Step> steps;
 	private int layout;

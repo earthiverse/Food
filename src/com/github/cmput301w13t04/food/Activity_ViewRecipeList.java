@@ -11,6 +11,9 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.support.v4.app.NavUtils;
 
+/*
+ * Activity for viewing our Recipe Book
+ */
 public class Activity_ViewRecipeList extends Activity {
 
 	@Override
@@ -41,7 +44,7 @@ public class Activity_ViewRecipeList extends Activity {
 		});
 	}
 
-	/**
+	/*
 	 * Set up the {@link android.app.ActionBar}.
 	 */
 	private void setupActionBar() {

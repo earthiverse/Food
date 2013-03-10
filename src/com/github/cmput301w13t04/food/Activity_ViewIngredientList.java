@@ -8,6 +8,9 @@ import android.os.Bundle;
 
 import android.widget.ListView;
 
+/*
+ * An activity for adding ingredients to our pantry
+ */
 public class Activity_ViewIngredientList extends Activity
 {
 	private ListView listIngredients;

@@ -9,6 +9,9 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+/*
+ * Allows for the proper display of an ingredient in a list on the UI
+ */
 public class IngredientAdapter extends ArrayAdapter<Ingredient> {
 	private ArrayList<Ingredient> ingredients;
 	private int layout;

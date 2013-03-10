@@ -24,14 +24,15 @@ public class MainActivity extends Activity {
 		getMenuInflater().inflate(R.menu.activity_main, menu);
 		return true;
 	}
-
+	
+	/* Testing for a user creation by email address */
 	public void doStuff() {
 		AccountManager am = AccountManager.get(this);
 		Account[] accounts = am.getAccountsByType("com.google");
 		Log.d("Testing", accounts[0].name);
 	}
 
-	/* TESTING: Manually create and show recipe */
+	/* TESTING: Manually create and show a recipe and some ingredients */
 	public void populateTestData(View view) {
 		Cache cache = new Cache();
 
@@ -115,15 +116,29 @@ public class MainActivity extends Activity {
 		cache.save(view.getContext());
 	}
 
+	/*
+	 * Listener for the Recipe Book button
+	 */
 	public void showRecipeList(View view) {
 		Intent intent = new Intent(MainActivity.this,
 				Activity_ViewRecipeList.class);
 		startActivity(intent);
 	}
 
+	/*
+	 * Listener for the View Ingredients button
+	 */
 	public void showIngredientList(View view) {
 		Intent intent = new Intent(MainActivity.this,
 				Activity_ViewIngredientList.class);
+		startActivity(intent);
+	}
+
+	/*
+	 * Listener for the Add Ingredients button
+	 */
+	public void showAddIngredient(View view) {
+		Intent intent = new Intent(MainActivity.this, AddIngredient.class);
 		startActivity(intent);
 	}
 }

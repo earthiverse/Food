@@ -10,13 +10,23 @@ import android.content.Context;
 import android.util.Log;
 import com.google.gson.Gson;
 
+/**
+ * The object that allows for storage of local data on the device
+ * @author W13T04
+ */
 public class Cache {
 
+	// Our local list of recipes( also called recipe book)
 	private ArrayList<Recipe> Recipes;
+	
+	//Our local list of ingredients (also called pantry)
 	private ArrayList<Ingredient> Ingredients;
 	
 	private String jsonFilename = "cache.json";
 
+	/**
+	 * Create a new Cache object with empty Recipe and Ingredient lists
+	 */
 	public Cache() {
 		Recipes = new ArrayList<Recipe>();
 		Ingredients = new ArrayList<Ingredient>();
