@@ -2,7 +2,7 @@
 
 ## License
 
-	Reasonable Recipes: Recipes based on the ingredients in your cupboard!
+	Reasonable Recipes: Recipes based on the ingredients in your pantry!
 	Copyright (C) 2013 Thomas Dawson, Amshu Gongal, Kent Rasmussen, Christopher Solinas
 
 	This program is free software: you can redistribute it and/or modify
@@ -17,10 +17,6 @@
 
 	You should have received a copy of the GNU General Public License
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-## General Info
-
-Target Android API: Android 4.1 API Level 16
 
 ## Changelog
 
