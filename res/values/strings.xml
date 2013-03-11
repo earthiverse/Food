@@ -38,5 +38,10 @@
     <!-- Add Ingredient -->
     <string name="title_activity_add_ingredient">Add Ingredient</string>
     <string name="add_ingredient">Add Ingredient</string>
+    <string name="title_activity_add_recipe">AddRecipe</string>
+    <string name="title_activity_search_recipe">SearchRecipe</string>
+    <string name="title_activity_recipe_search_result">RecipeSearchResult</string>
+    <string name="title_activity_edit_ingredient">EditIngredient</string>
+    <string name="title_activity_edit_recipe">EditRecipe</string>
 
 </resources>

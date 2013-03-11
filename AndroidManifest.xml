@@ -16,7 +16,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.github.cmput301w13t04.food.MainActivity"
+            android:name="com.github.cmput301w13t04.food.Activity_Main"
             android:label="@string/title_activity_main" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,29 +25,48 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.github.cmput301w13t04.food.ViewRecipe"
+            android:name="com.github.cmput301w13t04.food.Activity_ViewRecipe"
             android:label="@string/title_activity_view_recipe" >
         </activity>
         <activity
-            android:name="com.github.cmput301w13t04.food.ViewIngredient"
+            android:name="com.github.cmput301w13t04.food.Activity_ViewIngredient"
             android:label="@string/title_activity_view_ingredient" >
         </activity>
         <activity
-            android:name="com.github.cmput301w13t04.food.AddIngredient"
+            android:name="com.github.cmput301w13t04.food.Activity_AddIngredient"
             android:label="@string/title_activity_add_ingredient" >
         </activity>
         <activity
             android:name="com.github.cmput301w13t04.food.Activity_ViewRecipeList"
             android:label="@string/title_activity_view_recipe_list"
-            android:parentActivityName="com.github.cmput301w13t04.food.MainActivity" >
+            android:parentActivityName="com.github.cmput301w13t04.food.Activity_Main" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.github.cmput301w13t04.food.MainActivity" />
         </activity>
         <activity
             android:name="com.github.cmput301w13t04.food.Activity_ViewIngredientList"
-            android:label="@string/title_activity_view_ingredient_list">
-            
+            android:label="@string/title_activity_view_ingredient_list" >
+        </activity>
+        <activity
+            android:name="com.github.cmput301w13t04.food.Activity_AddRecipe"
+            android:label="@string/title_activity_add_recipe" >
+        </activity>
+        <activity
+            android:name="com.github.cmput301w13t04.food.Activity_SearchRecipe"
+            android:label="@string/title_activity_search_recipe" >
+        </activity>
+        <activity
+            android:name="com.github.cmput301w13t04.food.Activity_RecipeSearchResult"
+            android:label="@string/title_activity_recipe_search_result" >
+        </activity>
+        <activity
+            android:name="com.github.cmput301w13t04.food.Activity_EditIngredient"
+            android:label="@string/title_activity_edit_ingredient" >
+        </activity>
+        <activity
+            android:name="com.github.cmput301w13t04.food.Activity_EditRecipe"
+            android:label="@string/title_activity_edit_recipe" >
         </activity>
     </application>
 

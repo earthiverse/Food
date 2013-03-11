@@ -11,7 +11,14 @@ import android.widget.TextView;
 
 /* A class that is used to view the recipe list in our UI*/
 public class RecipeAdapter extends ArrayAdapter<Recipe> {
+	/**
+	 * @uml.property  name="recipes"
+	 * @uml.associationEnd  multiplicity="(0 -1)" elementType="com.github.cmput301w13t04.food.Recipe"
+	 */
 	private ArrayList<Recipe> recipes;
+	/**
+	 * @uml.property  name="layout"
+	 */
 	private int layout;
 
 	public RecipeAdapter(Context context, int textViewResourceId,

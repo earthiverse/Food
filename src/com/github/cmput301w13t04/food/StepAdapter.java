@@ -11,7 +11,14 @@ import android.widget.TextView;
 
 /* The adapter to view the steps of a recipe in our UI */
 public class StepAdapter extends ArrayAdapter<Step> {
+	/**
+	 * @uml.property  name="steps"
+	 * @uml.associationEnd  multiplicity="(0 -1)" elementType="com.github.cmput301w13t04.food.Step"
+	 */
 	private ArrayList<Step> steps;
+	/**
+	 * @uml.property  name="layout"
+	 */
 	private int layout;
 
 	public StepAdapter(Context context, int textViewResourceId,

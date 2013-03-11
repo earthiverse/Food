@@ -13,7 +13,7 @@ import android.widget.Toast;
  * @author T04
  * 
  */
-public class AddIngredient extends Activity {
+public class Activity_AddIngredient extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +72,69 @@ public class AddIngredient extends Activity {
 					"Please enter a name and quantity!", Toast.LENGTH_SHORT)
 					.show();
 
+	}
+
+	/** 
+	 * @uml.property name="cache"
+	 * @uml.associationEnd inverse="activity_AddIngredient:com.github.cmput301w13t04.food.Cache"
+	 */
+	private Cache cache;
+
+	/** 
+	 * Getter of the property <tt>cache</tt>
+	 * @return  Returns the cache.
+	 * @uml.property  name="cache"
+	 */
+	public Cache getCache()
+	
+	
+	
+	
+	
+	
+	{
+		return cache;
+	}
+
+	/** 
+	 * Setter of the property <tt>cache</tt>
+	 * @param cache  The cache to set.
+	 * @uml.property  name="cache"
+	 */
+	public void setCache(Cache cache)
+	
+	
+	
+	{
+		this.cache = cache;
+	}
+
+	/**
+	 * @uml.property  name="cache1"
+	 * @uml.associationEnd  inverse="activity_AddIngredient1:com.github.cmput301w13t04.food.Cache"
+	 */
+	private Cache cache1;
+
+	/**
+	 * Getter of the property <tt>cache1</tt>
+	 * @return  Returns the cache1.
+	 * @uml.property  name="cache1"
+	 */
+	public Cache getCache1()
+	{
+
+		return cache1;
+	}
+
+	/**
+	 * Setter of the property <tt>cache1</tt>
+	 * @param cache1  The cache1 to set.
+	 * @uml.property  name="cache1"
+	 */
+	public void setCache1(Cache cache1)
+	{
+
+		this.cache1 = cache1;
 	}
 
 }

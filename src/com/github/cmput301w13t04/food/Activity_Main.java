@@ -9,7 +9,11 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 
-public class MainActivity extends Activity {
+/**
+ * @uml.dependency   supplier="com.github.cmput301w13t04.food.Activity_ViewRecipeList"
+ */
+public class Activity_Main extends 
+Activity_ViewRecipeList {
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -120,7 +124,7 @@ public class MainActivity extends Activity {
 	 * Listener for the Recipe Book button
 	 */
 	public void showRecipeList(View view) {
-		Intent intent = new Intent(MainActivity.this,
+		Intent intent = new Intent(Activity_Main.this,
 				Activity_ViewRecipeList.class);
 		startActivity(intent);
 	}
@@ -129,7 +133,7 @@ public class MainActivity extends Activity {
 	 * Listener for the View Ingredients button
 	 */
 	public void showIngredientList(View view) {
-		Intent intent = new Intent(MainActivity.this,
+		Intent intent = new Intent(Activity_Main.this,
 				Activity_ViewIngredientList.class);
 		startActivity(intent);
 	}
@@ -138,7 +142,107 @@ public class MainActivity extends Activity {
 	 * Listener for the Add Ingredients button
 	 */
 	public void showAddIngredient(View view) {
-		Intent intent = new Intent(MainActivity.this, AddIngredient.class);
+		Intent intent = new Intent(Activity_Main.this, Activity_AddIngredient.class);
 		startActivity(intent);
+	}
+
+	/** 
+	 * @uml.property name="activity_ViewRecipeList"
+	 * @uml.associationEnd inverse="activity_Main:com.github.cmput301w13t04.food.Activity_ViewRecipeList"
+	 */
+	private Activity_ViewRecipeList activity_ViewRecipeList;
+
+	/** 
+	 * Getter of the property <tt>activity_ViewRecipeList</tt>
+	 * @return  Returns the activity_ViewRecipeList.
+	 * @uml.property  name="activity_ViewRecipeList"
+	 */
+	public Activity_ViewRecipeList getActivity_ViewRecipeList()
+	
+	
+	
+	
+	
+	
+	
+	{
+		return activity_ViewRecipeList;
+	}
+
+	/**
+	 * @uml.property  name="activity_ViewIngredientList"
+	 * @uml.associationEnd  inverse="activity_Main:com.github.cmput301w13t04.food.Activity_ViewIngredientList"
+	 */
+	private Activity_ViewIngredientList activity_ViewIngredientList;
+
+	/**
+	 * Getter of the property <tt>activity_ViewIngredientList</tt>
+	 * @return  Returns the activity_ViewIngredientList.
+	 * @uml.property  name="activity_ViewIngredientList"
+	 */
+	public Activity_ViewIngredientList getActivity_ViewIngredientList()
+	
+	
+	
+	{
+	
+		return activity_ViewIngredientList;
+	}
+
+	/**
+	 * Setter of the property <tt>activity_ViewIngredientList</tt>
+	 * @param activity_ViewIngredientList  The activity_ViewIngredientList to set.
+	 * @uml.property  name="activity_ViewIngredientList"
+	 */
+	public void setActivity_ViewIngredientList(
+			Activity_ViewIngredientList activity_ViewIngredientList)
+	
+	
+	
+	{
+	
+		this.activity_ViewIngredientList = activity_ViewIngredientList;
+	}
+
+	/** 
+	 * Setter of the property <tt>activity_ViewRecipeList</tt>
+	 * @param activity_ViewRecipeList  The activity_ViewRecipeList to set.
+	 * @uml.property  name="activity_ViewRecipeList"
+	 */
+	public void setActivity_ViewRecipeList(
+			Activity_ViewRecipeList activity_ViewRecipeList)
+	
+	{
+	
+		this.activity_ViewRecipeList = activity_ViewRecipeList;
+	}
+
+	/**
+	 * @uml.property  name="activity_ViewRecipeList1"
+	 * @uml.associationEnd  inverse="activity_Main:com.github.cmput301w13t04.food.Activity_ViewRecipeList"
+	 */
+	private Activity_ViewRecipeList activity_ViewRecipeList1;
+
+	/**
+	 * Getter of the property <tt>activity_ViewRecipeList1</tt>
+	 * @return  Returns the activity_ViewRecipeList1.
+	 * @uml.property  name="activity_ViewRecipeList1"
+	 */
+	public Activity_ViewRecipeList getActivity_ViewRecipeList1()
+	{
+
+		return activity_ViewRecipeList1;
+	}
+
+	/**
+	 * Setter of the property <tt>activity_ViewRecipeList1</tt>
+	 * @param activity_ViewRecipeList1  The activity_ViewRecipeList1 to set.
+	 * @uml.property  name="activity_ViewRecipeList1"
+	 */
+	public void setActivity_ViewRecipeList1(
+			Activity_ViewRecipeList activity_ViewRecipeList1)
+	{
+
+		this.activity_ViewRecipeList1 = activity_ViewRecipeList1;
 	}
 }

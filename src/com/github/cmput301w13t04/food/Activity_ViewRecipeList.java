@@ -35,7 +35,7 @@ public class Activity_ViewRecipeList extends Activity {
 
 			public void onItemClick(AdapterView<?> arg0, View arg1,
 					int position, long id) {
-				Intent intent = new Intent(Activity_ViewRecipeList.this, ViewRecipe.class);
+				Intent intent = new Intent(Activity_ViewRecipeList.this, Activity_ViewRecipe.class);
 				intent.putExtra("RECIPE_ID", id);
 				startActivity(intent);
 
@@ -75,6 +75,131 @@ public class Activity_ViewRecipeList extends Activity {
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+
+	/**
+	 * @uml.property  name="activity_SearchRecipe"
+	 * @uml.associationEnd  inverse="activity_ViewRecipeList:com.github.cmput301w13t04.food.Activity_SearchRecipe"
+	 */
+	private Activity_SearchRecipe activity_SearchRecipe;
+
+	/**
+	 * Getter of the property <tt>activity_SearchRecipe</tt>
+	 * @return  Returns the activity_SearchRecipe.
+	 * @uml.property  name="activity_SearchRecipe"
+	 */
+	public Activity_SearchRecipe getActivity_SearchRecipe()
+	
+	
+	
+	{
+	
+		return activity_SearchRecipe;
+	}
+
+	/**
+	 * Setter of the property <tt>activity_SearchRecipe</tt>
+	 * @param activity_SearchRecipe  The activity_SearchRecipe to set.
+	 * @uml.property  name="activity_SearchRecipe"
+	 */
+	public void setActivity_SearchRecipe(
+			Activity_SearchRecipe activity_SearchRecipe)
+	
+	
+	
+	{
+	
+		this.activity_SearchRecipe = activity_SearchRecipe;
+	}
+
+	/**
+	 * @uml.property  name="activity_ViewRecipe"
+	 * @uml.associationEnd  inverse="activity_ViewRecipeList:com.github.cmput301w13t04.food.Activity_ViewRecipe"
+	 */
+	private Activity_ViewRecipe activity_ViewRecipe;
+
+	/**
+	 * Getter of the property <tt>activity_ViewRecipe</tt>
+	 * @return  Returns the activity_ViewRecipe.
+	 * @uml.property  name="activity_ViewRecipe"
+	 */
+	public Activity_ViewRecipe getActivity_ViewRecipe()
+	
+	
+	{
+	
+		return activity_ViewRecipe;
+	}
+
+	/**
+	 * Setter of the property <tt>activity_ViewRecipe</tt>
+	 * @param activity_ViewRecipe  The activity_ViewRecipe to set.
+	 * @uml.property  name="activity_ViewRecipe"
+	 */
+	public void setActivity_ViewRecipe(Activity_ViewRecipe activity_ViewRecipe)
+	
+	
+	{
+	
+		this.activity_ViewRecipe = activity_ViewRecipe;
+	}
+
+	/**
+	 * @uml.property  name="activity_AddRecipe"
+	 * @uml.associationEnd  inverse="activity_ViewRecipeList:com.github.cmput301w13t04.food.Activity_AddRecipe"
+	 */
+	private Activity_AddRecipe activity_AddRecipe;
+
+	/**
+	 * Getter of the property <tt>activity_AddRecipe</tt>
+	 * @return  Returns the activity_AddRecipe.
+	 * @uml.property  name="activity_AddRecipe"
+	 */
+	public Activity_AddRecipe getActivity_AddRecipe()
+	
+	{
+	
+		return activity_AddRecipe;
+	}
+
+	/**
+	 * Setter of the property <tt>activity_AddRecipe</tt>
+	 * @param activity_AddRecipe  The activity_AddRecipe to set.
+	 * @uml.property  name="activity_AddRecipe"
+	 */
+	public void setActivity_AddRecipe(Activity_AddRecipe activity_AddRecipe)
+	
+	{
+	
+		this.activity_AddRecipe = activity_AddRecipe;
+	}
+
+	/**
+	 * @uml.property  name="cache"
+	 * @uml.associationEnd  inverse="activity_ViewRecipeList:com.github.cmput301w13t04.food.Cache"
+	 */
+	private Cache cache;
+
+	/**
+	 * Getter of the property <tt>cache</tt>
+	 * @return  Returns the cache.
+	 * @uml.property  name="cache"
+	 */
+	public Cache getCache()
+	{
+
+		return cache;
+	}
+
+	/**
+	 * Setter of the property <tt>cache</tt>
+	 * @param cache  The cache to set.
+	 * @uml.property  name="cache"
+	 */
+	public void setCache(Cache cache)
+	{
+
+		this.cache = cache;
 	}
 
 }

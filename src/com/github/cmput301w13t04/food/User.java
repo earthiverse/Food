@@ -7,6 +7,9 @@ package com.github.cmput301w13t04.food;
  *
  */
 public class User {
+	/**
+	 * @uml.property  name="email"
+	 */
 	private String email;
 
 	/**
@@ -22,5 +25,33 @@ public class User {
 	 */
 	public String getUsername() {
 		return email;
+	}
+
+	/**
+	 * @uml.property  name="recipe"
+	 * @uml.associationEnd  inverse="user:com.github.cmput301w13t04.food.Recipe"
+	 */
+	private Recipe recipe;
+
+	/**
+	 * Getter of the property <tt>recipe</tt>
+	 * @return  Returns the recipe.
+	 * @uml.property  name="recipe"
+	 */
+	public Recipe getRecipe()
+	{
+
+		return recipe;
+	}
+
+	/**
+	 * Setter of the property <tt>recipe</tt>
+	 * @param recipe  The recipe to set.
+	 * @uml.property  name="recipe"
+	 */
+	public void setRecipe(Recipe recipe)
+	{
+
+		this.recipe = recipe;
 	}
 }

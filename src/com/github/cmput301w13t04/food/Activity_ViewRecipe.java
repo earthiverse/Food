@@ -18,12 +18,20 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 /* A class for viewing a recipe in our UI */
-public class ViewRecipe extends FragmentActivity implements
+public class Activity_ViewRecipe extends FragmentActivity implements
 		ActionBar.TabListener {
 
 	public static Recipe recipe;
 
+	/**
+	 * @uml.property  name="mSectionsPagerAdapter"
+	 * @uml.associationEnd  inverse="this$0:com.github.cmput301w13t04.food.ViewRecipe$SectionsPagerAdapter"
+	 */
 	SectionsPagerAdapter mSectionsPagerAdapter;
+	/**
+	 * @uml.property  name="mViewPager"
+	 * @uml.associationEnd  
+	 */
 	ViewPager mViewPager;
 
 	@Override
@@ -211,5 +219,95 @@ public class ViewRecipe extends FragmentActivity implements
 
 			return rootView;
 		}
+	}
+
+	/** 
+	 * @uml.property name="activity_EditRecipe"
+	 * @uml.associationEnd inverse="activity_ViewRecipe:com.github.cmput301w13t04.food.Activity_EditRecipe"
+	 */
+	private Activity_EditRecipe activity_EditRecipe;
+
+	/** 
+	 * Getter of the property <tt>activity_EditRecipe</tt>
+	 * @return  Returns the activity_EditRecipe.
+	 * @uml.property  name="activity_EditRecipe"
+	 */
+	public Activity_EditRecipe getActivity_EditRecipe()
+	
+	
+	
+	{
+		return activity_EditRecipe;
+	}
+
+	/** 
+	 * Setter of the property <tt>activity_EditRecipe</tt>
+	 * @param activity_EditRecipe  The activity_EditRecipe to set.
+	 * @uml.property  name="activity_EditRecipe"
+	 */
+	public void setActivity_EditRecipe(Activity_EditRecipe activity_EditRecipe)
+	
+	
+	
+	{
+		this.activity_EditRecipe = activity_EditRecipe;
+	}
+
+	/**
+	 * @uml.property  name="cache"
+	 * @uml.associationEnd  inverse="activity_ViewRecipe:com.github.cmput301w13t04.food.Cache"
+	 */
+	private Cache cache;
+
+	/**
+	 * Getter of the property <tt>cache</tt>
+	 * @return  Returns the cache.
+	 * @uml.property  name="cache"
+	 */
+	public Cache getCache()
+	
+	{
+	
+		return cache;
+	}
+
+	/**
+	 * Setter of the property <tt>cache</tt>
+	 * @param cache  The cache to set.
+	 * @uml.property  name="cache"
+	 */
+	public void setCache(Cache cache)
+	
+	{
+	
+		this.cache = cache;
+	}
+
+	/**
+	 * @uml.property  name="database"
+	 * @uml.associationEnd  inverse="activity_ViewRecipe:com.github.cmput301w13t04.food.Database"
+	 */
+	private Database database;
+
+	/**
+	 * Getter of the property <tt>database</tt>
+	 * @return  Returns the database.
+	 * @uml.property  name="database"
+	 */
+	public Database getDatabase()
+	{
+
+		return database;
+	}
+
+	/**
+	 * Setter of the property <tt>database</tt>
+	 * @param database  The database to set.
+	 * @uml.property  name="database"
+	 */
+	public void setDatabase(Database database)
+	{
+
+		this.database = database;
 	}
 }

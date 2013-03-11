@@ -13,7 +13,14 @@ import android.widget.TextView;
  * Allows for the proper display of an ingredient in a list on the UI
  */
 public class IngredientAdapter extends ArrayAdapter<Ingredient> {
+	/**
+	 * @uml.property  name="ingredients"
+	 * @uml.associationEnd  multiplicity="(0 -1)" elementType="com.github.cmput301w13t04.food.Ingredient"
+	 */
 	private ArrayList<Ingredient> ingredients;
+	/**
+	 * @uml.property  name="layout"
+	 */
 	private int layout;
 
 	public IngredientAdapter(Context context, int textViewResourceId,

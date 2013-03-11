@@ -10,12 +10,22 @@ import android.graphics.Bitmap;
 public class Photo {
 	
 	// The image data for the bitmap photo
+	/**
+	 * @uml.property  name="imageData"
+	 * @uml.associationEnd  multiplicity="(1 1)"
+	 */
 	private Bitmap ImageData;
 	
 	// The description of the photo added by the photographer
+	/**
+	 * @uml.property  name="description"
+	 */
 	private String description;
 	
 	// The photographer of this photo
+	/**
+	 * @uml.property  name="photographer"
+	 */
 	private String photographer;
 
 	/**
@@ -33,8 +43,10 @@ public class Photo {
 	/**
 	 * Get the photographer of the photo
 	 * @return
+	 * @uml.property  name="photographer"
 	 */
-	public String getPhotographer() {
+	public String getPhotographer() 
+	{
 		return photographer;
 	}
 
@@ -48,17 +60,21 @@ public class Photo {
 
 	/**
 	 * Get the description of the photo
-	 * @return The description of the photo
+	 * @return  The description of the photo
+	 * @uml.property  name="description"
 	 */
-	public String getDescription() {
+	public String getDescription() 
+	{
 		return description;
 	}
 
 	/**
 	 * Change the description of the photo
-	 * @param description The new description of the phto
+	 * @param description  The new description of the phto
+	 * @uml.property  name="description"
 	 */
-	public void setDescription(String description) {
+	public void setDescription(String description) 
+	{
 		this.description = description;
 	}
 	
@@ -76,6 +92,34 @@ public class Photo {
 	 */
 	public void setPhoto(Bitmap img) {
 		this.ImageData = img;
+	}
+
+	/**
+	 * @uml.property  name="recipe"
+	 * @uml.associationEnd  inverse="photo:com.github.cmput301w13t04.food.Recipe"
+	 */
+	private Recipe recipe;
+
+	/**
+	 * Getter of the property <tt>recipe</tt>
+	 * @return  Returns the recipe.
+	 * @uml.property  name="recipe"
+	 */
+	public Recipe getRecipe()
+	{
+
+		return recipe;
+	}
+
+	/**
+	 * Setter of the property <tt>recipe</tt>
+	 * @param recipe  The recipe to set.
+	 * @uml.property  name="recipe"
+	 */
+	public void setRecipe(Recipe recipe)
+	{
+
+		this.recipe = recipe;
 	}
 
 }
