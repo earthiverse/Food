@@ -47,6 +47,20 @@ public class Cache {
 	public ArrayList<Ingredient> getIngredients() {
 		return this.Ingredients;
 	}
+	
+	/**
+	 * Set new ingredient list
+	 */
+	public void setIngredients(ArrayList<Ingredient> newIng) {
+		this.Ingredients = newIng;
+	}
+	/**
+	 * Set new ingredient list
+	 */
+	public void updateIngredient(Ingredient ingredient, int id) {
+		Ingredients.remove(id);
+		Ingredients.add(id, ingredient);
+	}
 
 	/**
 	 * Save the cache to file in order to make changes persist
@@ -122,6 +136,13 @@ public class Cache {
 		Ingredients.remove(ing);
 	}
 
+	/**
+	 * Remove an Ingredient
+	 * @param ing the Ingredient object to be removed
+	 */
+	public void removeIngredient(int id) {
+		Ingredients.remove(id);
+	}
 	/**
 	 * Checks if the cache has Ingredients
 	 * @return True is the cache has ingredients
