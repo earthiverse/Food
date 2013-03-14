@@ -8,13 +8,79 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".ViewIngredient" >
 
+    <Button
+        android:id="@+id/delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:onClick="deleteIngredient"
+        android:text="Delete" />
+
+    <Button
+        android:id="@+id/update"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/delete"
+        android:onClick="editIngredient"
+        android:text="Update" />
+
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/ingName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:text="@string/ingredients_on_hand"
+        android:layout_marginTop="142dp"
+        android:text="Ingredient Name"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
+    <TextView
+        android:id="@+id/ingQuantity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/ingName"
+        android:layout_below="@+id/ingName"
+        android:layout_marginTop="14dp"
+        android:text="Quantity (units)"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/Description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/delete"
+        android:layout_below="@+id/ingQuantity"
+        android:layout_marginTop="44dp"
+        android:text="Description"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <ImageView
+        android:id="@+id/ingredient_image"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/list_item_height"
+        android:layout_alignBottom="@+id/ingName"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="66dp"
+        android:adjustViewBounds="true"
+        android:paddingRight="@dimen/list_icon_margin"
+        android:src="@drawable/apple" />
+	<ScrollView 
+	    android:id="@+id/ScrollView1"
+	     android:layout_width="wrap_content"
+	    android:layout_height="250px"
+	    android:layout_alignLeft="@+id/Description"
+	    android:layout_below="@+id/Description">
+
+
+	<TextView
+	    android:id="@+id/ingDescription"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignLeft="@+id/Description"
+	    android:layout_below="@+id/Description"
+	    android:text="Art party swag messenger bag, ennui freegan skateboard fashion axe squid kogi high life mcsweeney&apos;s echo park direct trade hella gluten-free. Sartorial four loko gluten-free neutra, pinterest pug whatever authentic church-key intelligentsia mumblecore locavore YOLO. Tonx letterpress swag raw denim, DIY lomo meh hashtag intelligentsia readymade. Aesthetic yr banjo tousled, jean shorts banh mi sustainable. Selvage small batch portland, narwhal tousled cardigan bicycle rights church-key typewriter disrupt banh mi iphone ennui twee. Banh mi thundercats banjo, selfies +1 typewriter tofu cliche YOLO try-hard gluten-free. Dreamcatcher PBR vegan neutra jean shorts, etsy banksy thundercats. Meggings odd future 90&apos;s fashion axe. Whatever tousled fap flexitarian, wayfarers tattooed sriracha hashtag shoreditch." />
+	</ScrollView>
 </RelativeLayout>

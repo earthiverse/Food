@@ -138,7 +138,7 @@ public class MainActivity extends Activity {
 	 * Listener for the Add Ingredients button
 	 */
 	public void showAddIngredient(View view) {
-		Intent intent = new Intent(MainActivity.this, AddIngredient.class);
+		Intent intent = new Intent(MainActivity.this, Activity_EditIngredient.class);
 		startActivity(intent);
 	}
 }
