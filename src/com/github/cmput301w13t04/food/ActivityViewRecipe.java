@@ -18,7 +18,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 /* A class for viewing a recipe in our UI */
-public class ViewRecipe extends FragmentActivity implements
+public class ActivityViewRecipe extends FragmentActivity implements
 		ActionBar.TabListener {
 
 	public static Recipe recipe;

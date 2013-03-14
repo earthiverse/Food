@@ -14,7 +14,7 @@ import android.support.v4.app.NavUtils;
 /*
  * Activity for viewing our Recipe Book
  */
-public class Activity_ViewRecipeList extends Activity {
+public class ActivityViewRecipeList extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +35,7 @@ public class Activity_ViewRecipeList extends Activity {
 
 			public void onItemClick(AdapterView<?> arg0, View arg1,
 					int position, long id) {
-				Intent intent = new Intent(Activity_ViewRecipeList.this, ViewRecipe.class);
+				Intent intent = new Intent(ActivityViewRecipeList.this, ActivityViewRecipe.class);
 				intent.putExtra("RECIPE_ID", id);
 				startActivity(intent);
 

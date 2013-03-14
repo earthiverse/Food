@@ -8,7 +8,6 @@ import android.graphics.Bitmap;
  *
  */
 public class Photo {
-	
 	// The image data for the bitmap photo
 	private Bitmap ImageData;
 	
