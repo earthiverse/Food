@@ -31,4 +31,10 @@
         android:onClick="populateTestData"
         android:text="Populate Test Data" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="shareViaEmail"
+        android:text="Share" />
+
 </LinearLayout>

@@ -141,4 +141,8 @@ public class ActivityMain extends Activity {
 		Intent intent = new Intent(ActivityMain.this, ActivityManageIngredient.class);
 		startActivity(intent);
 	}
+	public void shareViaEmail(View view){
+		Intent intent = new Intent(ActivityMain.this, ActivityShare.class);
+		startActivity(intent);
+	}
 }

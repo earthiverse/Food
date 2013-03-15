@@ -39,5 +39,6 @@
     <string name="title_activity_add_ingredient">Add Ingredient</string>
     <string name="add_ingredient">Add Ingredient</string>
     <string name="title_activity_edit_ingredient">Activity_EditIngredient</string>
+    <string name="title_activity_activity_share">ActivityShare</string>
 
 </resources>

@@ -52,6 +52,10 @@
             android:name="com.github.cmput301w13t04.food.Activity_EditIngredient"
             android:label="@string/title_activity_edit_ingredient" >
         </activity>
+        <activity
+            android:name="com.github.cmput301w13t04.food.ActivityShare"
+            android:label="@string/title_activity_activity_share" >
+        </activity>
     </application>
 
 </manifest>
