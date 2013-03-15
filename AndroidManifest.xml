@@ -9,6 +9,8 @@
         android:targetSdkVersion="17" />
 
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+      <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+	 <uses-feature android:name="android.hardware.camera" />
 
     <application
         android:allowBackup="true"
@@ -52,6 +54,11 @@
             android:name="com.github.cmput301w13t04.food.Activity_EditIngredient"
             android:label="@string/title_activity_edit_ingredient" >
         </activity>
+         <activity
+            android:name="com.github.cmput301w13t04.food.PhotoIntentActivity"
+            android:label="@string/title_activity_edit_ingredient" >
+        </activity>
     </application>
 
 </manifest>
+

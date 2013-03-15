@@ -2,6 +2,7 @@ package com.github.cmput301w13t04.food;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
@@ -42,12 +43,12 @@ public class AddIngredient extends Activity {
 		String quantityIngredient = quantity.getText().toString();
 
 		/* Photo class not yet implemented */
-		Photo photo = new Photo(null, null, null);
+		
 
 		if (!nameIngredient.isEmpty() && !quantityIngredient.isEmpty()) {
 			
 			Ingredient ingredient = new Ingredient(nameIngredient,
-					quantityIngredient, descriptionIngredient, photo);
+					quantityIngredient, descriptionIngredient, null);
 
 			Cache cache = new Cache();
 			cache.load(this);
@@ -58,6 +59,11 @@ public class AddIngredient extends Activity {
 		} else
 			return false;
 
+	}
+	
+	public void takePhoto(View view){
+		Intent intent = new Intent(this, PhotoIntentActivity.class);
+		startActivity(intent);
 	}
 
 	public void finishActivity(View view) {

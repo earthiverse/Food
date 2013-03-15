@@ -40,4 +40,8 @@
     <string name="add_ingredient">Add Ingredient</string>
     <string name="title_activity_edit_ingredient">Activity_EditIngredient</string>
 
+    <!-- Photo -->
+
+    <string name="title_activity_photo_intent">PhotoIntentActivity</string>
+
 </resources>

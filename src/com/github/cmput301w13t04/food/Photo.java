@@ -1,5 +1,7 @@
 package com.github.cmput301w13t04.food;
 
+import java.net.URI;
+
 import android.graphics.Bitmap;
 
 /**
@@ -10,7 +12,7 @@ import android.graphics.Bitmap;
 public class Photo {
 	
 	// The image data for the bitmap photo
-	private Bitmap ImageData;
+	private URI ImageURI;
 	
 	// The description of the photo added by the photographer
 	private String description;
@@ -24,8 +26,8 @@ public class Photo {
 	 * @param description The description added to the photo by the photographer
 	 * @param photographer The user who took the photo
 	 */
-	public Photo(Bitmap ImageData, String description, String photographer) {
-		this.ImageData = ImageData;
+	public Photo(URI ImageURI, String description, String photographer) {
+		this.ImageURI = ImageURI;
 		this.description = description;
 		this.photographer = photographer;
 	}
@@ -63,19 +65,15 @@ public class Photo {
 	}
 	
 	/**
-	 * Get the bitmap image data for the photo
+	 * Get the URI image data for the photo
 	 * @return he bitmap image data for the photo
 	 */
-	public Bitmap getPhoto() {
-		return this.ImageData;
+	public URI getURI() {
+		return this.ImageURI;
 	}
 
-	/**
-	 * Change the photo object
-	 * @param img The new bitmap image data
-	 */
-	public void setPhoto(Bitmap img) {
-		this.ImageData = img;
+	public void setURI(URI imgURI) {
+		this.ImageURI = imgURI;
 	}
 
 }
