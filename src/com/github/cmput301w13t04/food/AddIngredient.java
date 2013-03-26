@@ -92,7 +92,6 @@ public class AddIngredient extends Activity {
 		if(requestCode == TAKE_PHOTO){
 			if(resultCode == RESULT_OK){
 				String path = data.getStringExtra("path");
-				Log.d("Path", path);
 				String desc = data.getStringExtra("desc");
 				//get User instead of null
 				p = new Photo(path, desc, null);

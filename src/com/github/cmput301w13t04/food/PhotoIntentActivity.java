@@ -31,7 +31,6 @@ public class PhotoIntentActivity extends Activity {
 	private String mCurrentPhotoPath;
 	private String description;
 	private Uri mURI;
-	private Photo p;
 
 	private static final String JPEG_FILE_PREFIX = "IMG_";
 	private static final String JPEG_FILE_SUFFIX = ".jpg";

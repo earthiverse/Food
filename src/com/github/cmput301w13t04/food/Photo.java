@@ -13,7 +13,7 @@ import android.os.Parcelable;
 public class Photo{
 	
 	// The image data for the bitmap photo
-	private Uri URI;
+	private String path;
 	
 	// The description of the photo added by the photographer
 	private String description;
@@ -28,7 +28,7 @@ public class Photo{
 	 * @param photographer The user who took the photo
 	 */
 	public Photo(String path, String description, String photographer) {
-		this.URI = Uri.parse(path);
+		this.path = path;
 		this.description = description;
 		this.photographer = photographer;
 	}
@@ -69,12 +69,12 @@ public class Photo{
 	 * Get the image's path 
 	 * @return the path of the photo
 	 */
-	public Uri getURI() {
-		return this.URI;
+	public String getPath() {
+		return this.path;
 	}
 
 	public void setPath(String path) {
-		this.URI = Uri.parse(path);
+		this.path = path;
 	}
 
 

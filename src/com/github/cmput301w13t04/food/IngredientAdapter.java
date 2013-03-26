@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import android.content.Context;
 import android.net.Uri;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,7 +46,14 @@ public class IngredientAdapter extends ArrayAdapter<Ingredient> {
 
 			// TODO: Populate Ingredient Image
 			ImageView photoView = (ImageView) view.findViewById(R.id.ingredient_image);
-			photoView.setImageURI(ingredient.getPhoto().getURI());
+			if(photoView == null)
+				Log.d("Path", "NULL");
+			
+			
+			if(ingredient.getPhoto() != null) {
+				Log.d("Photo_URI", ingredient.getPhoto().getPath().toString());
+				photoView.setImageURI(Uri.parse(ingredient.getPhoto().getPath()));
+			}
 			
 			TextView quantity = (TextView) view
 					.findViewById(R.id.ingredient_quantity);
