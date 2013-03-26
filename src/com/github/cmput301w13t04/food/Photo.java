@@ -1,18 +1,19 @@
 package com.github.cmput301w13t04.food;
 
-import java.net.URI;
+import android.net.Uri;
+import android.os.Parcel;
+import android.os.Parcelable;
 
-import android.graphics.Bitmap;
 
 /**
  * The object used to store photos for Ingredients and Recipes
  * @author W13T04
  *
  */
-public class Photo {
+public class Photo{
 	
 	// The image data for the bitmap photo
-	private URI ImageURI;
+	private Uri URI;
 	
 	// The description of the photo added by the photographer
 	private String description;
@@ -26,8 +27,8 @@ public class Photo {
 	 * @param description The description added to the photo by the photographer
 	 * @param photographer The user who took the photo
 	 */
-	public Photo(URI ImageURI, String description, String photographer) {
-		this.ImageURI = ImageURI;
+	public Photo(String path, String description, String photographer) {
+		this.URI = Uri.parse(path);
 		this.description = description;
 		this.photographer = photographer;
 	}
@@ -65,15 +66,16 @@ public class Photo {
 	}
 	
 	/**
-	 * Get the URI image data for the photo
-	 * @return he bitmap image data for the photo
+	 * Get the image's path 
+	 * @return the path of the photo
 	 */
-	public URI getURI() {
-		return this.ImageURI;
+	public Uri getURI() {
+		return this.URI;
 	}
 
-	public void setURI(URI imgURI) {
-		this.ImageURI = imgURI;
+	public void setPath(String path) {
+		this.URI = Uri.parse(path);
 	}
+
 
 }

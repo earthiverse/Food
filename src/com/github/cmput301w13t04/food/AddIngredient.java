@@ -3,9 +3,12 @@ package com.github.cmput301w13t04.food;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 /**
@@ -16,10 +19,14 @@ import android.widget.Toast;
  */
 public class AddIngredient extends Activity {
 
+	private static final int TAKE_PHOTO = 1;
+	private Photo p;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_add_ingredient);
+		p = null;
 	}
 
 	@Override
@@ -42,13 +49,12 @@ public class AddIngredient extends Activity {
 		String descriptionIngredient = description.getText().toString();
 		String quantityIngredient = quantity.getText().toString();
 
-		/* Photo class not yet implemented */
 		
 
 		if (!nameIngredient.isEmpty() && !quantityIngredient.isEmpty()) {
 			
 			Ingredient ingredient = new Ingredient(nameIngredient,
-					quantityIngredient, descriptionIngredient, null);
+					quantityIngredient, descriptionIngredient, p);
 
 			Cache cache = new Cache();
 			cache.load(this);
@@ -63,7 +69,7 @@ public class AddIngredient extends Activity {
 	
 	public void takePhoto(View view){
 		Intent intent = new Intent(this, PhotoIntentActivity.class);
-		startActivity(intent);
+		startActivityForResult(intent, TAKE_PHOTO);
 	}
 
 	public void finishActivity(View view) {
@@ -78,6 +84,20 @@ public class AddIngredient extends Activity {
 					"Please enter a name and quantity!", Toast.LENGTH_SHORT)
 					.show();
 
+	}
+	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		
+		if(requestCode == TAKE_PHOTO){
+			if(resultCode == RESULT_OK){
+				String path = data.getStringExtra("path");
+				Log.d("Path", path);
+				String desc = data.getStringExtra("desc");
+				//get User instead of null
+				p = new Photo(path, desc, null);
+			}
+		}
 	}
 
 }

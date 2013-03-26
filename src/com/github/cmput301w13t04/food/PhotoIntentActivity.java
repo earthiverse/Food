@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
@@ -12,19 +13,25 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 public class PhotoIntentActivity extends Activity {
 
 	private static final int ACTION_TAKE_PHOTO_B = 1;
 	private static final int ACTION_DO_CROP = 2;
-	private int cropResult = 0;
+
 	private String mCurrentPhotoPath;
+	private String description;
+	private Uri mURI;
+	private Photo p;
 
 	private static final String JPEG_FILE_PREFIX = "IMG_";
 	private static final String JPEG_FILE_SUFFIX = ".jpg";
@@ -64,8 +71,8 @@ public class PhotoIntentActivity extends Activity {
 
 	private File createImageFile() throws IOException {
 		// Create an image file name
-		String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss")
-				.format(new Date());
+		String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US)
+		.format(new Date());
 		String imageFileName = JPEG_FILE_PREFIX + timeStamp + "_";
 		File albumF = getAlbumDir();
 		File imageF = File.createTempFile(imageFileName, JPEG_FILE_SUFFIX,
@@ -81,7 +88,6 @@ public class PhotoIntentActivity extends Activity {
 		return f;
 	}
 
-	
 	private void galleryAddPic() {
 		Intent mediaScanIntent = new Intent(
 				"android.intent.action.MEDIA_SCANNER_SCAN_FILE");
@@ -110,6 +116,8 @@ public class PhotoIntentActivity extends Activity {
 			cropIntent.putExtra("outputY", 360);
 			// retrieve data on return
 			cropIntent.putExtra("output", picURI);
+			cropIntent.putExtra("return-data", true);
+			mURI = picURI;
 			// start the activity - we handle returning in onActivityResult
 			startActivityForResult(cropIntent, ACTION_DO_CROP);
 		}
@@ -142,7 +150,7 @@ public class PhotoIntentActivity extends Activity {
 				mCurrentPhotoPath = null;
 			}
 		}
-			break;
+		break;
 		default:
 			break;
 		} // switch
@@ -151,11 +159,9 @@ public class PhotoIntentActivity extends Activity {
 	}
 
 	private void handleBigCameraPhoto() {
-		
+
 		if (mCurrentPhotoPath != null) {
-
 			galleryAddPic();
-
 		} else
 			Log.d("Picture", "Invalid Path");
 
@@ -166,7 +172,7 @@ public class PhotoIntentActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_photo_intent);
-
+		this.description = null;
 		mAlbumStorageDirFactory = new AlbumDirFactory();
 		dispatchTakePictureIntent(ACTION_TAKE_PHOTO_B);
 	}
@@ -182,11 +188,28 @@ public class PhotoIntentActivity extends Activity {
 		} // ACTION_TAKE_PHOTO_B
 		case ACTION_DO_CROP: {
 			if (resultCode == RESULT_OK) {
-				//galleryAddPic();
-			} 
+				Bundle extras = data.getExtras();
+				// get the cropped bitmap
+				Bitmap pic = extras.getParcelable("data");
+				// retrieve a reference to the ImageView
+				ImageView picView = (ImageView) findViewById(R.id.IngPhotoView);
+				// display the returned cropped image
+				picView.setImageBitmap(pic);
+
+			}
 			break;
 		}
 		} // switch
+	}
+
+	public void done(View view){
+
+		Intent result = new Intent();
+		Log.i("Picture", mURI.toString());
+		result.putExtra("path", mURI.toString());
+		result.putExtra("desc", description);
+		setResult(Activity.RESULT_OK, result);
+		finish();
 	}
 
 	/**

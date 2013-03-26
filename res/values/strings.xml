@@ -42,6 +42,6 @@
 
     <!-- Photo -->
 
-    <string name="title_activity_photo_intent">PhotoIntentActivity</string>
+    <string name="title_activity_photo_intent">Add a Photo</string>
 
 </resources>

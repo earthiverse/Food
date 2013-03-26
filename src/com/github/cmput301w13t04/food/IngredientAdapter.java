@@ -3,10 +3,12 @@ package com.github.cmput301w13t04.food;
 import java.util.ArrayList;
 
 import android.content.Context;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 /*
@@ -42,7 +44,9 @@ public class IngredientAdapter extends ArrayAdapter<Ingredient> {
 		if (ingredient != null) {
 
 			// TODO: Populate Ingredient Image
-
+			ImageView photoView = (ImageView) view.findViewById(R.id.ingredient_image);
+			photoView.setImageURI(ingredient.getPhoto().getURI());
+			
 			TextView quantity = (TextView) view
 					.findViewById(R.id.ingredient_quantity);
 			if (quantity != null) {
