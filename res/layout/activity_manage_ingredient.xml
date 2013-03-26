@@ -69,9 +69,14 @@
             android:hint="@string/optional"
             android:inputType="textMultiLine" />
     </LinearLayout>
+    
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="takePhoto"
+        android:text="Add photo" />
 
     <Button
-        android:id="@+id/button1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="updateIngredient"
