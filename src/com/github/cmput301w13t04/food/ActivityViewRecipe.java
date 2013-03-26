@@ -1,10 +1,12 @@
 package com.github.cmput301w13t04.food;
 
+import java.util.List;
 import java.util.Locale;
 
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
 import android.app.FragmentTransaction;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -38,13 +40,24 @@ public class ActivityViewRecipe extends FragmentActivity implements
 
 		// Load Recipe from ID
 		long recipeID = this.getIntent().getLongExtra("RECIPE_ID", -1);
+
+		if (recipeID == -1) {
+			/* Check to see if a link was passed */
+			try {
+				Uri data = getIntent().getData();
+				List<String> params = data.getPathSegments();
+				recipeID = Long.valueOf(params.get(0)); // Recipe ID
+			} catch (Exception e) {
+				/* Recipe not found, Abort! */
+				noRecipeFound();
+			}
+		}
+
 		recipe = cache.getRecipe(recipeID);
 		if (recipe == null) {
 			// TODO: Get recipe from database
 
-			// ELSE ERROR:
-			// TODO: Toast 'Recipe not found!'
-			finish();
+			noRecipeFound();
 		}
 
 		// ELSE: We've got our recipe!
@@ -55,7 +68,8 @@ public class ActivityViewRecipe extends FragmentActivity implements
 		// Setup ActionBar
 		final ActionBar actionBar = getActionBar();
 		actionBar.setDisplayUseLogoEnabled(true);
-		actionBar.setLogo(R.drawable.shrimpdumpling);	// TODO: Get actual picture from recipe
+		actionBar.setLogo(R.drawable.shrimpdumpling); // TODO: Get actual
+														// picture from recipe
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 		actionBar.setTitle(recipe.getTitle());
 		actionBar.setSubtitle(recipe.getAuthor().getUsername());
@@ -79,6 +93,11 @@ public class ActivityViewRecipe extends FragmentActivity implements
 					.setText(mSectionsPagerAdapter.getPageTitle(i))
 					.setTabListener(this));
 		}
+	}
+
+	public void noRecipeFound() {
+		// TODO: Toast "No recipe found"
+		finish();
 	}
 
 	public void onTabSelected(Tab tab, FragmentTransaction ft) {
@@ -188,8 +207,10 @@ public class ActivityViewRecipe extends FragmentActivity implements
 			View rootView = inflater.inflate(
 					R.layout.fragment_recipe_ingredients, container, false);
 
-			ListView list = (ListView) rootView.findViewById(R.id.ingredient_list);
-			list.setAdapter(new IngredientAdapter(list.getContext(), R.layout.item_ingredient, recipe.getIngredients()));
+			ListView list = (ListView) rootView
+					.findViewById(R.id.ingredient_list);
+			list.setAdapter(new IngredientAdapter(list.getContext(),
+					R.layout.item_ingredient, recipe.getIngredients()));
 
 			return rootView;
 		}
@@ -207,7 +228,8 @@ public class ActivityViewRecipe extends FragmentActivity implements
 					container, false);
 
 			ListView list = (ListView) rootView.findViewById(R.id.step_list);
-			list.setAdapter(new StepAdapter(list.getContext(), R.layout.item_step, recipe.getSteps()));
+			list.setAdapter(new StepAdapter(list.getContext(),
+					R.layout.item_step, recipe.getSteps()));
 
 			return rootView;
 		}
