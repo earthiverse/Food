@@ -1,5 +1,7 @@
 package com.github.cmput301w13t04.food;
 
+import android.os.AsyncTask;
+
 import com.google.gson.Gson;
 
 /**
@@ -21,4 +23,19 @@ public class Database {
 		String post = new Gson().toJson(recipe);
 		// TODO: Post this JSON to the server
 	}
+	
+	private class PublishRecipeTask extends AsyncTask<Recipe, Void, Boolean> {
+	     protected Boolean doInBackground(Recipe... recipes) {
+	        //Your download code here; work with the url parameter and then return the result
+	        //which if I remember correctly from your code, is a string.
+	        //This gets called and runs ON ANOTHER thread
+	    	return true;
+	     }
+
+	     protected void onPostExecute(String result) {
+	         // This gets called on the interface (main) thread!
+	         // 
+	     }
+
+	 }
 }
