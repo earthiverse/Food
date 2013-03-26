@@ -2,9 +2,12 @@ package com.github.cmput301w13t04.food;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -46,7 +49,14 @@ public class ActivityViewIngredient extends Activity {
 			
 		} else {
 			
-			// TODO: Populate Ingredient Image
+			ImageView photoView = (ImageView) findViewById(R.id.ingredient_image);
+			if(photoView == null)
+				Log.d("Path", "NULL");
+			
+			if(ingredient.getPhoto() != null) {
+				Log.d("Photo_URI", ingredient.getPhoto().getPath().toString());
+				photoView.setImageURI(Uri.parse(ingredient.getPhoto().getPath()));
+			}
 
 			TextView quantity = (TextView) findViewById(R.id.ingQuantity);
 			if (quantity != null) {

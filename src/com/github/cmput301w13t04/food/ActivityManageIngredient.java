@@ -1,11 +1,14 @@
 package com.github.cmput301w13t04.food;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,7 +33,7 @@ public class ActivityManageIngredient extends Activity {
 
 		populate();
 	}
-
+	
 	public void populate() {
 		// Get Ingredient ID
 		this.id = getIntent().getIntExtra("INGREDIENT_ID", -1);
@@ -50,7 +53,14 @@ public class ActivityManageIngredient extends Activity {
 
 			} else {
 
-				// TODO: Populate Ingredient Image
+				ImageView photoView = (ImageView) findViewById(R.id.ingredient_image);
+				if(photoView == null)
+					Log.d("Path", "NULL");
+				
+				if(ingredient.getPhoto() != null) {
+					Log.d("Photo_URI", ingredient.getPhoto().getPath().toString());
+					photoView.setImageURI(Uri.parse(ingredient.getPhoto().getPath()));
+				}
 
 				TextView quantity = (TextView) findViewById(R.id.add_quantity);
 				if (quantity != null) {
@@ -142,6 +152,15 @@ public class ActivityManageIngredient extends Activity {
 				String desc = data.getStringExtra("desc");
 				// get User instead of null
 				p = new Photo(path, desc, null);
+				
+				ImageView photoView = (ImageView) findViewById(R.id.ingredient_image);
+				if(photoView == null)
+					Log.d("Path", "NULL");
+				
+				if(p != null) {
+					Log.d("Photo_URI", p.getPath().toString());
+					photoView.setImageURI(Uri.parse(p.getPath()));
+				}
 			}
 		}
 	}

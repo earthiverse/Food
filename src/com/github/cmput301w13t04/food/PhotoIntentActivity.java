@@ -88,12 +88,9 @@ public class PhotoIntentActivity extends Activity {
 	}
 
 	private void galleryAddPic() {
-		Intent mediaScanIntent = new Intent(
-				"android.intent.action.MEDIA_SCANNER_SCAN_FILE");
+
 		File f = new File(mCurrentPhotoPath);
 		Uri contentUri = Uri.fromFile(f);
-		mediaScanIntent.setData(contentUri);
-		this.sendBroadcast(mediaScanIntent);
 		doCrop(contentUri);
 	}
 
@@ -178,11 +175,18 @@ public class PhotoIntentActivity extends Activity {
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		Toast toast = Toast
+				.makeText(this, "No photo added", Toast.LENGTH_SHORT);
+		
 		switch (requestCode) {
 		case ACTION_TAKE_PHOTO_B: {
 			if (resultCode == RESULT_OK) {
 				handleBigCameraPhoto();
 			}
+			else{
+				toast.show();
+				finish();
+			}	
 			break;
 		} // ACTION_TAKE_PHOTO_B
 		case ACTION_DO_CROP: {
@@ -195,6 +199,10 @@ public class PhotoIntentActivity extends Activity {
 				// display the returned cropped image
 				picView.setImageBitmap(pic);
 
+			}
+			else{
+				toast.show();
+				finish();
 			}
 			break;
 		}
