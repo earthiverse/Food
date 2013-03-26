@@ -13,6 +13,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,12 +42,16 @@ public class ActivityViewRecipe extends FragmentActivity implements
 		// Load Recipe from ID
 		long recipeID = this.getIntent().getLongExtra("RECIPE_ID", -1);
 
+		Log.d("Initial Value", String.valueOf(recipeID));
+		
 		if (recipeID == -1) {
 			/* Check to see if a link was passed */
 			try {
+				Log.d("Test", "Started");
 				Uri data = getIntent().getData();
-				List<String> params = data.getPathSegments();
-				recipeID = Long.valueOf(params.get(0)); // Recipe ID
+				Log.d("URI", data.toString());
+				recipeID = Long.valueOf(data.getHost()); // Recipe ID
+				Log.d("recipeID", String.valueOf(recipeID));
 			} catch (Exception e) {
 				/* Recipe not found, Abort! */
 				noRecipeFound();
