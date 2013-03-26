@@ -27,6 +27,12 @@
         <activity
             android:name="com.github.cmput301w13t04.food.ActivityViewRecipe"
             android:label="@string/title_activity_view_recipe" >
+            <intent-filter>
+            <action android:name="android.intent.action.VIEW" />
+            <category android:name="android.intent.category.DEFAULT" />
+            <category android:name="android.intent.category.BROWSABLE" />
+            <data android:scheme="food" android:host="com.github.cmput301w13t04.food.ActivityViewRecipe" />
+        	</intent-filter>
         </activity>
         <activity
             android:name="com.github.cmput301w13t04.food.ActivityViewIngredient"
