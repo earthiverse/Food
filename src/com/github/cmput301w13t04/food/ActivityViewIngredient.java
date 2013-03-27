@@ -1,17 +1,18 @@
 package com.github.cmput301w13t04.food;
 
-import java.util.ArrayList;
-
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 /* The class that allows us to view ingredients in our UI */
-public class Activity_ViewIngredient extends Activity {
+public class ActivityViewIngredient extends Activity {
 	private int id;
 
 	@Override
@@ -19,25 +20,43 @@ public class Activity_ViewIngredient extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_view_ingredient);
 
+		// Populate Ingredient
 		populate();
+	}
 
+	@Override
+	public void onResume() {
+		super.onResume();
+
+		// Repopulate Ingredient List
+		populate();
 	}
 
 	public void populate() {
-		Intent intent = getIntent();
-		this.id = intent.getIntExtra("index", 0);
+		// Get Ingredient ID
+		this.id = getIntent().getIntExtra("INGREDIENT_ID", -1);
 
 		Cache cache = new Cache();
 		cache.load(this);
 
-		ArrayList<Ingredient> ingredients = cache.getIngredients();
+		Ingredient ingredient = cache.getIngredient(this.id);
 
-		Ingredient ingredient = ingredients.get(id);
-
-		// Display ingredient
-		if (ingredient != null) {
-
-			// TODO: Populate Ingredient Image
+		// Populate Current Ingredient
+		if (ingredient == null) {
+			
+			// TODO: Something went wrong, there is no ingredient with that ID.
+			finish();
+			
+		} else {
+			
+			ImageView photoView = (ImageView) findViewById(R.id.ingredient_image);
+			if(photoView == null)
+				Log.d("Path", "NULL");
+			
+			if(ingredient.getPhoto() != null) {
+				Log.d("Photo_URI", ingredient.getPhoto().getPath().toString());
+				photoView.setImageURI(Uri.parse(ingredient.getPhoto().getPath()));
+			}
 
 			TextView quantity = (TextView) findViewById(R.id.ingQuantity);
 			if (quantity != null) {
@@ -56,30 +75,24 @@ public class Activity_ViewIngredient extends Activity {
 		}
 	}
 
-	/*
 	public void editIngredient(View view) {
-		Intent intent = new Intent(this, AddIngredient.class);
-		intent.putExtra("index", this.id);
-		intent.putExtra("New", false);
+		Intent intent = new Intent(ActivityViewIngredient.this,
+				ActivityManageIngredient.class);
+		intent.putExtra("INGREDIENT_ID", this.id);
+		intent.putExtra("INGREDIENT_EDIT", true);
 		startActivity(intent);
 	}
-	*/
+
 	public void deleteIngredient(View view) {
+		
 		Cache cache = new Cache();
 		cache.load(this);
 		cache.removeIngredient(id);
 		cache.save(this);
+		
 		finish();
 		Toast.makeText(getApplicationContext(), "Ingredient entry deleted!",
 				Toast.LENGTH_SHORT).show();
-	}
-
-	@Override
-	public void onResume() {
-		super.onResume();
-
-		// Refresh log
-		populate();
 	}
 
 	@Override

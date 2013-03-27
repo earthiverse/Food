@@ -9,7 +9,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 
-public class MainActivity extends Activity {
+public class ActivityMain extends Activity {
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -120,8 +120,8 @@ public class MainActivity extends Activity {
 	 * Listener for the Recipe Book button
 	 */
 	public void showRecipeList(View view) {
-		Intent intent = new Intent(MainActivity.this,
-				Activity_ViewRecipeList.class);
+		Intent intent = new Intent(ActivityMain.this,
+				ActivityViewRecipeList.class);
 		startActivity(intent);
 	}
 
@@ -129,8 +129,8 @@ public class MainActivity extends Activity {
 	 * Listener for the View Ingredients button
 	 */
 	public void showIngredientList(View view) {
-		Intent intent = new Intent(MainActivity.this,
-				Activity_ViewIngredientList.class);
+		Intent intent = new Intent(ActivityMain.this,
+				ActivityViewIngredientList.class);
 		startActivity(intent);
 	}
 
@@ -138,7 +138,7 @@ public class MainActivity extends Activity {
 	 * Listener for the Add Ingredients button
 	 */
 	public void showAddIngredient(View view) {
-		Intent intent = new Intent(MainActivity.this, AddIngredient.class);
+		Intent intent = new Intent(ActivityMain.this, ActivityManageIngredient.class);
 		startActivity(intent);
 	}
 }

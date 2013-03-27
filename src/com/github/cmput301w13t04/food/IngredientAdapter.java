@@ -44,7 +44,6 @@ public class IngredientAdapter extends ArrayAdapter<Ingredient> {
 		// Display ingredient
 		if (ingredient != null) {
 
-			// TODO: Populate Ingredient Image
 			ImageView photoView = (ImageView) view.findViewById(R.id.ingredient_image);
 			if(photoView == null)
 				Log.d("Path", "NULL");

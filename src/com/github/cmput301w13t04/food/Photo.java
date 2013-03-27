@@ -10,8 +10,8 @@ import android.os.Parcelable;
  * @author W13T04
  *
  */
-public class Photo{
-	
+
+public class Photo {
 	// The image data for the bitmap photo
 	private String path;
 	
