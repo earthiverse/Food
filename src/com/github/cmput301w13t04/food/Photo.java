@@ -1,8 +1,8 @@
 package com.github.cmput301w13t04.food;
 
-import android.net.Uri;
-import android.os.Parcel;
-import android.os.Parcelable;
+import java.io.IOException;
+
+import android.util.Log;
 
 
 /**
@@ -29,6 +29,17 @@ public class Photo {
 	 */
 	public Photo(String path, String description, String photographer) {
 		this.path = path;
+		//TODO:REMOVE YO SHIT
+		Log.d("REALP",path);
+		imgurController ic = new imgurController(path);
+		try
+		{
+			ic.post();
+		} catch (IOException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		this.description = description;
 		this.photographer = photographer;
 	}
