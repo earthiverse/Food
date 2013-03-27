@@ -248,6 +248,9 @@ public class Cache {
 	
 	public int exportRecipes(Context context){
 		
+		if(this.Recipes.isEmpty())
+			return -1;
+		
 		Gson gson = new Gson();
 
 		try {
