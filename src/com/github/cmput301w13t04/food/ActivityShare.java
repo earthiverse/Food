@@ -52,8 +52,7 @@ public class ActivityShare extends Activity {
 				
 			}
 		}
-		String link_val = "food://1337";
-		
+		String link_val = "food://1337";		
 		String link = "<a href=\"" + link_val + "\">" + "LINK TO APP ReasonableRecipe"+ "</a>";
 		body.append(link);
 		intent.setType("text/html");
