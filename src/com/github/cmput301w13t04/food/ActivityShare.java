@@ -8,7 +8,11 @@ import android.content.Intent;
 import android.text.Html;
 import android.util.Log;
 import android.view.Menu;
-
+/**
+ * TODO: Update recipeID
+ * @author Gongal
+ *
+ */
 public class ActivityShare extends Activity {
 	public static Recipe recipe;
 	public static ArrayList<Step> steps;
@@ -28,6 +32,7 @@ public class ActivityShare extends Activity {
 			Log.d("No recipe found", "recipe null");
 			finish();
 		}
+	
 		else{
 			body.append("Title:  " + recipe.getTitle()+"<br>");
 			body.append("Author:  " + recipe.getAuthor()+ "<br>");
@@ -52,8 +57,7 @@ public class ActivityShare extends Activity {
 				
 			}
 		}
-		String link_val = "food://1337";
-		
+		String link_val = "food://1337";		
 		String link = "<a href=\"" + link_val + "\">" + "LINK TO APP ReasonableRecipe"+ "</a>";
 		body.append(link);
 		intent.setType("text/html");
