@@ -70,7 +70,7 @@ public class Photo {
 
 	/**
 	 * Change the description of the photo
-	 * @param description The new description of the phto
+	 * @param description The new description of the photo
 	 */
 	public void setDescription(String description) {
 		this.description = description;
