@@ -24,17 +24,10 @@ public class ActivitySearchByUser extends Activity {
 		return true;
 	}
 	public void searchByUser() throws IOException{
-		String user = "gongal@ualberta.ca";
-		try {
-			URL url = new URL("http://earthiverse.ath.cx:9200/");
-			URLConnection connection = url.openConnection();
-	        connection.setDoOutput(true);
-	        OutputStreamWriter out = new OutputStreamWriter(
-                    connection.getOutputStream());
-		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		Recipe[] recipe;
+		RecipeSearch search = new RecipeSearch();
+		recipe = search.query("1337");
+		
 	}
 
 }
