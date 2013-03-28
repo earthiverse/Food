@@ -144,5 +144,15 @@ public class imgurController
 		}
 	return result;
 	}
-	
+	public String fetch (String url){
+		String path=null;
+		FetchImageTask runner = new FetchImageTask();
+		return path;
+	}
+	private class FetchImageTask extends AsyncTask<String, Void, String> {
+	     protected String doInBackground(String... url) {
+	    	 String result = null;
+	    	 return result;
+	     }
+	}
 }
