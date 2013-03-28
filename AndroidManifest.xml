@@ -64,6 +64,18 @@
             android:name="com.github.cmput301w13t04.food.ActivityShare"
             android:label="@string/title_activity_activity_share" >
         </activity>
+        <activity
+            android:name="com.github.cmput301w13t04.food.ActivitySearchRecipe"
+            android:label="@string/title_activity_activity_search_recipe" >
+        </activity>
+        <activity
+            android:name="com.github.cmput301w13t04.food.ActivitySearchByUser"
+            android:label="@string/title_activity_activity_search_by_user" >
+        </activity>
+        <activity
+            android:name="com.github.cmput301w13t04.food.ActivitySearchByIngredient"
+            android:label="@string/title_activity_activity_search_by_ingredient" >
+        </activity>
     </application>
 
 </manifest>

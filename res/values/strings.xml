@@ -40,5 +40,12 @@
     <string name="add_ingredient">Add Ingredient</string>
     <string name="title_activity_edit_ingredient">Activity_EditIngredient</string>
     <string name="title_activity_activity_share">ActivityShare</string>
+    <string name="title_activity_activity_search_recipe">ActivitySearchRecipe</string>
+
+    <!-- Search Recipe -->
+    <string name="title_activity_search_recipe_ingredient">Search By Ingredient</string>
+    <string name="title_activity_search_recipe_user">Search By User</string>
+    <string name="title_activity_activity_search_by_user">ActivitySearchByUser</string>
+    <string name="title_activity_activity_search_by_ingredient">ActivitySearchByIngredient</string>
 
 </resources>
