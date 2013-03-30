@@ -41,13 +41,13 @@ import android.util.Log;
 /* To implement, do something like this:
  * 
  *Log.d("REALP",path);
-			imgurController ic = new imgurController(path);
+			imgurController ic = new imgurController();
 			String result = null;
 			try
 			{
 	//To post an image
 				result = 
-						ic.post();
+						ic.post(path);
 				Log.d("YATTA", result);
 			} catch (IOException e)
 			{
@@ -145,7 +145,7 @@ public class imgurController
 	     }
 	}
 	/* Post method, returns the string result */
-	public String post() throws IOException{
+	public String post(String path) throws IOException{
 
 		Bitmap bitmap = BitmapFactory.decodeFile(Uri.parse(path).getPath());
 		PublishImageTask runner = new PublishImageTask();
