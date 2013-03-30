@@ -1,5 +1,7 @@
 package com.github.cmput301w13t04.food;
 
+import java.util.ArrayList;
+
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
@@ -7,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.support.v4.app.NavUtils;
@@ -75,6 +78,21 @@ public class ActivityViewRecipeList extends Activity {
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+
+	public void export(MenuItem menuItem){
+		Cache cache = new Cache();
+		cache.load(this);
+		int res = cache.exportRecipes(this);
+		Toast toast;
+
+		if(res == -1)
+			toast = Toast.makeText(this, "Export Failed!", Toast.LENGTH_SHORT);
+		else
+			toast = Toast.makeText(this, "Exported to sdcard/Download!", Toast.LENGTH_SHORT);
+
+		toast.show();
+		return;
 	}
 
 }

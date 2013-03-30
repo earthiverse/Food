@@ -3,10 +3,15 @@ package com.github.cmput301w13t04.food;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.EOFException;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 
 import android.content.Context;
+import android.os.Environment;
 import android.util.Log;
+
 import com.google.gson.Gson;
 
 /**
@@ -239,6 +244,29 @@ public class Cache {
 			e.printStackTrace();
 		}
 		return ingredient;
+	}
+	
+	public int exportRecipes(Context context){
+		
+		if(this.Recipes.isEmpty())
+			return -1;
+		
+		Gson gson = new Gson();
+
+		try {
+			String jsonRecipes = gson.toJson(this.Recipes);
+			File file = new File(Environment.getExternalStorageDirectory(), "MyRecipes.json");
+			FileOutputStream fout = new FileOutputStream(file);
+			fout.write(jsonRecipes.getBytes(Charset.forName("UTF-8")));
+			fout.flush();
+			fout.close();
+			
+		} catch (Exception e) {
+			return -1;
+		}
+
+		
+		return 0;
 	}
 
 	/*
