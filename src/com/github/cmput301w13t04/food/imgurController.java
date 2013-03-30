@@ -206,7 +206,7 @@ public class imgurController
 	    	     Log.i("Progress:","downloadedSize:"+downloadedSize+"totalSize:"+ totalSize) ;
 	    	   }             
 	    	   fileOutput.close();
-	    	   if(downloadedSize==totalSize) result=file.getPath();    
+	    	   if(downloadedSize==totalSize) result=file.getAbsolutePath();    
 	    	 } 
 	    	 catch (MalformedURLException e) 
 	    	 {
