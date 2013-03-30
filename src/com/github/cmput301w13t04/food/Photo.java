@@ -1,8 +1,8 @@
 package com.github.cmput301w13t04.food;
 
-import android.net.Uri;
-import android.os.Parcel;
-import android.os.Parcelable;
+import java.io.IOException;
+
+import android.util.Log;
 
 
 /**
@@ -59,7 +59,7 @@ public class Photo {
 
 	/**
 	 * Change the description of the photo
-	 * @param description The new description of the phto
+	 * @param description The new description of the photo
 	 */
 	public void setDescription(String description) {
 		this.description = description;
