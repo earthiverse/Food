@@ -21,11 +21,10 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name="com.github.cmput301w13t04.food.view.ActivityMain"
-            android:label="@string/title_activity_main" >
+            android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
@@ -50,15 +49,15 @@
         </activity>
         <activity
             android:name="com.github.cmput301w13t04.food.view.ActivityViewIngredientList"
-            android:label="@string/title_activity_view_ingredient_list" >
-        </activity>
-        <activity
-            android:name="com.github.cmput301w13t04.food.Activity_EditIngredient"
-            android:label="@string/title_activity_edit_ingredient" >
+            android:label="@string/title_activity_view_ingredient_list"
+            android:parentActivityName="com.github.cmput301w13t04.food.view.ActivityMain" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.github.cmput301w13t04.food.MainActivity" />
         </activity>
         <activity
             android:name="com.github.cmput301w13t04.food.view.ActivityTakePhoto"
-            android:label="@string/title_activity_edit_ingredient" >
+            android:label="@string/title_activity_photo_intent" >
         </activity>
     </application>
 

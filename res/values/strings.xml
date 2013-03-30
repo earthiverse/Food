@@ -9,7 +9,6 @@
     <string name="action_settings">Settings</string>
 
     <!-- Main -->
-    <string name="title_activity_main">Reasonable Recipes</string>
     <string name="how_much_do_i_like_food">I like food a lot.</string>
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_view_ingredient">ViewIngredient</string>
@@ -41,7 +40,6 @@
     <string name="title_activity_edit_ingredient">Activity_EditIngredient</string>
 
     <!-- Photo -->
-
     <string name="title_activity_photo_intent">Add a Photo</string>
 
 </resources>
