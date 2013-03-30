@@ -1,8 +1,5 @@
-package com.github.cmput301w13t04.food;
+package com.github.cmput301w13t04.food.model;
 
-import java.io.IOException;
-
-import android.util.Log;
 
 
 /**

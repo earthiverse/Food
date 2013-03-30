@@ -4,9 +4,9 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import com.github.cmput301w13t04.food.Step;
+import com.github.cmput301w13t04.food.model.Step;
 
-public class TestStep {
+public class StepTest {
 
 	@Test
 	public void testGetDescription() {

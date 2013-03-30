@@ -1,4 +1,11 @@
-package com.github.cmput301w13t04.food;
+package com.github.cmput301w13t04.food.view;
+
+import com.github.cmput301w13t04.food.R;
+import com.github.cmput301w13t04.food.controller.Cache;
+import com.github.cmput301w13t04.food.model.Ingredient;
+import com.github.cmput301w13t04.food.model.Recipe;
+import com.github.cmput301w13t04.food.model.Step;
+import com.github.cmput301w13t04.food.model.User;
 
 import android.os.Bundle;
 import android.accounts.Account;
@@ -8,6 +15,13 @@ import android.content.Intent;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
+
+/**
+ * The Main Activity of Reasonable Recipes
+ * @author W13T04
+ * 
+ */
+
 
 public class ActivityMain extends Activity {
 
@@ -116,8 +130,8 @@ public class ActivityMain extends Activity {
 		cache.save(view.getContext());
 	}
 
-	/*
-	 * Listener for the Recipe Book button
+	/**
+	 * The button listener for showing the list of cached Recipes
 	 */
 	public void showRecipeList(View view) {
 		Intent intent = new Intent(ActivityMain.this,
@@ -125,8 +139,8 @@ public class ActivityMain extends Activity {
 		startActivity(intent);
 	}
 
-	/*
-	 * Listener for the View Ingredients button
+	/**
+	 * The button listener for showing the list of cached Ingredients
 	 */
 	public void showIngredientList(View view) {
 		Intent intent = new Intent(ActivityMain.this,

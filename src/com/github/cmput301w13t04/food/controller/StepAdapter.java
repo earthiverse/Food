@@ -1,6 +1,10 @@
-package com.github.cmput301w13t04.food;
+package com.github.cmput301w13t04.food.controller;
 
 import java.util.ArrayList;
+
+import com.github.cmput301w13t04.food.R;
+import com.github.cmput301w13t04.food.R.id;
+import com.github.cmput301w13t04.food.model.Step;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,11 +13,20 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-/* The adapter to view the steps of a recipe in our UI */
+/**
+ * Allows for the proper display of Steps in a ListView
+ * @author W13T04
+ */
 public class StepAdapter extends ArrayAdapter<Step> {
 	private ArrayList<Step> steps;
 	private int layout;
-
+	
+	/**
+	 * Create the Step adapter
+	 * @param context the context of the application
+	 * @param textViewResourceId the resource ID of the target TextView
+	 * @param ingredients  The list of Steps to be adapted
+	 */
 	public StepAdapter(Context context, int textViewResourceId,
 			ArrayList<Step> steps) {
 		super(context, textViewResourceId, steps);

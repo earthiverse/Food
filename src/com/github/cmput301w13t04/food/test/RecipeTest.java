@@ -4,9 +4,9 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import com.github.cmput301w13t04.food.Recipe;
-import com.github.cmput301w13t04.food.Step;
-import com.github.cmput301w13t04.food.User;
+import com.github.cmput301w13t04.food.model.Recipe;
+import com.github.cmput301w13t04.food.model.Step;
+import com.github.cmput301w13t04.food.model.User;
 
 public class RecipeTest {
 

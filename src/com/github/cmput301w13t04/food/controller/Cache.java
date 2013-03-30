@@ -1,4 +1,4 @@
-package com.github.cmput301w13t04.food;
+package com.github.cmput301w13t04.food.controller;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -12,6 +12,8 @@ import android.content.Context;
 import android.os.Environment;
 import android.util.Log;
 
+import com.github.cmput301w13t04.food.model.Ingredient;
+import com.github.cmput301w13t04.food.model.Recipe;
 import com.google.gson.Gson;
 
 /**
@@ -246,6 +248,10 @@ public class Cache {
 		return ingredient;
 	}
 	
+	/**
+	 * Export the current Recipe list to .json format for use in other apps
+	 * @return 0 on success, -1 of there are no recipes or an exception is raised
+	 */
 	public int exportRecipes(Context context){
 		
 		if(this.Recipes.isEmpty())

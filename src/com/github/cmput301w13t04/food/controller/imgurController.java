@@ -1,4 +1,4 @@
-package com.github.cmput301w13t04.food;
+package com.github.cmput301w13t04.food.controller;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;

@@ -1,4 +1,9 @@
-package com.github.cmput301w13t04.food;
+package com.github.cmput301w13t04.food.view;
+
+import com.github.cmput301w13t04.food.R;
+import com.github.cmput301w13t04.food.controller.Cache;
+import com.github.cmput301w13t04.food.model.Ingredient;
+import com.github.cmput301w13t04.food.model.Photo;
 
 import android.net.Uri;
 import android.os.Bundle;
@@ -15,7 +20,7 @@ import android.widget.Toast;
 /**
  * Gets input from the user and saves it to the cache.
  * 
- * @author T04
+ * @author W13T04
  * 
  */
 public class ActivityManageIngredient extends Activity {
@@ -34,6 +39,9 @@ public class ActivityManageIngredient extends Activity {
 		populate();
 	}
 	
+	/**
+	 * Populate the Text fields with relevant data if the data exists
+	 */
 	public void populate() {
 		// Get Ingredient ID
 		this.id = getIntent().getIntExtra("INGREDIENT_ID", -1);
@@ -87,6 +95,9 @@ public class ActivityManageIngredient extends Activity {
 		return true;
 	}
 
+	/**
+	 * Update the ingredient based on any new input from the user
+	 */
 	public void updateIngredient(View view) {
 		// Get Name
 		EditText name = (EditText) findViewById(R.id.add_name);
@@ -138,8 +149,11 @@ public class ActivityManageIngredient extends Activity {
 		finish();
 	}
 
+	/**
+	 * The button listener for starting the photo-taking intent
+	 */
 	public void takePhoto(View view) {
-		Intent intent = new Intent(this, PhotoIntentActivity.class);
+		Intent intent = new Intent(this, ActivityTakePhoto.class);
 		startActivityForResult(intent, TAKE_PHOTO);
 	}
 

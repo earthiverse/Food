@@ -9,9 +9,10 @@
         android:targetSdkVersion="17" />
 
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
-	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-	<uses-permission android:name="android.permission.INTERNET" />
-	 <uses-feature android:name="android.hardware.camera" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <uses-feature android:name="android.hardware.camera" />
 
     <application
         android:allowBackup="true"
@@ -19,7 +20,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.github.cmput301w13t04.food.ActivityMain"
+            android:name="com.github.cmput301w13t04.food.view.ActivityMain"
             android:label="@string/title_activity_main" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,38 +29,37 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.github.cmput301w13t04.food.ActivityViewRecipe"
+            android:name="com.github.cmput301w13t04.food.view.ActivityViewRecipe"
             android:label="@string/title_activity_view_recipe" >
         </activity>
         <activity
-            android:name="com.github.cmput301w13t04.food.ActivityViewIngredient"
+            android:name="com.github.cmput301w13t04.food.view.ActivityViewIngredient"
             android:label="@string/title_activity_view_ingredient" >
         </activity>
         <activity
-            android:name="com.github.cmput301w13t04.food.ActivityManageIngredient"
+            android:name="com.github.cmput301w13t04.food.view.ActivityManageIngredient"
             android:label="@string/title_activity_add_ingredient" >
         </activity>
         <activity
-            android:name="com.github.cmput301w13t04.food.ActivityViewRecipeList"
+            android:name="com.github.cmput301w13t04.food.view.ActivityViewRecipeList"
             android:label="@string/title_activity_view_recipe_list"
-            android:parentActivityName="com.github.cmput301w13t04.food.ActivityMain" >
+            android:parentActivityName="com.github.cmput301w13t04.food.view.ActivityMain" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.github.cmput301w13t04.food.MainActivity" />
         </activity>
         <activity
-            android:name="com.github.cmput301w13t04.food.ActivityViewIngredientList"
+            android:name="com.github.cmput301w13t04.food.view.ActivityViewIngredientList"
             android:label="@string/title_activity_view_ingredient_list" >
         </activity>
         <activity
             android:name="com.github.cmput301w13t04.food.Activity_EditIngredient"
             android:label="@string/title_activity_edit_ingredient" >
         </activity>
-         <activity
-            android:name="com.github.cmput301w13t04.food.PhotoIntentActivity"
+        <activity
+            android:name="com.github.cmput301w13t04.food.view.ActivityTakePhoto"
             android:label="@string/title_activity_edit_ingredient" >
         </activity>
     </application>
 
 </manifest>
-

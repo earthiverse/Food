@@ -1,4 +1,4 @@
-package com.github.cmput301w13t04.food;
+package com.github.cmput301w13t04.food.view;
 
 import java.io.File;
 import java.io.IOException;
@@ -6,6 +6,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+
+import com.github.cmput301w13t04.food.R;
+import com.github.cmput301w13t04.food.controller.AlbumDirFactory;
 
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
@@ -23,7 +26,13 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-public class PhotoIntentActivity extends Activity {
+/**
+ * An intent that allows user to take a photo and then crop it, so that it can be attached to 
+ * an ingredient or a recipe
+ * @author W13T04
+ *
+ */
+public class ActivityTakePhoto extends Activity {
 
 	private static final int ACTION_TAKE_PHOTO_B = 1;
 	private static final int ACTION_DO_CROP = 2;
@@ -94,6 +103,10 @@ public class PhotoIntentActivity extends Activity {
 		doCrop(contentUri);
 	}
 
+	/**
+	 * Load all of the relevant parameters and start the crop intent
+	 * @param picURI The URI of the recently taken photo
+	 */
 	public void doCrop(Uri picURI) {
 
 		try {
@@ -209,6 +222,9 @@ public class PhotoIntentActivity extends Activity {
 		} // switch
 	}
 
+	/**
+	 * The button listener to confirm adding the photo
+	 */
 	public void done(View view){
 
 		Intent result = new Intent();

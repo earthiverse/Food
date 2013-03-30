@@ -1,7 +1,8 @@
-package com.github.cmput301w13t04.food;
+package com.github.cmput301w13t04.food.controller;
 
 import android.os.AsyncTask;
 
+import com.github.cmput301w13t04.food.model.Recipe;
 import com.google.gson.Gson;
 
 /**

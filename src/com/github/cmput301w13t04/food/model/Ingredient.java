@@ -1,4 +1,4 @@
-package com.github.cmput301w13t04.food;
+package com.github.cmput301w13t04.food.model;
 
 /**
  * An object used to represent an ingredient that can be used in a recipe

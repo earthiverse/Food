@@ -1,4 +1,8 @@
-package com.github.cmput301w13t04.food;
+package com.github.cmput301w13t04.food.view;
+
+import com.github.cmput301w13t04.food.R;
+import com.github.cmput301w13t04.food.controller.Cache;
+import com.github.cmput301w13t04.food.model.Ingredient;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -11,7 +15,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-/* The class that allows us to view ingredients in our UI */
+/**
+ * View an ingredient and all of its properties
+ * @author W13T04
+ *
+ */
 public class ActivityViewIngredient extends Activity {
 	private int id;
 
@@ -32,6 +40,9 @@ public class ActivityViewIngredient extends Activity {
 		populate();
 	}
 
+	/**
+	 * Populate the Text fields with all of the relevant data if the data exists
+	 */
 	public void populate() {
 		// Get Ingredient ID
 		this.id = getIntent().getIntExtra("INGREDIENT_ID", -1);
@@ -75,6 +86,9 @@ public class ActivityViewIngredient extends Activity {
 		}
 	}
 
+	/**
+	 * The button listener for editing Ingredients
+	 */
 	public void editIngredient(View view) {
 		Intent intent = new Intent(ActivityViewIngredient.this,
 				ActivityManageIngredient.class);
@@ -83,6 +97,9 @@ public class ActivityViewIngredient extends Activity {
 		startActivity(intent);
 	}
 
+	/**
+	 * The button listener for deleting ingredients
+	 */
 	public void deleteIngredient(View view) {
 		
 		Cache cache = new Cache();

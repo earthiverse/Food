@@ -1,6 +1,8 @@
-package com.github.cmput301w13t04.food;
+package com.github.cmput301w13t04.food.view;
 
-import java.util.ArrayList;
+import com.github.cmput301w13t04.food.R;
+import com.github.cmput301w13t04.food.controller.Cache;
+import com.github.cmput301w13t04.food.controller.RecipeAdapter;
 
 import android.os.Bundle;
 import android.app.Activity;
@@ -14,8 +16,10 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.support.v4.app.NavUtils;
 
-/*
- * Activity for viewing our Recipe Book
+/**
+ * An activity designed for viewing our list of Ingredients
+ * @author W13T04
+ *
  */
 public class ActivityViewRecipeList extends Activity {
 
@@ -80,6 +84,10 @@ public class ActivityViewRecipeList extends Activity {
 		return super.onOptionsItemSelected(item);
 	}
 
+	
+	/**
+	 * Export the current Recipe list to .json format for use in other applications
+	 */
 	public void export(MenuItem menuItem){
 		Cache cache = new Cache();
 		cache.load(this);

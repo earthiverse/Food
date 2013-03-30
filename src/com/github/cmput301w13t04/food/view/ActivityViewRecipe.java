@@ -1,6 +1,12 @@
-package com.github.cmput301w13t04.food;
+package com.github.cmput301w13t04.food.view;
 
 import java.util.Locale;
+
+import com.github.cmput301w13t04.food.R;
+import com.github.cmput301w13t04.food.controller.Cache;
+import com.github.cmput301w13t04.food.controller.IngredientAdapter;
+import com.github.cmput301w13t04.food.controller.StepAdapter;
+import com.github.cmput301w13t04.food.model.Recipe;
 
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
@@ -17,7 +23,11 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TextView;
 
-/* A class for viewing a recipe in our UI */
+/**
+ * View a Recipe and all of its properties
+ * @author W13T04
+ *
+ */
 public class ActivityViewRecipe extends FragmentActivity implements
 		ActionBar.TabListener {
 

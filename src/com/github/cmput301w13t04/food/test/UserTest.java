@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import com.github.cmput301w13t04.food.User;
+import com.github.cmput301w13t04.food.model.User;
 
 public class UserTest {
 

@@ -4,10 +4,10 @@ import java.util.ArrayList;
 
 import org.junit.*;
 
-import com.github.cmput301w13t04.food.Cache;
-import com.github.cmput301w13t04.food.Ingredient;
-import com.github.cmput301w13t04.food.Recipe;
-import com.github.cmput301w13t04.food.User;
+import com.github.cmput301w13t04.food.controller.Cache;
+import com.github.cmput301w13t04.food.model.Ingredient;
+import com.github.cmput301w13t04.food.model.Recipe;
+import com.github.cmput301w13t04.food.model.User;
 
 import junit.framework.TestCase;
 

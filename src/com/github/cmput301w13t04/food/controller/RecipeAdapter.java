@@ -1,6 +1,10 @@
-package com.github.cmput301w13t04.food;
+package com.github.cmput301w13t04.food.controller;
 
 import java.util.ArrayList;
+
+import com.github.cmput301w13t04.food.R;
+import com.github.cmput301w13t04.food.R.id;
+import com.github.cmput301w13t04.food.model.Recipe;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,11 +13,21 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-/* A class that is used to view the recipe list in our UI*/
+/**
+ * Allows for the proper display of Recipes in a ListView
+ * @author W13T04
+ */
 public class RecipeAdapter extends ArrayAdapter<Recipe> {
 	private ArrayList<Recipe> recipes;
 	private int layout;
 
+	
+	/**
+	 * Create the Recipe adapter
+	 * @param context the context of the application
+	 * @param textViewResourceId the resource ID of the target TextView
+	 * @param ingredients  The list of Recipes to be adapted
+	 */
 	public RecipeAdapter(Context context, int textViewResourceId,
 			ArrayList<Recipe> recipes) {
 		super(context, textViewResourceId, recipes);

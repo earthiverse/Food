@@ -1,4 +1,4 @@
-package com.github.cmput301w13t04.food;
+package com.github.cmput301w13t04.food.model;
 
 /**
  * A simple user object that is useful for adding a signature when creating 
