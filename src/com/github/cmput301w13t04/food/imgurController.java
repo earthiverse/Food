@@ -73,9 +73,11 @@ public class imgurController
 	/*
 	 * Constructor
 	 */
+	public imgurController(){
+		path = new String();
+	}
 	public imgurController(String path){
 		this.path = path;
-
 	}
 	private class PublishImageTask extends AsyncTask<Bitmap, Void, String> {
 	     protected String doInBackground(Bitmap... bitmap) {
