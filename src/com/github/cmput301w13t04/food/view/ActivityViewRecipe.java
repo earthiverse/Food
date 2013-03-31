@@ -1,16 +1,20 @@
 package com.github.cmput301w13t04.food.view;
 
+import java.util.ArrayList;
 import java.util.Locale;
 
 import com.github.cmput301w13t04.food.R;
 import com.github.cmput301w13t04.food.controller.Cache;
 import com.github.cmput301w13t04.food.controller.IngredientAdapter;
 import com.github.cmput301w13t04.food.controller.StepAdapter;
+import com.github.cmput301w13t04.food.model.Photo;
 import com.github.cmput301w13t04.food.model.Recipe;
 
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
 import android.app.FragmentTransaction;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -18,15 +22,21 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
 /**
  * View a Recipe and all of its properties
+ * 
  * @author W13T04
- *
+ * 
  */
 public class ActivityViewRecipe extends FragmentActivity implements
 		ActionBar.TabListener {
@@ -39,6 +49,14 @@ public class ActivityViewRecipe extends FragmentActivity implements
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+
+		// Setup View
+		setContentView(R.layout.activity_view_recipe);
+	}
+
+	@Override
+	public void onResume() {
+		super.onResume();
 
 		// Load Cache
 		Cache cache = new Cache();
@@ -59,13 +77,8 @@ public class ActivityViewRecipe extends FragmentActivity implements
 
 		// ELSE: We've got our recipe!
 
-		// Setup View
-		setContentView(R.layout.activity_view_recipe);
-
 		// Setup ActionBar
 		final ActionBar actionBar = getActionBar();
-		actionBar.setDisplayUseLogoEnabled(true);
-		actionBar.setLogo(R.drawable.shrimpdumpling);	// TODO: Get actual picture from recipe
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 		actionBar.setTitle(recipe.getTitle());
 		actionBar.setSubtitle(recipe.getAuthor().getUsername());
@@ -89,6 +102,27 @@ public class ActivityViewRecipe extends FragmentActivity implements
 					.setText(mSectionsPagerAdapter.getPageTitle(i))
 					.setTabListener(this));
 		}
+	}
+
+	@Override
+	public void onPause() {
+		super.onPause();
+
+		getActionBar().removeAllTabs();
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.view_recipe, menu);
+		return true;
+	}
+
+	public void manageRecipe(MenuItem menuitem) {
+		Intent intent = new Intent(ActivityViewRecipe.this,
+				ActivityManageRecipe.class);
+		intent.putExtra("RECIPE_ID", recipe.getId());
+		startActivity(intent);
 	}
 
 	public void onTabSelected(Tab tab, FragmentTransaction ft) {
@@ -166,6 +200,12 @@ public class ActivityViewRecipe extends FragmentActivity implements
 
 	/* Description Fragment */
 	public static class RecipeDescriptionFragment extends Fragment {
+
+		private ImageView image;
+
+		private ArrayList<Photo> photos;
+		private int position = 0;
+
 		public RecipeDescriptionFragment() {
 		}
 
@@ -175,15 +215,78 @@ public class ActivityViewRecipe extends FragmentActivity implements
 			View rootView = inflater.inflate(
 					R.layout.fragment_recipe_description, container, false);
 
-			TextView recipe_description = (TextView) rootView
+			// Image Button Handlers
+			ImageButton nextPhoto = (ImageButton) rootView
+					.findViewById(R.id.button_next_photo);
+			nextPhoto.setOnClickListener(new OnClickListener() {
+				public void onClick(View v) {
+					Photo photo;
+					try {
+						// Next Photo
+						photo = photos.get(position + 1);
+						position += 1;
+						image.setImageURI(Uri.parse(photo.getPath()));
+					} catch (Exception e1) {
+						// First Photo
+						try {
+							photo = photos.get(0);
+							position = 0;
+							image.setImageURI(Uri.parse(photo.getPath()));
+						} catch (Exception e2) {
+							// No photos attached to recipe
+						}
+					}
+				}
+			});
+			ImageButton prevPhoto = (ImageButton) rootView
+					.findViewById(R.id.button_prev_photo);
+			prevPhoto.setOnClickListener(new OnClickListener() {
+				public void onClick(View v) {
+					Photo photo;
+					try {
+						// Previous Photo
+						photo = photos.get(position - 1);
+						position -= 1;
+						image.setImageURI(Uri.parse(photo.getPath()));
+					} catch (Exception e1) {
+						// Last Photo
+						try {
+							photo = photos.get(photos.size() - 1);
+							position = photos.size() - 1;
+							image.setImageURI(Uri.parse(photo.getPath()));
+						} catch (Exception e2) {
+							// No photos attached to recipe
+						}
+					}
+				}
+			});
+
+			return rootView;
+		}
+
+		@Override
+		public void onResume() {
+			super.onResume();
+
+			View v = this.getView();
+
+			TextView recipe_description = (TextView) v
 					.findViewById(R.id.recipe_description);
 			recipe_description.setText(recipe.getDescription());
 
-			TextView recipe_time = (TextView) rootView
-					.findViewById(R.id.recipe_time);
+			TextView recipe_time = (TextView) v.findViewById(R.id.recipe_time);
 			recipe_time.setText(String.valueOf(recipe.getTime()));
 
-			return rootView;
+			photos = recipe.getPhotos();
+
+			// Recipe Photos
+			try {
+				Photo photo = photos.get(position);
+				image = (ImageView) v.findViewById(R.id.recipe_image);
+				image.setImageURI(Uri.parse(photo.getPath()));
+			} catch (Exception e) {
+				// No photos :c
+			}
 		}
 	}
 
@@ -198,16 +301,25 @@ public class ActivityViewRecipe extends FragmentActivity implements
 			View rootView = inflater.inflate(
 					R.layout.fragment_recipe_ingredients, container, false);
 
-			ListView list = (ListView) rootView.findViewById(R.id.ingredient_list);
-			list.setAdapter(new IngredientAdapter(list.getContext(), R.layout.item_ingredient, recipe.getIngredients()));
-
 			return rootView;
+		}
+
+		@Override
+		public void onResume() {
+			super.onResume();
+
+			View v = this.getView();
+
+			ListView list = (ListView) v.findViewById(R.id.ingredient_list);
+			list.setAdapter(new IngredientAdapter(list.getContext(),
+					R.layout.item_ingredient, recipe.getIngredients()));
 		}
 	}
 
 	/* Step Fragment */
 	public static class RecipeStepFragment extends Fragment {
 		public RecipeStepFragment() {
+
 		}
 
 		@Override
@@ -216,10 +328,18 @@ public class ActivityViewRecipe extends FragmentActivity implements
 			View rootView = inflater.inflate(R.layout.fragment_recipe_steps,
 					container, false);
 
-			ListView list = (ListView) rootView.findViewById(R.id.step_list);
-			list.setAdapter(new StepAdapter(list.getContext(), R.layout.item_step, recipe.getSteps()));
-
 			return rootView;
+		}
+
+		@Override
+		public void onResume() {
+			super.onResume();
+
+			View v = this.getView();
+
+			ListView list = (ListView) v.findViewById(R.id.step_list);
+			list.setAdapter(new StepAdapter(list.getContext(),
+					R.layout.item_step, recipe.getSteps()));
 		}
 	}
 }

@@ -1,6 +1,7 @@
 package com.github.cmput301w13t04.food.model;
 
-
+import android.os.Parcel;
+import android.os.Parcelable;
 
 /**
  * The object used to store photos for Ingredients and Recipes
@@ -8,7 +9,7 @@ package com.github.cmput301w13t04.food.model;
  *
  */
 
-public class Photo {
+public class Photo implements Parcelable {
 	// The image data for the bitmap photo
 	private String path;
 	
@@ -16,7 +17,7 @@ public class Photo {
 	private String description;
 	
 	// The photographer of this photo
-	private String photographer;
+	private User photographer;
 
 	/**
 	 * Create an Photo object for use in a recipe of ingredient
@@ -24,7 +25,7 @@ public class Photo {
 	 * @param description The description added to the photo by the photographer
 	 * @param photographer The user who took the photo
 	 */
-	public Photo(String path, String description, String photographer) {
+	public Photo(String path, String description, User photographer) {
 		this.path = path;
 		this.description = description;
 		this.photographer = photographer;
@@ -34,7 +35,7 @@ public class Photo {
 	 * Get the photographer of the photo
 	 * @return
 	 */
-	public String getPhotographer() {
+	public User getPhotographer() {
 		return photographer;
 	}
 
@@ -42,7 +43,7 @@ public class Photo {
 	 * Set the name of the photographer 
 	 * @param Photographer The new name to be set
 	 */
-	public void setTitle(String Photographer) {
+	public void setPhotographer(User Photographer) {
 		this.photographer = Photographer;
 	}
 
@@ -73,6 +74,35 @@ public class Photo {
 	public void setPath(String path) {
 		this.path = path;
 	}
+	
+	/**
+	 * For parcelable
+	 */
+	public int describeContents() {
+		return 0;
+	}
+	
+	public void writeToParcel(Parcel out, int flags) {
+		out.writeString(path);
+		out.writeString(description);
+		out.writeParcelable(photographer, 0);
+	}
+	
+    private Photo(Parcel in) {
+        path = in.readString();
+        description = in.readString();
+        photographer = in.readParcelable(User.class.getClassLoader());
+    }
 
+    public static final Parcelable.Creator<Photo> CREATOR
+            = new Parcelable.Creator<Photo>() {
+        public Photo createFromParcel(Parcel in) {
+            return new Photo(in);
+        }
+
+        public Photo[] newArray(int size) {
+            return new Photo[size];
+        }
+    };
 
 }

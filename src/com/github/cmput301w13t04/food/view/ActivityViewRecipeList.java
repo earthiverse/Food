@@ -18,8 +18,9 @@ import android.support.v4.app.NavUtils;
 
 /**
  * An activity designed for viewing our list of Ingredients
+ * 
  * @author W13T04
- *
+ * 
  */
 public class ActivityViewRecipeList extends Activity {
 
@@ -30,6 +31,12 @@ public class ActivityViewRecipeList extends Activity {
 		// Show the Up button in the action bar.
 		setupActionBar();
 
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+
 		Cache cache = new Cache();
 		cache.load(this);
 
@@ -39,15 +46,13 @@ public class ActivityViewRecipeList extends Activity {
 				R.layout.item_recipe, cache.getRecipes()));
 
 		list.setOnItemClickListener(new OnItemClickListener() {
-
 			public void onItemClick(AdapterView<?> arg0, View arg1,
 					int position, long id) {
-				Intent intent = new Intent(ActivityViewRecipeList.this, ActivityViewRecipe.class);
+				Intent intent = new Intent(ActivityViewRecipeList.this,
+						ActivityViewRecipe.class);
 				intent.putExtra("RECIPE_ID", id);
 				startActivity(intent);
-
 			}
-
 		});
 	}
 
@@ -84,20 +89,27 @@ public class ActivityViewRecipeList extends Activity {
 		return super.onOptionsItemSelected(item);
 	}
 
-	
+	public void addRecipe(View view) {
+		Intent intent = new Intent(ActivityViewRecipeList.this,
+				ActivityManageRecipe.class);
+		startActivity(intent);
+	}
+
 	/**
-	 * Export the current Recipe list to .json format for use in other applications
+	 * Export the current Recipe list to .json format for use in other
+	 * applications
 	 */
-	public void export(MenuItem menuItem){
+	public void export(MenuItem menuItem) {
 		Cache cache = new Cache();
 		cache.load(this);
 		int res = cache.exportRecipes(this);
 		Toast toast;
 
-		if(res == -1)
+		if (res == -1)
 			toast = Toast.makeText(this, "Export Failed!", Toast.LENGTH_SHORT);
 		else
-			toast = Toast.makeText(this, "Exported to sdcard/Download!", Toast.LENGTH_SHORT);
+			toast = Toast.makeText(this, "Exported to sdcard/Download!",
+					Toast.LENGTH_SHORT);
 
 		toast.show();
 		return;

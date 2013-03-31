@@ -5,5 +5,12 @@
         android:orderInCategory="100"
         android:showAsAction="never"
         android:title="@string/action_settings"/>
+    <item
+        android:id="@+id/recipe_edit"
+        android:enabled="true"
+        android:icon="@drawable/content_edit"
+        android:onClick="manageRecipe"
+        android:showAsAction="always"
+        android:title="Edit Recipe"/>
 
 </menu>
