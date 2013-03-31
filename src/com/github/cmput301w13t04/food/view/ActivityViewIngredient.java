@@ -1,13 +1,17 @@
 package com.github.cmput301w13t04.food.view;
 
+import java.io.File;
+
 import com.github.cmput301w13t04.food.R;
 import com.github.cmput301w13t04.food.controller.Cache;
 import com.github.cmput301w13t04.food.model.Ingredient;
+import com.github.cmput301w13t04.food.model.Photo;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.Menu;
 import android.view.View;
 import android.widget.ImageView;
@@ -98,6 +102,18 @@ public class ActivityViewIngredient extends Activity {
 	public void deleteIngredient(View view) {
 		Cache cache = new Cache();
 		cache.load(this);
+
+		Photo p = cache.getIngredient(position).getPhoto();
+		File file = new File(p.getAbsolutePath());
+
+		if (file.exists())
+			file.delete();
+
+		// clear devices cache
+		sendBroadcast(new Intent(
+				Intent.ACTION_MEDIA_MOUNTED,
+				Uri.parse("file://" + Environment.getExternalStorageDirectory())));
+
 		cache.removeIngredient(position);
 		cache.save(this);
 

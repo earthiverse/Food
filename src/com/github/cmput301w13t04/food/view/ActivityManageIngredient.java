@@ -1,11 +1,14 @@
 package com.github.cmput301w13t04.food.view;
 
+import java.io.File;
+
 import com.github.cmput301w13t04.food.R;
 import com.github.cmput301w13t04.food.model.Ingredient;
 import com.github.cmput301w13t04.food.model.Photo;
 
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.app.Activity;
 import android.content.Intent;
 import android.util.Log;
@@ -22,9 +25,9 @@ import android.widget.Toast;
  * 
  */
 public class ActivityManageIngredient extends Activity {
-	
+
 	public static final int RESULT_DELETE = 10;
-	
+
 	private static final int TAKE_PHOTO = 1;
 	private Photo p;
 
@@ -43,9 +46,10 @@ public class ActivityManageIngredient extends Activity {
 			// Modify Existing Ingredient
 			ingredient = getIntent().getParcelableExtra("INGREDIENT");
 
-			if(ingredient.getPhoto() != null) {
+			if (ingredient.getPhoto() != null) {
 				ImageView photoView = (ImageView) findViewById(R.id.ingredient_image);
-				photoView.setImageURI(Uri.parse(ingredient.getPhoto().getPath()));
+				photoView.setImageURI(Uri
+						.parse(ingredient.getPhoto().getPath()));
 			}
 
 			EditText quantity = (EditText) findViewById(R.id.add_quantity);
@@ -75,12 +79,12 @@ public class ActivityManageIngredient extends Activity {
 		getMenuInflater().inflate(R.menu.add_ingredient, menu);
 		return true;
 	}
-	
+
 	public void removeIngredient(View view) {
 		Intent result = new Intent();
 		result.putExtra("POSITION", position);
 		setResult(RESULT_DELETE, result);
-		
+
 		Toast.makeText(view.getContext(), "Ingredient Removed!",
 				Toast.LENGTH_SHORT).show();
 
@@ -119,6 +123,19 @@ public class ActivityManageIngredient extends Activity {
 
 		// Set Picture
 		if (p != null) {
+			if (ingredient.getPhoto() != null) {
+
+				Photo pOld = ingredient.getPhoto();
+				File file = new File(pOld.getAbsolutePath());
+
+				if (file.exists())
+					file.delete();
+
+				// clear device's cache
+				sendBroadcast(new Intent(Intent.ACTION_MEDIA_MOUNTED,
+						Uri.parse("file://"
+								+ Environment.getExternalStorageDirectory())));
+			}
 			ingredient.setPhoto(p);
 		}
 
