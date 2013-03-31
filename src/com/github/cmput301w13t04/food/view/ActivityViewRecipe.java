@@ -7,8 +7,10 @@ import com.github.cmput301w13t04.food.R;
 import com.github.cmput301w13t04.food.controller.Cache;
 import com.github.cmput301w13t04.food.controller.IngredientAdapter;
 import com.github.cmput301w13t04.food.controller.StepAdapter;
+import com.github.cmput301w13t04.food.model.Ingredient;
 import com.github.cmput301w13t04.food.model.Photo;
 import com.github.cmput301w13t04.food.model.Recipe;
+import com.github.cmput301w13t04.food.model.Step;
 
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
@@ -21,6 +23,11 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.text.Html;
+import android.text.Spannable;
+import android.text.SpannableStringBuilder;
+import android.text.style.URLSpan;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -66,6 +73,19 @@ public class ActivityViewRecipe extends FragmentActivity implements
 
 		// Load Recipe from ID
 		long recipeID = this.getIntent().getLongExtra("RECIPE_ID", -1);
+
+		if (recipeID == -1) {
+			/* Check to see if a link was passed */
+			try {
+				Uri data = getIntent().getData();
+				recipeID = Long.valueOf(data.getLastPathSegment());
+				Log.d("recipeID", data.getLastPathSegment());
+			} catch (Exception e) {
+				/* No recipe found, abort! */
+				noRecipeFound();
+			}
+		}
+
 		recipe = cache.getRecipe(recipeID);
 		if (recipe == null) {
 			// TODO: Get recipe from database
@@ -116,13 +136,6 @@ public class ActivityViewRecipe extends FragmentActivity implements
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.view_recipe, menu);
 		return true;
-	}
-
-	public void manageRecipe(MenuItem menuitem) {
-		Intent intent = new Intent(ActivityViewRecipe.this,
-				ActivityManageRecipe.class);
-		intent.putExtra("RECIPE_ID", recipe.getId());
-		startActivity(intent);
 	}
 
 	public void onTabSelected(Tab tab, FragmentTransaction ft) {
@@ -196,6 +209,76 @@ public class ActivityViewRecipe extends FragmentActivity implements
 			}
 			return null;
 		}
+	}
+
+	/**
+	 * Called when no recipe is found with given parameters
+	 */
+	private void noRecipeFound() {
+		// TODO: Show error no recipe found
+		finish();
+	}
+
+	/**
+	 * Menu button handler for editing recipe
+	 * 
+	 * @param menuitem
+	 */
+	public void manageRecipe(MenuItem menuitem) {
+		Intent intent = new Intent(ActivityViewRecipe.this,
+				ActivityManageRecipe.class);
+		intent.putExtra("RECIPE_ID", recipe.getId());
+		startActivity(intent);
+	}
+
+	/*
+	 * TODO: If this were a real app, it would not hard-code English words.
+	 */
+	/**
+	 * Menu button handler for sharing a recipe via. email
+	 */
+	public void shareRecipe(MenuItem menuitem) {
+		Intent intent = new Intent(Intent.ACTION_SEND);
+		intent.setType("message/rfc822");
+
+		intent.putExtra(Intent.EXTRA_SUBJECT, recipe.getTitle()
+				+ " [ReasonableRecipes]");
+
+		// Title & Author
+		StringBuffer body = new StringBuffer("<a href=\"http://reasonablerecipes.com/"
+				+ String.valueOf(recipe.getId()) + "\">" + "<strong>"
+				+ recipe.getTitle() + "</strong></a><br />by "
+				+ recipe.getAuthor().getUsername() + "<br /><br />");
+
+		// Time
+		body.append("<strong>Time Required:</strong> " + String.valueOf(recipe.getTime() + " minutes")
+				+ "<br /><br />");
+
+		// Ingredients
+		body.append("<strong>Ingredient List:</strong><br />");
+		ArrayList<Ingredient> ingredients = recipe.getIngredients();
+		for (int i = 0; i < ingredients.size(); i++) {
+			Ingredient ingredient = ingredients.get(i);
+			body.append(ingredient.getQuantity() + " " + ingredient.getName() + "<br />");
+		}
+		body.append("<br />");
+		
+		// Steps
+		body.append("<strong>Directions:</strong><br />");
+		ArrayList<Step> steps = recipe.getSteps();
+		for (int i = 0; i < steps.size() ; i++) {
+			Step step = steps.get(i);
+			body.append(String.valueOf(i + 1) + ". " + step.getName() + "<br />");
+			body.append(step.getDescription() + "<br /><br />");
+		}
+		
+		// Footer
+		body.append("<a href=\"http://reasonablerecipes.com/"
+				+ String.valueOf(recipe.getId()) + "\">" + "http://reasonablerecipes.com/"
+				+ String.valueOf(recipe.getId()) + "</a>");
+
+		intent.putExtra(Intent.EXTRA_TEXT, Html.fromHtml(body.toString()));
+		startActivity(Intent.createChooser(intent, "Share Recipe"));
 	}
 
 	/* Description Fragment */

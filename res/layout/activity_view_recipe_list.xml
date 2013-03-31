@@ -18,6 +18,7 @@
     </ListView>
 
     <LinearLayout
+        style="?android:attr/buttonBarStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
 
@@ -26,6 +27,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="left"
             android:onClick="addRecipe"
+            style="?android:attr/buttonBarButtonStyle"
             android:text="Add Recipe" />
 
         <Button
@@ -33,6 +35,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="right"
             android:clickable="false"
+            style="?android:attr/buttonBarButtonStyle"
             android:text="Search for Recipes" />
     </LinearLayout>
 

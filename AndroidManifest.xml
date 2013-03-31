@@ -31,6 +31,19 @@
         <activity
             android:name="com.github.cmput301w13t04.food.view.ActivityViewRecipe"
             android:label="@string/title_activity_view_recipe" >
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.BROWSABLE" />
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data
+                    android:host="reasonablerecipes.com"
+                    android:scheme="http" />
+                <data
+                    android:host="www.reasonablerecipes.com"
+                    android:scheme="http" />
+            </intent-filter>
         </activity>
         <activity
             android:name="com.github.cmput301w13t04.food.view.ActivityViewIngredient"

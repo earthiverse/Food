@@ -6,11 +6,16 @@
         android:showAsAction="never"
         android:title="@string/action_settings"/>
     <item
-        android:id="@+id/recipe_edit"
         android:enabled="true"
         android:icon="@drawable/content_edit"
         android:onClick="manageRecipe"
-        android:showAsAction="always"
+        android:showAsAction="ifRoom"
         android:title="Edit Recipe"/>
+    <item
+        android:enabled="true"
+        android:onClick="shareRecipe"
+        android:showAsAction="ifRoom"
+        android:title="Share Recipe"
+        />
 
 </menu>

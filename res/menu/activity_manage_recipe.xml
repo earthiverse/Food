@@ -10,7 +10,7 @@
         android:enabled="true"
         android:icon="@drawable/content_save"
         android:onClick="updateRecipe"
-        android:showAsAction="always"
+        android:showAsAction="ifRoom"
         android:title="Update Recipe"/>
 
 </menu>
