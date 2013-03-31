@@ -10,7 +10,7 @@ public class StepTest {
 
 	@Test
 	public void testGetDescription() {
-		Step step = new Step("Add onions", "Add onions to pan", null);
+		Step step = new Step("Add onions", "Add onions to pan");
 		assertEquals("Add onions to pan", step.getDescription());
 		step.setDescription("Add water");
 		assertEquals("Add water", step.getDescription());
@@ -18,7 +18,7 @@ public class StepTest {
 
 	@Test
 	public void testGetName() {
-		Step step = new Step("Add onions", "Add onions to pan", null);
+		Step step = new Step("Add onions", "Add onions to pan");
 		assertEquals("Add onions", step.getName());
 		step.setName("Add water");
 		assertEquals("Add water", step.getName());

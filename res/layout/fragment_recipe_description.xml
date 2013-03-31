@@ -9,13 +9,31 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".ViewRecipe$RecipeDescriptionFragment" >
 
-    <ImageView
-        android:id="@+id/recipe_image"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:adjustViewBounds="true"
-        android:paddingBottom="4dp"
-        android:src="@drawable/shrimpdumpling" />
+        android:gravity="center" >
+
+        <ImageButton
+            android:id="@+id/button_prev_photo"
+            android:layout_width="wrap_content"
+            android:layout_height="120dp"
+            android:src="@drawable/navigation_previous_item" />
+
+        <ImageView
+            android:id="@+id/recipe_image"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:layout_weight="1"
+            android:adjustViewBounds="true"
+            android:src="@drawable/apple" />
+
+        <ImageButton
+            android:id="@+id/button_next_photo"
+            android:layout_width="wrap_content"
+            android:layout_height="120dp"
+            android:src="@drawable/navigation_next_item" />
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -34,7 +52,7 @@
             android:id="@+id/recipe_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="30"
+            android:hint="Time"
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <TextView
@@ -48,7 +66,7 @@
         android:id="@+id/recipe_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Recipe Description goes here. Long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long text."
+        android:hint="Recipe Description"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textIsSelectable="true" />
 

@@ -7,7 +7,6 @@ import com.github.cmput301w13t04.food.model.Photo;
 
 import android.content.Context;
 import android.net.Uri;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,7 +42,7 @@ public class RecipePhotoAdapter extends ArrayAdapter<Photo> {
 		// Display photo
 		if (photo != null) {
 			ImageView photoView = (ImageView) view
-					.findViewById(R.id.recipe_picture);
+					.findViewById(R.id.recipe_image);
 			photoView.setImageURI(Uri.parse(photo.getPath()));
 		}
 

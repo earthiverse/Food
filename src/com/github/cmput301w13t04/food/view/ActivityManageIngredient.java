@@ -1,7 +1,6 @@
 package com.github.cmput301w13t04.food.view;
 
 import com.github.cmput301w13t04.food.R;
-import com.github.cmput301w13t04.food.controller.Cache;
 import com.github.cmput301w13t04.food.model.Ingredient;
 import com.github.cmput301w13t04.food.model.Photo;
 
@@ -14,7 +13,6 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 /**
@@ -139,7 +137,7 @@ public class ActivityManageIngredient extends Activity {
 	 * The button listener for starting the photo-taking intent
 	 */
 	public void takePhoto(View view) {
-		Intent intent = new Intent(this, PhotoIntentActivity.class);
+		Intent intent = new Intent(this, ActivityTakePhoto.class);
 		startActivityForResult(intent, TAKE_PHOTO);
 	}
 

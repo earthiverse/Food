@@ -87,7 +87,7 @@ public class RecipeTest {
 		u1 = new User("dud@ualberta.ca");
 
 		Recipe r = new Recipe("Onion soup", u1, "A tasty, zesty soup", 8);
-		Step step = new Step("Add onions", "Add onions to pan", null);
+		Step step = new Step("Add onions", "Add onions to pan");
 		
 		r.addStep(step);
 		
