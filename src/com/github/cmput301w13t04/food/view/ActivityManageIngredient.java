@@ -1,7 +1,6 @@
 package com.github.cmput301w13t04.food.view;
 
 import com.github.cmput301w13t04.food.R;
-import com.github.cmput301w13t04.food.controller.Cache;
 import com.github.cmput301w13t04.food.model.Ingredient;
 import com.github.cmput301w13t04.food.model.Photo;
 
@@ -14,7 +13,6 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 /**
@@ -24,67 +22,50 @@ import android.widget.Toast;
  * 
  */
 public class ActivityManageIngredient extends Activity {
-
+	
+	public static final int RESULT_DELETE = 10;
+	
 	private static final int TAKE_PHOTO = 1;
 	private Photo p;
-	int id;
+
+	private int position;
+	private Ingredient ingredient;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_manage_ingredient);
-		
-		p = null;
 
-		populate();
-	}
-	
-	/**
-	 * Populate the Text fields with relevant data if the data exists
-	 */
-	public void populate() {
 		// Get Ingredient ID
-		this.id = getIntent().getIntExtra("INGREDIENT_ID", -1);
+		position = getIntent().getIntExtra("POSITION", -1);
 
-		if (this.id != -1) {
-			// Grab Ingredient from Cache
-			Cache cache = new Cache();
-			cache.load(this);
-			Ingredient ingredient = cache.getIngredient(this.id);
+		if (position != -1) {
+			// Modify Existing Ingredient
+			ingredient = getIntent().getParcelableExtra("INGREDIENT");
 
-			// Populate Current Ingredient Values
-			if (ingredient == null) {
-
-				// TODO: Something went wrong, there is no ingredient with that
-				// ID.
-				finish();
-
-			} else {
-
+			if(ingredient.getPhoto() != null) {
 				ImageView photoView = (ImageView) findViewById(R.id.ingredient_image);
-				if(photoView == null)
-					Log.d("Path", "NULL");
-				
-				if(ingredient.getPhoto() != null) {
-					Log.d("Photo_URI", ingredient.getPhoto().getPath().toString());
-					photoView.setImageURI(Uri.parse(ingredient.getPhoto().getPath()));
-				}
-
-				TextView quantity = (TextView) findViewById(R.id.add_quantity);
-				if (quantity != null) {
-					quantity.setText(String.valueOf(ingredient.getQuantity()));
-				}
-
-				TextView name = (TextView) findViewById(R.id.add_name);
-				if (name != null) {
-					name.setText(ingredient.getName());
-				}
-
-				TextView description = (TextView) findViewById(R.id.add_description);
-				if (name != null) {
-					description.setText(ingredient.getDescription());
-				}
+				photoView.setImageURI(Uri.parse(ingredient.getPhoto().getPath()));
 			}
+
+			EditText quantity = (EditText) findViewById(R.id.add_quantity);
+			quantity.setText(String.valueOf(ingredient.getQuantity()));
+
+			EditText name = (EditText) findViewById(R.id.add_name);
+			name.setText(ingredient.getName());
+
+			EditText description = (EditText) findViewById(R.id.add_description);
+			description.setText(ingredient.getDescription());
+		} else {
+			// New Ingredient
+			ingredient = new Ingredient();
+		}
+
+		// Populate Current Ingredient Values
+		if (ingredient == null) {
+
+			// TODO: Something went wrong
+			finish();
 		}
 	}
 
@@ -94,6 +75,17 @@ public class ActivityManageIngredient extends Activity {
 		getMenuInflater().inflate(R.menu.add_ingredient, menu);
 		return true;
 	}
+	
+	public void removeIngredient(View view) {
+		Intent result = new Intent();
+		result.putExtra("POSITION", position);
+		setResult(RESULT_DELETE, result);
+		
+		Toast.makeText(view.getContext(), "Ingredient Removed!",
+				Toast.LENGTH_SHORT).show();
+
+		finish();
+	}
 
 	/**
 	 * Update the ingredient based on any new input from the user
@@ -102,12 +94,12 @@ public class ActivityManageIngredient extends Activity {
 		// Get Name
 		EditText name = (EditText) findViewById(R.id.add_name);
 		String nameIngredient = name.getText().toString();
-
 		if (nameIngredient.isEmpty()) {
 			Toast.makeText(view.getContext(), "Missing Ingredient Name!",
 					Toast.LENGTH_SHORT).show();
 			return;
 		}
+		ingredient.setName(nameIngredient);
 
 		// Get Quantity
 		EditText quantity = (EditText) findViewById(R.id.add_quantity);
@@ -118,30 +110,22 @@ public class ActivityManageIngredient extends Activity {
 					Toast.LENGTH_SHORT).show();
 			return;
 		}
+		ingredient.setQuantity(quantityIngredient);
 
 		// Get Description
 		EditText description = (EditText) findViewById(R.id.add_description);
 		String descriptionIngredient = description.getText().toString();
+		ingredient.setDescription(descriptionIngredient);
 
-		// Construct ingredient
-		Ingredient ingredient = new Ingredient(nameIngredient,
-				quantityIngredient, descriptionIngredient, p);
-
-		
-		// TODO: Add photo changes
-
-		Cache cache = new Cache();
-		cache.load(view.getContext());
-
-		if (getIntent().getBooleanExtra("INGREDIENT_EDIT", false)) {
-			// Update ingredient
-			cache.updateIngredient(ingredient, this.id);
-		} else {
-			// Add new ingredient
-			cache.addIngredient(ingredient);
+		// Set Picture
+		if (p != null) {
+			ingredient.setPhoto(p);
 		}
 
-		cache.save(view.getContext());
+		Intent result = new Intent();
+		result.putExtra("INGREDIENT", ingredient);
+		result.putExtra("POSITION", position);
+		setResult(Activity.RESULT_OK, result);
 
 		Toast.makeText(view.getContext(), "Added " + nameIngredient + "!",
 				Toast.LENGTH_SHORT).show();
@@ -159,24 +143,22 @@ public class ActivityManageIngredient extends Activity {
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-
 		if (requestCode == TAKE_PHOTO) {
 			if (resultCode == RESULT_OK) {
 				String path = data.getStringExtra("path");
 				String desc = data.getStringExtra("desc");
 				// get User instead of null
 				p = new Photo(path, desc, null);
-				
+
 				ImageView photoView = (ImageView) findViewById(R.id.ingredient_image);
-				if(photoView == null)
+				if (photoView == null)
 					Log.d("Path", "NULL");
-				
-				if(p != null) {
+
+				if (p != null) {
 					Log.d("Photo_URI", p.getPath().toString());
 					photoView.setImageURI(Uri.parse(p.getPath()));
 				}
 			}
 		}
 	}
-
 }

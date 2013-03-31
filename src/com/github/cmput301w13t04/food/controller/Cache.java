@@ -29,7 +29,7 @@ public class Cache {
 	// Our local list of ingredients (also called pantry)
 	private ArrayList<Ingredient> Ingredients;
 
-	private String jsonFilename = "cache.json";
+	private static final String jsonFilename = "cache.json";
 
 	/**
 	 * Create a new Cache object with empty Recipe and Ingredient lists

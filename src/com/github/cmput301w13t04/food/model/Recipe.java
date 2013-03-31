@@ -3,13 +3,12 @@ package com.github.cmput301w13t04.food.model;
 import java.util.ArrayList;
 
 /**
- * An object that represents a recipe that can be followed to make 
- * a meal.
+ * An object that represents a recipe that can be followed to make a meal.
+ * 
  * @author W13T04
- *
+ * 
  */
 public class Recipe {
-
 	// the title of the recipe
 	private String title;
 
@@ -97,6 +96,7 @@ public class Recipe {
 
 	/**
 	 * Get the title of the Recipe object
+	 * 
 	 * @return a string containing the title
 	 */
 	public String getTitle() {
@@ -105,7 +105,9 @@ public class Recipe {
 
 	/**
 	 * Set a new title for the Recipe object
-	 * @param title The new title of the Recipe object
+	 * 
+	 * @param title
+	 *            The new title of the Recipe object
 	 */
 	public void setTitle(String title) {
 		this.title = title;
@@ -113,6 +115,7 @@ public class Recipe {
 
 	/**
 	 * Get the description of the recipe
+	 * 
 	 * @return The descrition of the recipe
 	 */
 	public String getDescription() {
@@ -121,7 +124,9 @@ public class Recipe {
 
 	/**
 	 * Change the description of the recipe
-	 * @param description The new description of the recipe
+	 * 
+	 * @param description
+	 *            The new description of the recipe
 	 */
 	public void setDescription(String description) {
 		this.description = description;
@@ -129,6 +134,7 @@ public class Recipe {
 
 	/**
 	 * Get the time it takes to complete the recipe
+	 * 
 	 * @return The time it to complete the recipe
 	 */
 	public int getTime() {
@@ -137,7 +143,9 @@ public class Recipe {
 
 	/**
 	 * Change the time it takes to complete the recipe
-	 * @param time The revised time that it takes to complete the recipe
+	 * 
+	 * @param time
+	 *            The revised time that it takes to complete the recipe
 	 */
 	public void setTime(int time) {
 		this.time = time;
@@ -145,6 +153,7 @@ public class Recipe {
 
 	/**
 	 * Get the user who created the recipe
+	 * 
 	 * @return The user who created the recipe
 	 */
 	public User getAuthor() {
@@ -153,30 +162,54 @@ public class Recipe {
 
 	/**
 	 * Change the user who created the recipe
-	 * @param author The new user who appears as author of the recipe 
+	 * 
+	 * @param author
+	 *            The new user who appears as author of the recipe
 	 */
 	public void setAuthor(User author) {
 		this.author = author;
 	}
 
 	/**
-	 * Add a picture to the recipe
-	 * @param photo The picture to be added to the recipe
+	 * Get the list of photos used in the recipe
+	 * 
+	 * @return The list of photos used in the recipe
 	 */
-	public void addPicture(Photo photo) {
+	public ArrayList<Photo> getPhotos() {
+		return photos;
+	}
+
+	/**
+	 * Add a picture to the recipe
+	 * 
+	 * @param photo
+	 *            The picture to be added to the recipe
+	 */
+	public void addPhoto(Photo photo) {
 		photos.add(photo);
 	}
 
 	/**
 	 * Remove a picture from the recipe
-	 * @param index The position in the ArrayList of the photo to be removed
+	 * 
+	 * @param index
+	 *            The position in the ArrayList of the photo to be removed
 	 */
-	public void removePicture(int index) {
+	public void removePhoto(int index) {
 		photos.remove(index);
 	}
 
 	/**
+	 * Set new ingredient list
+	 */
+	public void updateIngredient(Ingredient ingredient, int id) {
+		ingredients.remove(id);
+		ingredients.add(id, ingredient);
+	}
+
+	/**
 	 * Get the list of ingredients used in the recipe
+	 * 
 	 * @return The list of ingredients used in the recipe
 	 */
 	public ArrayList<Ingredient> getIngredients() {
@@ -184,8 +217,27 @@ public class Recipe {
 	}
 
 	/**
+	 * Get an ingredient based on position in the list
+	 * 
+	 * @param pos
+	 *            The position of the Ingredient object wanted
+	 * @return The Ingredient object from the position that was requested
+	 */
+	public Ingredient getIngredient(int pos) {
+		Ingredient ingredient = null;
+		try {
+			ingredient = this.ingredients.get(pos);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return ingredient;
+	}
+
+	/**
 	 * Add an ingredient to the recipe's ingredient list
-	 * @param ingredient The ingredient to be added
+	 * 
+	 * @param ingredient
+	 *            The ingredient to be added
 	 */
 	public void addIngredient(Ingredient ingredient) {
 		this.ingredients.add(ingredient);
@@ -193,14 +245,47 @@ public class Recipe {
 
 	/**
 	 * Add a step to the recipe
-	 * @param step The step to be added
+	 * 
+	 * @param step
+	 *            The step to be added
 	 */
 	public void addStep(Step step) {
 		steps.add(step);
 	}
 
 	/**
+	 * Updates a given step in the recipe
+	 * 
+	 * @param step
+	 *            The new step (overwriting the other step)
+	 * @param id
+	 *            Position of step in list
+	 */
+	public void updateStep(Step step, int id) {
+		steps.remove(id);
+		steps.add(id, step);
+	}
+
+	/**
+	 * Get a step based on position in the list
+	 * 
+	 * @param pos
+	 *            The position of the step wanted
+	 * @return The Step from the position that was requested
+	 */
+	public Step getStep(int pos) {
+		Step step = null;
+		try {
+			step = steps.get(pos);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return step;
+	}
+
+	/**
 	 * Get the number of steps in the recipe
+	 * 
 	 * @return The number of steps in the recipe
 	 */
 	public int stepCount() {
@@ -209,7 +294,9 @@ public class Recipe {
 
 	/**
 	 * Remove a step from the recipe
-	 * @param step The step to be removed
+	 * 
+	 * @param step
+	 *            The step to be removed
 	 */
 	public void removeStep(Step step) {
 		steps.remove(step);
@@ -217,6 +304,7 @@ public class Recipe {
 
 	/**
 	 * Get the id of the recipe
+	 * 
 	 * @return The Id of the recipe
 	 */
 	public long getId() {
@@ -225,9 +313,48 @@ public class Recipe {
 
 	/**
 	 * Get the list of steps in the recipe
+	 * 
 	 * @return The list of steps
 	 */
 	public ArrayList<Step> getSteps() {
 		return this.steps;
+	}
+
+	/**
+	 * Remove the ingredient at the specified position
+	 * 
+	 * @param position
+	 *            Position in array to remove
+	 */
+	public void removeIngredient(int position) {
+		ingredients.remove(position);
+	}
+
+	/**
+	 * Remove the step at the specified position
+	 * 
+	 * @param position
+	 *            Position in array to remove
+	 */
+	public void removeStep(int position) {
+		steps.remove(position);
+		// TODO Auto-generated method stub
+
+	}
+
+	/**
+	 * Get a photo from the list of photos attached to the recipe
+	 * 
+	 * @param position
+	 *  Photo number to return from the array of photos
+	 * @return Selected recipe
+	 */
+	public Photo getPhoto(int position) {
+		try {
+			return photos.get(position);
+		} catch(Exception e) {
+			// No photo at that position
+		}
+		return null;
 	}
 }

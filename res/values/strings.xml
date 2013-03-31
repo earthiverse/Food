@@ -41,5 +41,7 @@
 
     <!-- Photo -->
     <string name="title_activity_photo_intent">Add a Photo</string>
+    <string name="title_activity_activity_manage_recipe">Manage Recipe</string>
+    <string name="title_activity_activity_manage_step">Manage Step</string>
 
 </resources>

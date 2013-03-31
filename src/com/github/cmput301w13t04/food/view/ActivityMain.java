@@ -22,7 +22,6 @@ import android.view.View;
  * 
  */
 
-
 public class ActivityMain extends Activity {
 
 	@Override
@@ -126,6 +125,17 @@ public class ActivityMain extends Activity {
 		cache.addIngredient(chicken);
 		cache.addIngredient(cow);
 		cache.addIngredient(pig);
+		
+		/* NEW RECIPE TIME */
+		Recipe recipe2 = new Recipe("Another Recipe", new User("user@site.com"), "Some shitty recipe", 12);
+		
+		Ingredient idkmybff = new Ingredient("Things", "A couple", "Cool beans", null);
+		
+		Step idkmystep = new Step("THE FIRST", "And only step...");
+		recipe2.addStep(idkmystep);
+		recipe2.addIngredient(idkmybff);
+		
+		cache.addRecipe(recipe2);
 
 		cache.save(view.getContext());
 	}
@@ -145,14 +155,6 @@ public class ActivityMain extends Activity {
 	public void showIngredientList(View view) {
 		Intent intent = new Intent(ActivityMain.this,
 				ActivityViewIngredientList.class);
-		startActivity(intent);
-	}
-
-	/*
-	 * Listener for the Add Ingredients button
-	 */
-	public void showAddIngredient(View view) {
-		Intent intent = new Intent(ActivityMain.this, ActivityManageIngredient.class);
 		startActivity(intent);
 	}
 }

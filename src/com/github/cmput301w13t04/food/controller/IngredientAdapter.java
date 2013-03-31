@@ -33,9 +33,9 @@ public class IngredientAdapter extends ArrayAdapter<Ingredient> {
 	public IngredientAdapter(Context context, int textViewResourceId,
 			ArrayList<Ingredient> ingredients) {
 		super(context, textViewResourceId, ingredients);
-		
+
 		this.ingredients = ingredients;
-		
+
 		this.layout = textViewResourceId;
 	}
 
@@ -45,7 +45,8 @@ public class IngredientAdapter extends ArrayAdapter<Ingredient> {
 
 		// Inflate view if no view exists
 		if (view == null) {
-			final LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+			final LayoutInflater inflater = (LayoutInflater) getContext()
+					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			view = inflater.inflate(this.layout, null);
 		}
 
@@ -55,29 +56,25 @@ public class IngredientAdapter extends ArrayAdapter<Ingredient> {
 		// Display ingredient
 		if (ingredient != null) {
 
-			ImageView photoView = (ImageView) view.findViewById(R.id.ingredient_image);
-			if(photoView == null)
-				Log.d("Path", "NULL");
-			
-			
-			if(ingredient.getPhoto() != null) {
-				Log.d("Photo_URI", ingredient.getPhoto().getPath().toString());
-				photoView.setImageURI(Uri.parse(ingredient.getPhoto().getPath()));
+			ImageView photoView = (ImageView) view
+					.findViewById(R.id.ingredient_image);
+
+			if (ingredient.getPhoto() != null) {
+				photoView.setImageURI(Uri
+						.parse(ingredient.getPhoto().getPath()));
 			}
-			
+
 			TextView quantity = (TextView) view
 					.findViewById(R.id.ingredient_quantity);
 			if (quantity != null) {
 				quantity.setText(String.valueOf(ingredient.getQuantity()));
 			}
-			
+
 			TextView name = (TextView) view.findViewById(R.id.ingredient_name);
 			if (name != null) {
 				name.setText(ingredient.getName());
 			}
 		}
-
 		return view;
 	}
-
 }

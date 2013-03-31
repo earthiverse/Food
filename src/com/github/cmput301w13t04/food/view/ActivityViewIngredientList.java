@@ -17,51 +17,76 @@ import android.widget.ListView;
 
 /**
  * An activity designed for viewing our list of Ingredients
+ * 
  * @author W13T04
- *
+ * 
  */
 public class ActivityViewIngredientList extends Activity {
-	private ListView listIngredients;
+
+	private static final int ACTION_ADD_INGREDIENT = 1;
+
+	private Cache cache;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.fragment_recipe_ingredients);
-
-		// Populate log
-		populate();
+		setContentView(R.layout.activity_view_ingredient_list);
 	}
 
 	public void onResume() {
 		super.onResume();
 
 		// Refresh log
-		populate();
-	}
-
-	/**
-	 * Load the ingredients data and populate the views field with this data
-	 */
-	public void populate() {
-		Cache cache = new Cache();
+		cache = new Cache();
 		cache.load(this);
 
 		ArrayList<Ingredient> ingredients = cache.getIngredients();
 
-		listIngredients = (ListView) findViewById(R.id.ingredient_list);
+		ListView listIngredients = (ListView) findViewById(R.id.ingredient_list);
 		listIngredients.setAdapter(new IngredientAdapter(this,
 				R.layout.item_ingredient, ingredients));
 
 		listIngredients.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-
 				// View ingredient on item click.
 				Intent intent = new Intent(ActivityViewIngredientList.this,
 						ActivityViewIngredient.class);
-				intent.putExtra("INGREDIENT_ID", position);
+
+				intent.putExtra("INGREDIENT", cache.getIngredient(position));
+				intent.putExtra("POSITION", position);
 				startActivity(intent);
 			}
 		});
+	}
+
+	/**
+	 * Launches Add Ingredient (Called on Button Press)
+	 * 
+	 * @param view
+	 */
+	public void addIngredient(View view) {
+		Intent intent = new Intent(ActivityViewIngredientList.this,
+				ActivityManageIngredient.class);
+		startActivityForResult(intent, ACTION_ADD_INGREDIENT);
+	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		switch (requestCode) {
+		case ACTION_ADD_INGREDIENT: {
+			if (resultCode == RESULT_OK) {
+				Cache cache = new Cache();
+				cache.load(this);
+
+				// Add ingredient
+				Ingredient ingredient = data.getParcelableExtra("INGREDIENT");
+				cache.addIngredient(ingredient);
+
+				cache.save(this);
+			}
+		}
+		}
+		;
 	}
 }
