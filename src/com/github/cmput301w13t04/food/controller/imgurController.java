@@ -41,186 +41,156 @@ import android.util.Log;
 /* To implement, do something like this:
  * 
  *Log.d("REALP",path);
-			imgurController ic = new imgurController();
-			String result = null;
-			try
-			{
-	//To post an image
-				result = 
-						ic.post(path);
-				Log.d("YATTA", result);
-			} catch (IOException e)
-			{
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-	//To fetch an image.
-			String fpath = ic.fetch(result);
-			Log.d("imgur fetch result", fpath);
+ imgurController ic = new imgurController();
+ String result = null;
+ try
+ {
+ //To post an image
+ result = 
+ ic.post(path);
+ Log.d("YATTA", result);
+ } catch (IOException e)
+ {
+ // TODO Auto-generated catch block
+ e.printStackTrace();
+ }
+ //To fetch an image.
+ String fpath = ic.fetch(result);
+ Log.d("imgur fetch result", fpath);
  * Where "path" is the string path of the photo.
  */
-public class imgurController
-{
+public class imgurController {
 	/*
-	 * NOTE: This method implements the 2nd version of the imgur API, which unfortunately
-	 * is no longer supported, so this API Key is actually from a demo app I found online
-	 * but there doesn't seem to be a way to register a new key for the 2nd version.
+	 * NOTE: This method implements the 2nd version of the imgur API, which
+	 * unfortunately is no longer supported, so this API Key is actually from a
+	 * demo app I found online but there doesn't seem to be a way to register a
+	 * new key for the 2nd version.
 	 */
 	private String DEV_KEY = "5a5141ca9354bf7929b98a1d7a4c26ae";
-	//private String DEV_KEY = "3c45563c813ad29";
-	private String path;
+	// private String DEV_KEY = "3c45563c813ad29";
 
 	/*
 	 * Constructor
 	 */
-	public imgurController(){
-		path = new String();
+	public imgurController() {
 	}
-	public imgurController(String path){
-		this.path = path;
-	}
-	private class PublishImageTask extends AsyncTask<Bitmap, Void, String> {
-	     protected String doInBackground(Bitmap... bitmap) {
-	        //Your download code here; work with the url parameter and then return the result
-	        //which if I remember correctly from your code, is a string.
-	        //This gets called and runs ON ANOTHER thread
-	 		
-	 		// Creates Byte Array from picture
-	    	 
-	 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
-	 		bitmap[0].compress(Bitmap.CompressFormat.JPEG, 100, baos);
-	 		
-	 		 String data = null;
-	         data = Base64.encodeToString(baos.toByteArray(), Base64.DEFAULT);
-	         
-	         HttpPost hpost = new HttpPost("http://api.imgur.com/2/upload");
-	 		//HttpPost hpost = new HttpPost("http://api.imgur.com/2/account/images");
 
-	 		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
-	 		nameValuePairs.add(new BasicNameValuePair("image", data));
-	 		nameValuePairs.add(new BasicNameValuePair("type", "base64"));
-	 		nameValuePairs.add(new BasicNameValuePair("key", DEV_KEY));	 		
-
-	 		try 
-	 		{
-	 			hpost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
-	 		} catch (UnsupportedEncodingException e) 
-	 		{
-	 			e.toString();
-	 		}
-
-	 		
-	 		DefaultHttpClient client = new DefaultHttpClient();
-	 		HttpResponse resp = null;
-	 		try 
-	 		{
-	 			resp = client.execute(hpost);
-	 		} catch (ClientProtocolException e) 
-	 		{
-	 		e.toString();
-	 		} catch (IOException e) 
-	 		{
-	 			e.toString();
-	 		}
-
-	 		String result = null;
-	 		try {
-	 			result = EntityUtils.toString(resp.getEntity());
-	 			Log.d("YOYO", result);
-	 		} catch (ParseException e) 
-	 		{
-	 		e.toString();
-	 		} catch (IOException e) 
-	 		{
-	 			e.toString();
-	 		}
-	 		String dest = null;
-	 		if (result.indexOf("original") >= 0)
-	            dest = result.substring(result.indexOf("original") + "original".length() + 1, 
-	                    result.lastIndexOf("original") - 2);
-	 		Log.d("Destination",dest);
-
-	 		return dest;
-	    	
-	     }
-	}
 	/* Post method, returns the string result */
-	public String post(String path) throws IOException{
-
+	public String post(String path) throws IOException {
+		Log.d("Testing", "Started post...");
 		Bitmap bitmap = BitmapFactory.decodeFile(Uri.parse(path).getPath());
-		PublishImageTask runner = new PublishImageTask();
+		Log.d("Testing", "Decoded File...");
 		String result = null;
 		try {
-			result = runner.execute(bitmap).get();
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ExecutionException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Log.d("Testing", "Started Execution...");
+
+			// Your download code here; work with the url parameter and then
+			// return the result
+			// which if I remember correctly from your code, is a string.
+			// This gets called and runs ON ANOTHER thread
+
+			// Creates Byte Array from picture
+			Log.d("Testing", "Here.");
+
+			ByteArrayOutputStream baos = new ByteArrayOutputStream();
+			bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+
+			String data = null;
+			data = Base64.encodeToString(baos.toByteArray(), Base64.DEFAULT);
+
+			Log.d("Creating Connection", "yes");
+			HttpPost hpost = new HttpPost("http://api.imgur.com/2/upload");
+			// HttpPost hpost = new
+			// HttpPost("http://api.imgur.com/2/account/images");
+
+			List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
+			nameValuePairs.add(new BasicNameValuePair("image", data));
+			nameValuePairs.add(new BasicNameValuePair("type", "base64"));
+			nameValuePairs.add(new BasicNameValuePair("key", DEV_KEY));
+
+			try {
+				hpost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+			} catch (UnsupportedEncodingException e) {
+				e.toString();
+			}
+
+			DefaultHttpClient client = new DefaultHttpClient();
+			HttpResponse resp = null;
+			try {
+				resp = client.execute(hpost);
+			} catch (ClientProtocolException e) {
+				Log.e("Testing", e.toString());
+			} catch (IOException e) {
+				Log.e("Testing", e.toString());
+			}
+			Log.d("Executed", "yes");
+
+			try {
+				result = EntityUtils.toString(resp.getEntity());
+				Log.d("YOYO", result);
+			} catch (ParseException e) {
+				e.toString();
+			} catch (IOException e) {
+				e.toString();
+			}
+			if (result.indexOf("original") >= 0)
+				result = result.substring(result.indexOf("original")
+						+ "original".length() + 1,
+						result.lastIndexOf("original") - 2);
+			Log.d("Destination", result);
+		} catch (Exception e) {
+			// Something went terribly wrong, oh noes.
 		}
-	return result;
+		return result;
 	}
-	public String fetch (String url){
-		String path=null;
-		FetchImageTask runner = new FetchImageTask();
+
+	public String fetch(String remoteURL) {
+		String path = null;
 		try {
-			path = runner.execute(url).get();
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ExecutionException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			try {
+				Log.d("Creating Connection", "yes");
+				URL url = new URL(remoteURL);
+				HttpURLConnection urlConnection = (HttpURLConnection) url
+						.openConnection();
+				urlConnection.setRequestMethod("GET");
+				urlConnection.setDoOutput(true);
+				urlConnection.connect();
+				Log.d("Connected", "yes");
+				File SDCardRoot = Environment.getExternalStorageDirectory()
+						.getAbsoluteFile();
+				String filename = remoteURL.substring(19);
+				Log.i("Local filename:", "" + filename);
+				File file = new File(SDCardRoot, filename);
+				if (file.createNewFile()) {
+					file.createNewFile();
+				}
+				FileOutputStream fileOutput = new FileOutputStream(file);
+				InputStream inputStream = urlConnection.getInputStream();
+				int totalSize = urlConnection.getContentLength();
+				int downloadedSize = 0;
+				byte[] buffer = new byte[1024];
+				int bufferLength = 0;
+				while ((bufferLength = inputStream.read(buffer)) > 0) {
+					fileOutput.write(buffer, 0, bufferLength);
+					downloadedSize += bufferLength;
+					Log.i("Progress:", "downloadedSize:" + downloadedSize
+							+ "totalSize:" + totalSize);
+				}
+				fileOutput.close();
+				if (downloadedSize == totalSize)
+					path = file.getAbsolutePath();
+			} catch (MalformedURLException e) {
+				Log.d("Testing", "Malformed");
+				e.printStackTrace();
+			} catch (IOException e) {
+				Log.d("Testing", "IOException");
+				path = null;
+				e.printStackTrace();
+			}
+			Log.i("filepath:", " " + path);
+		} catch (Exception e) {
+			// Something went wrong
 		}
 		return path;
-	}
-	private class FetchImageTask extends AsyncTask<String, Void, String> {
-	     protected String doInBackground(String... location) {
-	    	 String result = null;
-	    	 try
-	    	 {   
-	    	   URL url = new URL(location[0]);
-	    	   HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-	    	   urlConnection.setRequestMethod("GET");
-	    	   urlConnection.setDoOutput(true);                   
-	    	   urlConnection.connect();                  
-	    	   File SDCardRoot = Environment.getExternalStorageDirectory().getAbsoluteFile();
-	    	   String filename= location[0].substring(19);
-	    	   Log.i("Local filename:",""+filename);
-	    	   File file = new File(SDCardRoot,filename);
-	    	   if(file.createNewFile())
-	    	   {
-	    	     file.createNewFile();
-	    	   }                 
-	    	   FileOutputStream fileOutput = new FileOutputStream(file);
-	    	   InputStream inputStream = urlConnection.getInputStream();
-	    	   int totalSize = urlConnection.getContentLength();
-	    	   int downloadedSize = 0;   
-	    	   byte[] buffer = new byte[1024];
-	    	   int bufferLength = 0;
-	    	   while ( (bufferLength = inputStream.read(buffer)) > 0 ) 
-	    	   {                 
-	    	     fileOutput.write(buffer, 0, bufferLength);                  
-	    	     downloadedSize += bufferLength;                 
-	    	     Log.i("Progress:","downloadedSize:"+downloadedSize+"totalSize:"+ totalSize) ;
-	    	   }             
-	    	   fileOutput.close();
-	    	   if(downloadedSize==totalSize) result=file.getAbsolutePath();    
-	    	 } 
-	    	 catch (MalformedURLException e) 
-	    	 {
-	    	   e.printStackTrace();
-	    	 } 
-	    	 catch (IOException e)
-	    	 {
-	    	   result=null;
-	    	   e.printStackTrace();
-	    	 }
-	    	 Log.i("filepath:"," "+result) ;
-
-	    	 
-	    	 return result;
-	     }
 	}
 }

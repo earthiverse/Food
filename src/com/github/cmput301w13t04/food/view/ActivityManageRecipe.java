@@ -4,6 +4,7 @@ import com.github.cmput301w13t04.food.R;
 import com.github.cmput301w13t04.food.R.layout;
 import com.github.cmput301w13t04.food.R.menu;
 import com.github.cmput301w13t04.food.controller.Cache;
+import com.github.cmput301w13t04.food.controller.Database;
 import com.github.cmput301w13t04.food.controller.IngredientAdapter;
 import com.github.cmput301w13t04.food.controller.StepAdapter;
 import com.github.cmput301w13t04.food.model.Ingredient;
@@ -144,6 +145,11 @@ public class ActivityManageRecipe extends FragmentActivity implements
 		cache.save(this);
 
 		finish();
+	}
+	
+	public void publishRecipe(MenuItem menuitem) {
+		Database database = new Database();
+		database.publishRecipe(recipe);
 	}
 
 	/* Handle Page Switching */

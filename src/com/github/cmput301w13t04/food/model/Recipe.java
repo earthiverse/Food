@@ -58,6 +58,26 @@ public class Recipe {
 	}
 
 	/**
+	 * Set the ID of the recipe
+	 * 
+	 * @param id
+	 *            Recipe ID
+	 */
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	/**
+	 * Set the ingredient list for the recipe
+	 * 
+	 * @param ingredients
+	 *            Array list of Ingredient objects
+	 */
+	public void setIngredients(ArrayList<Ingredient> ingredients) {
+		this.ingredients = ingredients;
+	}
+
+	/**
 	 * Create a new recipe object with, id is predefined
 	 * 
 	 * @param title
@@ -149,6 +169,26 @@ public class Recipe {
 	 */
 	public void setTime(int time) {
 		this.time = time;
+	}
+
+	/**
+	 * Set the photo list for the recipe
+	 * 
+	 * @param photos
+	 *            Array list of Photo objects
+	 */
+	public void setPhotos(ArrayList<Photo> photos) {
+		this.photos = photos;
+	}
+
+	/**
+	 * Set the step list for the recipe
+	 * 
+	 * @param steps
+	 *            Array list of Step objects
+	 */
+	public void setSteps(ArrayList<Step> steps) {
+		this.steps = steps;
 	}
 
 	/**
@@ -346,13 +386,13 @@ public class Recipe {
 	 * Get a photo from the list of photos attached to the recipe
 	 * 
 	 * @param position
-	 *  Photo number to return from the array of photos
+	 *            Photo number to return from the array of photos
 	 * @return Selected recipe
 	 */
 	public Photo getPhoto(int position) {
 		try {
 			return photos.get(position);
-		} catch(Exception e) {
+		} catch (Exception e) {
 			// No photo at that position
 		}
 		return null;

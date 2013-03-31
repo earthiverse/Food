@@ -6,11 +6,15 @@
         android:showAsAction="never"
         android:title="@string/action_settings"/>
     <item
-        android:id="@+id/recipe_save"
         android:enabled="true"
         android:icon="@drawable/content_save"
         android:onClick="updateRecipe"
         android:showAsAction="ifRoom"
-        android:title="Update Recipe"/>
+        android:title="Edit Recipe"/>
+    <item
+        android:enabled="true"
+        android:onClick="publishRecipe"
+        android:showAsAction="ifRoom"
+        android:title="Publish Recipe" />
 
 </menu>
