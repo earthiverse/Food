@@ -51,7 +51,7 @@
         </activity>
         <activity
             android:name="com.github.cmput301w13t04.food.view.ActivityManageIngredient"
-            android:label="@string/title_activity_add_ingredient" >
+            android:label="@string/title_activity_manage_ingredient" >
         </activity>
         <activity
             android:name="com.github.cmput301w13t04.food.view.ActivityViewRecipeList"
