@@ -3,7 +3,6 @@ package com.github.cmput301w13t04.food.controller;
 import java.util.ArrayList;
 
 import com.github.cmput301w13t04.food.R;
-import com.github.cmput301w13t04.food.R.id;
 import com.github.cmput301w13t04.food.model.Step;
 
 import android.content.Context;

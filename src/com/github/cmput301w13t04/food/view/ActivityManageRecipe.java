@@ -1,8 +1,6 @@
 package com.github.cmput301w13t04.food.view;
 
 import com.github.cmput301w13t04.food.R;
-import com.github.cmput301w13t04.food.R.layout;
-import com.github.cmput301w13t04.food.R.menu;
 import com.github.cmput301w13t04.food.controller.Cache;
 import com.github.cmput301w13t04.food.controller.Database;
 import com.github.cmput301w13t04.food.controller.IngredientAdapter;
