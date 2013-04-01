@@ -30,7 +30,7 @@ import com.google.gson.InstanceCreator;
 import com.google.gson.JsonObject;
 
 
-public class RecipeSearch extends AsyncTask<URL, Void, Recipe[]> {
+public class RecipeSearch extends AsyncTask<String, Void, Recipe[]> {
 	
 	
 	private final String RecipeURL = "http://earthiverse.ath.cx:9200/food/recipe/";
@@ -39,8 +39,19 @@ public class RecipeSearch extends AsyncTask<URL, Void, Recipe[]> {
 	private String searchUrlParam;
 	
 	@Override
-	protected Recipe[] doInBackground(URL... url) {
+	protected Recipe[] doInBackground(String... queryStrings) {
 		// TODO Auto-generated method stub
+		String searchTerms = queryStrings[0];
+		return this.query(searchTerms);
+	}
+	public Recipe[] query(String searchTerms){
+		
+		try {
+			searchUrlParam = URLEncoder.encode(new QueryRequest(searchTerms).toJSON(gson), "UTF-8");
+		} catch (UnsupportedEncodingException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		HttpGet getRequest = new HttpGet(RecipeURL + "_search?pretty=" + searchUrlParam);
 
 		HttpResponse response;
@@ -59,25 +70,14 @@ public class RecipeSearch extends AsyncTask<URL, Void, Recipe[]> {
 			results = new Recipe[0];
 		}
 		return results;
+		
+		
 	}
 	
 	
 	public RecipeSearch(){
 		httpClient = new DefaultHttpClient();
 		gson = new Gson();
-	}
-	
-	public Recipe[] query(String searchTerms) throws MalformedURLException {
-		try {
-			searchUrlParam = URLEncoder.encode(new QueryRequest(searchTerms).toJSON(gson), "UTF-8");
-		} catch (UnsupportedEncodingException e1) {
-			return null;
-		}
-		URL url= new URL("http://earthiverse.ath.cx:9200/food/recipe/");
-		
-
-		
-		return this.doInBackground(url);
 	}
 	
 	private static class QueryRequest {

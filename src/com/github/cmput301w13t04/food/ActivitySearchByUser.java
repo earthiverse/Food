@@ -29,9 +29,9 @@ public class ActivitySearchByUser extends Activity {
 	
 	public void searchByUser(View view) throws MalformedURLException{
 		Recipe[] recipe = null;
-		RecipeSearch search = new RecipeSearch();
+		
 		try {
-			recipe = search.query("1337");
+			recipe = new RecipeSearch().execute("1337").get();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
