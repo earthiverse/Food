@@ -15,7 +15,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="26dp"
-        android:contentDescription="picture"
+        android:contentDescription="@string/picture"
         android:gravity="center_horizontal" />
 
     <Button
@@ -38,7 +38,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="45dp"
         android:ems="10"
-        android:hint="Enter Description"
+        android:hint="@string/EnterDescription"
         android:inputType="textMultiLine" />
 
 </RelativeLayout>

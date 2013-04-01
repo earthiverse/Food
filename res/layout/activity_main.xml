@@ -16,7 +16,7 @@
         android:layout_height="140dp"
         android:drawableLeft="@drawable/book"
         android:onClick="showRecipeList"
-        android:text="Recipe Book" />
+        android:text="@string/RecipeBook" />
 
     <Button
         style="@style/MainButton"
@@ -25,6 +25,6 @@
         android:layout_marginTop="50dp"
         android:drawableLeft="@drawable/pantry"
         android:onClick="showIngredientList"
-        android:text="Pantry" />
+        android:text="@string/Pantry" />
 
 </LinearLayout>
