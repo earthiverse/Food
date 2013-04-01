@@ -1,15 +1,14 @@
 package com.github.cmput301w13t04.food.test;
 
-import static org.junit.Assert.*;
 
-import org.junit.Test;
+import android.test.AndroidTestCase;
 
 import com.github.cmput301w13t04.food.model.Ingredient;
 
-public class IngredientTest {
+public class IngredientTest extends AndroidTestCase{
 
-	@Test
-	public void testGetName() {
+
+	public void testGetName() throws Throwable{
 		Ingredient i = new Ingredient("Onion", "1", "A tasty vegetable", null);
 		
 		String name, newName;
@@ -27,8 +26,8 @@ public class IngredientTest {
 		assertFalse(name.equals("Onion"));
 	}
 
-	@Test
-	public void testGetDescription() {
+	
+	public void testGetDescription() throws Throwable{
 		Ingredient i = new Ingredient("Onion", "1", "A tasty vegetable", null);
 		
 		String desc, newDesc;
@@ -47,8 +46,8 @@ public class IngredientTest {
 		
 	}
 
-	@Test
-	public void testGetQuantity() {
+	
+	public void testGetQuantity() throws Throwable{
 
 		Ingredient i = new Ingredient("Onion", "1", "A tasty vegetable", null);
 		

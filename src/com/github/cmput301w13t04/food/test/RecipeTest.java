@@ -1,17 +1,15 @@
 package com.github.cmput301w13t04.food.test;
 
-import static org.junit.Assert.assertEquals;
 
-import org.junit.Test;
+import android.test.AndroidTestCase;
 
 import com.github.cmput301w13t04.food.model.Recipe;
 import com.github.cmput301w13t04.food.model.Step;
 import com.github.cmput301w13t04.food.model.User;
 
-public class RecipeTest {
+public class RecipeTest extends AndroidTestCase{
 
-	@Test
-	public void testGetTitle() {
+	public void testGetTitle() throws Throwable{
 		
 		User u1;
 
@@ -27,8 +25,7 @@ public class RecipeTest {
 		assertEquals(title, "Apple soup");
 	}
 
-	@Test
-	public void testGetDescription() {
+	public void testGetDescription() throws Throwable {
 		
 		User u1;
 
@@ -44,8 +41,7 @@ public class RecipeTest {
 		assertEquals(desc, "A rotten soup");
 	}
 
-	@Test
-	public void testGetTime() {
+	public void testGetTime() throws Throwable{
 		
 		User u1;
 
@@ -61,8 +57,7 @@ public class RecipeTest {
 		assertEquals(time, 1);
 	}
 
-	@Test
-	public void testGetAuthor() {
+	public void testGetAuthor() throws Throwable{
 		
 		User u1, u2;
 
@@ -79,8 +74,7 @@ public class RecipeTest {
 		assertEquals(author, u2);
 	}
 
-	@Test
-	public void testAddStep() {
+	public void testAddStep() throws Throwable{
 		
 		User u1;
 
@@ -98,8 +92,7 @@ public class RecipeTest {
 		assertEquals(r.stepCount(), 0);
 	}
 
-	@Test
-	public void testGetId() {
+	public void testGetId() throws Throwable{
 		
 		User u1;
 

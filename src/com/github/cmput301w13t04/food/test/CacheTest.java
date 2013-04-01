@@ -2,19 +2,16 @@ package com.github.cmput301w13t04.food.test;
 
 import java.util.ArrayList;
 
-import org.junit.*;
+import android.test.AndroidTestCase;
 
 import com.github.cmput301w13t04.food.controller.Cache;
 import com.github.cmput301w13t04.food.model.Ingredient;
 import com.github.cmput301w13t04.food.model.Recipe;
 import com.github.cmput301w13t04.food.model.User;
 
-import junit.framework.TestCase;
+public class CacheTest extends AndroidTestCase {
 
-public class CacheTest extends TestCase {
-
-	@Test
-	public void testAddIngredient() {
+	public void testAddIngredient() throws Throwable {
 
 		Cache cache = new Cache();
 		Ingredient i, i2;
@@ -30,8 +27,7 @@ public class CacheTest extends TestCase {
 
 	}
 
-	@Test
-	public void testRemoveIngredient() {
+	public void testRemoveIngredient() throws Throwable{
 
 		Cache cache = new Cache();
 		Ingredient i, i2;
@@ -53,8 +49,7 @@ public class CacheTest extends TestCase {
 
 	}
 
-	@Test
-	public void testGetIngredients() {
+	public void testGetIngredients() throws Throwable{
 
 		Cache cache = new Cache();
 		Ingredient i, i2;
@@ -78,8 +73,7 @@ public class CacheTest extends TestCase {
 
 	}
 
-	@Test
-	public void testAddRecipe() {
+	public void testAddRecipe() throws Throwable{
 
 		Cache cache = new Cache();
 		Recipe r, r2;
@@ -101,8 +95,7 @@ public class CacheTest extends TestCase {
 
 	}
 
-	@Test
-	public void testRemoveRecipe() {
+	public void testRemoveRecipe() throws Throwable{
 
 		Cache cache = new Cache();
 		Recipe r, r2;
@@ -132,8 +125,7 @@ public class CacheTest extends TestCase {
 
 	}
 
-	@Test
-	public void testGetRecipes() {
+	public void testGetRecipes() throws Throwable{
 
 		Cache cache = new Cache();
 		Recipe r, r2;

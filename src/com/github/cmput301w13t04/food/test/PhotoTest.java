@@ -1,39 +1,93 @@
 package com.github.cmput301w13t04.food.test;
 
-import static org.junit.Assert.*;
+import android.os.Parcel;
+import android.test.AndroidTestCase;
 
-import org.junit.Test;
+import com.github.cmput301w13t04.food.model.Photo;
+import com.github.cmput301w13t04.food.model.User;
 
-public class PhotoTest {
-
-	@Test
-	public void testGetPhotographer() {
-		fail("Not yet implemented");
+public class PhotoTest extends AndroidTestCase {
+	
+	public void testGetPhotographer() throws Throwable {
+		User Photographer = new User("Photographer");
+		Photo p1 = new Photo("Path", "Description", Photographer);
+		assertEquals(p1.getPhotographer(), Photographer);
 	}
 
-	@Test
-	public void testSetTitle() {
-		fail("Not yet implemented");
+	
+	public void testValidPhotographer() throws Throwable{
+		Photo p2 = new Photo(null, null, null);
+		assertNull(p2.getPhotographer());
 	}
 
-	@Test
-	public void testGetDescription() {
-		fail("Not yet implemented");
+	
+	public void testGetDescription() throws Throwable{
+		User Photographer = new User("Photographer");
+		Photo p1 = new Photo("Path", "Description", Photographer);
+		assertEquals(p1.getDescription(), "Description");
+
 	}
 
-	@Test
-	public void testSetDescription() {
-		fail("Not yet implemented");
+	
+	public void testVaildDescription() throws Throwable{
+		Photo p2 = new Photo(null, null, null);
+		assertNull(p2.getDescription());
 	}
 
-	@Test
-	public void testGetPhoto() {
-		fail("Not yet implemented");
+	
+	public void testSetDescription() throws Throwable{
+		User Photographer = new User("Photographer");
+		Photo p1 = new Photo("Path", "Description", Photographer);
+		p1.setDescription("New Description");
+		assertEquals(p1.getDescription(), "New Description");
 	}
 
-	@Test
-	public void testSetPhoto() {
-		fail("Not yet implemented");
+	
+	public void testGetPath() throws Throwable{
+		User Photographer = new User("Photographer");
+		Photo p1 = new Photo("Path", "Description", Photographer);
+		assertEquals(p1.getPath(), "Path");
 	}
 
+	
+	public void testValidPath() throws Throwable{
+		Photo p2 = new Photo(null, null, null);
+		assertNull(p2.getPath());
+	}
+
+	
+	public void testSetPath() throws Throwable{
+		User Photographer = new User("Photographer");
+		Photo p1 = new Photo("Path", "Description", Photographer);
+		p1.setPath("New Path");
+		assertEquals(p1.getPath(), "New Path");
+	}
+
+	
+	public void testGetAbsolutePath() throws Throwable{
+		User Photographer = new User("Photographer");
+		Photo p1 = new Photo("Path", "Description", Photographer);
+		String resultPath = null;
+		resultPath = p1.getAbsolutePath();
+		assertNotNull(resultPath);
+		assertEquals(p1.getPath(), "Path");
+
+		p1.setPath("file://Path%20");
+		resultPath = p1.getAbsolutePath();
+		assertNotNull(resultPath);
+		assertEquals(resultPath, "Path ");
+	}
+
+	
+	public void testParcel() throws Throwable{
+		User Photographer = new User("Photographer");
+		Photo p1 = new Photo("Path", "Description", Photographer);
+
+		Parcel parcel = Parcel.obtain();
+		p1.writeToParcel(parcel, 0);
+		parcel.setDataPosition(0);
+		Photo resultP = Photo.CREATOR.createFromParcel(parcel);
+		assertEquals(p1, resultP);
+		parcel.recycle();
+	}
 }

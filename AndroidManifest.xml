@@ -13,6 +13,10 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <uses-feature android:name="android.hardware.camera" />
+    <instrumentation
+    android:name="android.test.InstrumentationTestRunner"
+    android:targetPackage="com.github.cmput301w13t04.food" />
+    
 
     <application
         android:allowBackup="true"
@@ -85,6 +89,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.github.cmput301w13t04.food.view.ActivityManageRecipe" />
         </activity>
+        <uses-library android:name="android.test.runner" />
     </application>
 
 </manifest>

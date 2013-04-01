@@ -1,13 +1,31 @@
 package com.github.cmput301w13t04.food.test;
 
-import junit.framework.TestCase;
+import java.io.IOException;
 
-public class ImgurTest extends TestCase {
-	public void testPost() {
-		fail("Not yet implemented");
+import android.test.AndroidTestCase;
+
+import com.github.cmput301w13t04.food.controller.imgurController;
+
+public class ImgurTest extends AndroidTestCase {
+	
+	public void testPost() throws Throwable{
+		imgurController ic1 = new imgurController();
+		String dummy = "dummy";
+		try
+		{
+			ic1.post(dummy);
+		} catch (IOException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		assertNull(dummy);
 	}
 
-	public void testFetch() {
-		fail("Not yet implemented");
+	public void testFetch() throws Throwable{
+		imgurController ic1 = new imgurController();
+		String dummy = "dummy";
+		ic1.fetch(dummy);	
+		assertNull(dummy);
 	}
 }

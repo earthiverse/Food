@@ -1,15 +1,13 @@
 package com.github.cmput301w13t04.food.test;
 
-import static org.junit.Assert.*;
-
-import org.junit.Test;
+import android.test.AndroidTestCase;
 
 import com.github.cmput301w13t04.food.model.User;
 
-public class UserTest {
+public class UserTest extends AndroidTestCase{
 
-	@Test
-	public void testGetUsername() {
+	
+	public void testGetUsername() throws Throwable{
 		User u = new User("dud@ualberta.ca");
 		String uName = u.getUsername();
 		
