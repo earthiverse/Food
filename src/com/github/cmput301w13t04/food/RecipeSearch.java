@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Type;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -20,28 +22,25 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.params.BasicHttpParams;
 import org.apache.http.params.HttpParams;
 
+import android.os.AsyncTask;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.InstanceCreator;
 import com.google.gson.JsonObject;
-public class RecipeSearch {
+
+
+public class RecipeSearch extends AsyncTask<URL, Void, Recipe[]> {
+	
+	
 	private final String RecipeURL = "http://earthiverse.ath.cx:9200/food/recipe/";
 	private HttpClient httpClient;
 	private Gson gson;
+	private String searchUrlParam;
 	
-	public RecipeSearch(){
-		httpClient = new DefaultHttpClient();
-		gson = new Gson();
-	}
-	
-	public Recipe[] query(String searchTerms) {
-		String searchUrlParam;
-		try {
-			searchUrlParam = URLEncoder.encode(new QueryRequest(searchTerms).toJSON(gson), "UTF-8");
-		} catch (UnsupportedEncodingException e1) {
-			return null;
-		}
-
+	@Override
+	protected Recipe[] doInBackground(URL... url) {
+		// TODO Auto-generated method stub
 		HttpGet getRequest = new HttpGet(RecipeURL + "_search?pretty=" + searchUrlParam);
 
 		HttpResponse response;
@@ -60,6 +59,25 @@ public class RecipeSearch {
 			results = new Recipe[0];
 		}
 		return results;
+	}
+	
+	
+	public RecipeSearch(){
+		httpClient = new DefaultHttpClient();
+		gson = new Gson();
+	}
+	
+	public Recipe[] query(String searchTerms) throws MalformedURLException {
+		try {
+			searchUrlParam = URLEncoder.encode(new QueryRequest(searchTerms).toJSON(gson), "UTF-8");
+		} catch (UnsupportedEncodingException e1) {
+			return null;
+		}
+		URL url= new URL("http://earthiverse.ath.cx:9200/food/recipe/");
+		
+
+		
+		return this.doInBackground(url);
 	}
 	
 	private static class QueryRequest {
@@ -117,6 +135,13 @@ public class RecipeSearch {
 		java.util.Scanner s = new java.util.Scanner(input).useDelimiter("\\A");
 	    return s.hasNext() ? s.next() : "";
 	}
+
+	
+
+
+	
+
+	
 	
 	
 	

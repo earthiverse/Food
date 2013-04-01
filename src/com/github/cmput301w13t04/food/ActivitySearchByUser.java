@@ -7,7 +7,10 @@ import java.net.URL;
 import java.net.URLConnection;
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Intent;
+import android.util.Log;
 import android.view.Menu;
+import android.view.View;
 
 public class ActivitySearchByUser extends Activity {
 
@@ -23,10 +26,19 @@ public class ActivitySearchByUser extends Activity {
 		getMenuInflater().inflate(R.menu.activity_search_by_user, menu);
 		return true;
 	}
-	public void searchByUser() throws IOException{
-		Recipe[] recipe;
+	
+	public void searchByUser(View view) throws MalformedURLException{
+		Recipe[] recipe = null;
 		RecipeSearch search = new RecipeSearch();
-		recipe = search.query("1337");
+		try {
+			recipe = search.query("1337");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		if(recipe == null){
+			Log.d("failed","sucess");
+		}
 		
 	}
 

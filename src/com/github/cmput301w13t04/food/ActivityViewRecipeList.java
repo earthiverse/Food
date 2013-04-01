@@ -76,5 +76,12 @@ public class ActivityViewRecipeList extends Activity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
+	
+	
+	public void searchRecipe(View view) {
+		Intent intent = new Intent(ActivityViewRecipeList.this,
+				ActivitySearchRecipe.class);
+		startActivity(intent);
+	}
 
 }
