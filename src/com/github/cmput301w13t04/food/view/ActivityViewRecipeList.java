@@ -2,6 +2,7 @@ package com.github.cmput301w13t04.food.view;
 
 import com.github.cmput301w13t04.food.R;
 import com.github.cmput301w13t04.food.controller.Cache;
+import com.github.cmput301w13t04.food.controller.Database;
 import com.github.cmput301w13t04.food.controller.RecipeAdapter;
 
 import android.os.Bundle;
@@ -31,7 +32,6 @@ public class ActivityViewRecipeList extends Activity {
 		setContentView(R.layout.activity_view_recipe_list);
 		// Show the Up button in the action bar.
 		setupActionBar();
-
 	}
 
 	@Override

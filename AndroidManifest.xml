@@ -62,7 +62,7 @@
                 android:value="com.github.cmput301w13t04.food.MainActivity" />
         </activity>
         <activity
-            android:name="com.github.cmput301w13t04.food.view.ActivityViewIngredientListCache"
+            android:name="com.github.cmput301w13t04.food.view.ActivityViewPantry"
             android:label="@string/title_activity_view_ingredient_list"
             android:parentActivityName="com.github.cmput301w13t04.food.view.ActivityMain" >
             <meta-data
@@ -96,15 +96,15 @@
         <activity
             android:name="com.github.cmput301w13t04.food.view.FragmentSearchRecipe"
             android:label="@string/title_activity_fragment_search_recipe"
-            android:parentActivityName="com.github.cmput301w13t04.food.view.ActivityViewIngredientListCache" >
+            android:parentActivityName="com.github.cmput301w13t04.food.view.ActivityViewPantry" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.github.cmput301w13t04.food.view.ActivityViewIngredientList" />
         </activity>
         <activity
-            android:name="com.github.cmput301w13t04.food.view.ActivityViewIngredientListDatabase"
+            android:name="com.github.cmput301w13t04.food.view.ActivityViewRecipeListDatabase"
             android:label="@string/title_activity_activity_view_ingredient_list_database"
-            android:parentActivityName="com.github.cmput301w13t04.food.view.ActivityViewIngredientListCache" >
+            android:parentActivityName="com.github.cmput301w13t04.food.view.ActivityViewPantry" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.github.cmput301w13t04.food.view.ActivityViewIngredientListCache" />

@@ -8,6 +8,7 @@ import android.app.AlertDialog.Builder;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.DialogInterface.OnClickListener;
 import android.os.Bundle;
 import android.view.View;
@@ -32,9 +33,10 @@ public class FragmentSearchRecipeUser extends DialogFragment {
 		});
 		builder.setPositiveButton("Search", new OnClickListener() {
 			public void onClick(DialogInterface dialog, int which) {
-				Database database = new Database();
-
-				database.searchRecipe(searchUser.getText().toString());
+				Intent intent = new Intent(getActivity().getBaseContext(),
+						ActivityViewRecipeListDatabase.class);
+				intent.putExtra("USER", searchUser.getText().toString());
+				startActivity(intent);
 			}
 		});
 

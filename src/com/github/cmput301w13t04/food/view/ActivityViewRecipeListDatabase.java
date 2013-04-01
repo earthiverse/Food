@@ -1,29 +1,51 @@
 package com.github.cmput301w13t04.food.view;
 
+import java.util.ArrayList;
+
 import com.github.cmput301w13t04.food.R;
 import com.github.cmput301w13t04.food.R.layout;
 import com.github.cmput301w13t04.food.R.menu;
+import com.github.cmput301w13t04.food.controller.Database;
+import com.github.cmput301w13t04.food.controller.RecipeAdapter;
+import com.github.cmput301w13t04.food.model.Recipe;
 
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ListView;
 import android.support.v4.app.NavUtils;
 
-public class ActivityViewIngredientListDatabase extends Activity {
+public class ActivityViewRecipeListDatabase extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_view_ingredient_list_database);
+		setContentView(R.layout.activity_view_recipe_list_database);
 		// Show the Up button in the action bar.
 		setupActionBar();
+
+		ArrayList<Recipe> recipes = null;
+
+		// Handle query by Username
+		String username = getIntent().getStringExtra("USER");
+		if (username != null) {
+			Database database = new Database();
+			recipes = database.searchRecipe(username);
+		}
+
+		// TODO: Handle query by ingredient
+
+		// Populate Recipe List
+		ListView list = (ListView) findViewById(R.id.recipe_list);
+		list.setAdapter(new RecipeAdapter(list.getContext(),
+				R.layout.item_recipe, recipes));
 	}
 
 	@Override
 	public void onResume() {
 		super.onResume();
-		
+
 	}
 
 	/**

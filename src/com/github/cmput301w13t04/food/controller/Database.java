@@ -1,10 +1,10 @@
 package com.github.cmput301w13t04.food.controller;
 
 import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
@@ -16,7 +16,6 @@ import android.util.Log;
 import com.github.cmput301w13t04.food.model.Ingredient;
 import com.github.cmput301w13t04.food.model.Photo;
 import com.github.cmput301w13t04.food.model.Recipe;
-import com.github.cmput301w13t04.food.model.User;
 import com.github.cmput301w13t04.food.model.query.RecipeResult;
 import com.github.cmput301w13t04.food.model.query.UserQuery;
 import com.google.gson.Gson;
@@ -33,15 +32,24 @@ public class Database {
 		// TODO: Figure out how we're doing things.
 	}
 
-	public void searchRecipe(String email) {
+	public ArrayList<Recipe> searchRecipe(String email) {
 		UserQuery query = new UserQuery(email.trim());
-		new SearchRecipeTask().execute(query);
+		try {
+			return new SearchRecipeTask().execute(query).get();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ExecutionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
 	}
 
-	private class SearchRecipeTask extends AsyncTask<UserQuery, Void, Boolean> {
+	private class SearchRecipeTask extends AsyncTask<UserQuery, Void, ArrayList<Recipe>> {
 
 		@Override
-		protected Boolean doInBackground(UserQuery... queries) {
+		protected ArrayList<Recipe> doInBackground(UserQuery... queries) {
 			try {
 				HttpClient httpClient = new DefaultHttpClient();
 				HttpPost httpPost = new HttpPost(
@@ -58,12 +66,33 @@ public class Database {
 					String responseBody = EntityUtils.toString(response
 							.getEntity());
 					Log.d("responseBody", responseBody);
+					
+					RecipeResult result = new Gson().fromJson(responseBody, RecipeResult.class);
+					
+					ArrayList<Recipe> recipes = result.getRecipes();
+					
+					// Download the first recipe pictures to device
+					imgurController imageHost = new imgurController();
+					for (int j = 0; j < recipes.size(); j++) {
+						Recipe recipe = recipes.get(i);
+						try {
+							Photo photo = recipe.getPhoto(0);
+							
+							// Save to device
+							String localPath = imageHost.fetch(photo.getPath());
+							// Set new path
+							photo.setPath(localPath);
+						} catch(Exception e) {
+							// No first photo
+						}
+					}
+					
+					return recipes;
 				}
 			} catch (Exception e) {
 				// Something went wrong...
-				return false;
 			}
-			return true;
+			return null;
 		}
 
 	}
@@ -128,17 +157,10 @@ public class Database {
 					StringEntity post = new StringEntity(
 							new Gson().toJson(recipe));
 					httpPost.setEntity(post);
-
-					HttpResponse response = httpClient.execute(httpPost);
-					String responseBody = EntityUtils.toString(response
-							.getEntity());
 					
-					Log.d("Testing", "Before JSON");
-					RecipeResult result = new Gson().fromJson(responseBody, RecipeResult.class);
-					ArrayList<Recipe> newList = result.getRecipes();
-					Log.d("Testing", "After JSON");
+					httpClient.execute(httpPost);
 					
-					Log.d("Testing", newList.get(0).getTitle());
+					// TODO: Verify response
 
 					// Restore Photo Paths
 					// Recipe Images

@@ -21,7 +21,7 @@ import android.widget.ListView;
  * @author W13T04
  * 
  */
-public class ActivityViewIngredientListCache extends Activity {
+public class ActivityViewPantry extends Activity {
 
 	private static final int ACTION_ADD_INGREDIENT = 1;
 
@@ -51,7 +51,7 @@ public class ActivityViewIngredientListCache extends Activity {
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
 				// View ingredient on item click.
-				Intent intent = new Intent(ActivityViewIngredientListCache.this,
+				Intent intent = new Intent(ActivityViewPantry.this,
 						ActivityViewIngredient.class);
 
 				intent.putExtra("INGREDIENT", cache.getIngredient(position));
@@ -67,7 +67,7 @@ public class ActivityViewIngredientListCache extends Activity {
 	 * @param view
 	 */
 	public void addIngredient(View view) {
-		Intent intent = new Intent(ActivityViewIngredientListCache.this,
+		Intent intent = new Intent(ActivityViewPantry.this,
 				ActivityManageIngredient.class);
 		startActivityForResult(intent, ACTION_ADD_INGREDIENT);
 	}
