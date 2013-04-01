@@ -54,12 +54,6 @@ public class ActivityManageStep extends Activity {
 			step = new Step();
 		}
 
-		// Populate Current Ingredient Values
-		if (step == null) {
-
-			// TODO: Something went wrong
-			finish();
-		}
 	}
 
 	/**

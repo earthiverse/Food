@@ -482,8 +482,6 @@ public class ActivityManageRecipe extends FragmentActivity implements
 
 					if (position != -1) {
 						recipe.updateIngredient(ingredient, position);
-					} else {
-						// TODO: SOMETHING WENT WRONG.
 					}
 				} else if (resultCode == ActivityManageIngredient.RESULT_DELETE) {
 					// Remove Ingredient
@@ -569,9 +567,7 @@ public class ActivityManageRecipe extends FragmentActivity implements
 
 					if (position != -1) {
 						recipe.updateStep(step, position);
-					} else {
-						// TODO: SOMETHING WENT WRONG.
-					}
+					} 
 				} else if (resultCode == ActivityManageStep.RESULT_DELETE) {
 					// Remove Step
 					int position = data.getIntExtra("POSITION", -1);

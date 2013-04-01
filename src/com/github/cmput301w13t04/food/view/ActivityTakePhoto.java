@@ -226,9 +226,7 @@ public class ActivityTakePhoto extends Activity {
 	 * The button listener to confirm adding the photo
 	 */
 	public void done(View view){
-
 		Intent result = new Intent();
-		Log.i("Picture", mURI.toString());
 		result.putExtra("path", mURI.toString());
 		result.putExtra("desc", description);
 		setResult(Activity.RESULT_OK, result);

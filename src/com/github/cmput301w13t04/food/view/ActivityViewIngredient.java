@@ -48,7 +48,8 @@ public class ActivityViewIngredient extends Activity {
 		// Populate Current Ingredient
 		if (ingredient == null) {
 
-			// TODO: Something went wrong, there is no ingredient with that ID.
+			Toast.makeText(getApplicationContext(), "Sorry Ingredient not found",
+					Toast.LENGTH_SHORT).show();
 			finish();
 
 		} else {
@@ -138,9 +139,7 @@ public class ActivityViewIngredient extends Activity {
 				if (position != -1) {
 					cache.updateIngredient(ingredient, position);
 					cache.save(this);
-				} else {
-					// TODO: SOMETHING WENT WRONG.
-				}
+				} 
 			} else if (resultCode == ActivityManageIngredient.RESULT_DELETE) {
 				// Remove Ingredient
 				Cache cache = new Cache();
