@@ -366,7 +366,7 @@ public class ActivityManageRecipe extends FragmentActivity implements
 							image.setImageURI(Uri.parse(photo.getPath()));
 						} else {
 							// No photos in recipe, display placeholder
-							image.setImageResource(R.drawable.apple);
+							image.setImageResource(R.drawable.photo);
 						}
 					} catch(Exception e) {
 						// No photos left on recipe to remove

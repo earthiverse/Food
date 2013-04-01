@@ -1,11 +1,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
 
     <item
-        android:id="@+id/action_settings"
-        android:orderInCategory="100"
-        android:showAsAction="never"
-        android:title="@string/action_settings"/>
-    <item
         android:enabled="true"
         android:icon="@drawable/content_save"
         android:onClick="updateRecipe"
@@ -15,6 +10,6 @@
         android:enabled="true"
         android:onClick="publishRecipe"
         android:showAsAction="ifRoom"
-        android:title="Publish Recipe" />
+        android:title="Publish Recipe"/>
 
 </menu>

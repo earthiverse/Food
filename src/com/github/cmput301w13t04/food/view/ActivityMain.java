@@ -13,7 +13,6 @@ import android.accounts.AccountManager;
 import android.app.Activity;
 import android.content.Intent;
 import android.util.Log;
-import android.view.Menu;
 import android.view.View;
 
 /**
@@ -30,12 +29,6 @@ public class ActivityMain extends Activity {
 		setContentView(R.layout.activity_main);
 
 		//doStuff();
-	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		getMenuInflater().inflate(R.menu.activity_main, menu);
-		return true;
 	}
 	
 	/* Testing for a user creation by email address */

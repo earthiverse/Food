@@ -16,8 +16,9 @@
 
         <ImageButton
             android:id="@+id/button_prev_photo"
+            style="@style/PhotoNavButton"
             android:layout_width="wrap_content"
-            android:layout_height="120dp"
+            android:layout_height="96dp"
             android:src="@drawable/navigation_previous_item" />
 
         <ImageView
@@ -26,13 +27,15 @@
             android:layout_height="160dp"
             android:layout_weight="1"
             android:adjustViewBounds="true"
-            android:src="@drawable/apple" />
+            android:src="@drawable/photo" />
 
         <ImageButton
             android:id="@+id/button_next_photo"
+            style="@style/PhotoNavButton"
             android:layout_width="wrap_content"
-            android:layout_height="120dp"
+            android:layout_height="96dp"
             android:src="@drawable/navigation_next_item" />
+
     </LinearLayout>
 
     <LinearLayout

@@ -9,7 +9,7 @@
         android:layout_height="@dimen/list_item_height"
         android:adjustViewBounds="true"
         android:paddingRight="@dimen/list_icon_margin"
-        android:src="@drawable/shrimpdumpling" />
+        android:src="@drawable/note" />
 
     <LinearLayout
         android:layout_width="wrap_content"
