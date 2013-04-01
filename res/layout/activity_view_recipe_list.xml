@@ -28,7 +28,7 @@
             android:layout_gravity="left"
             android:onClick="addRecipe"
             style="?android:attr/buttonBarButtonStyle"
-            android:text="Add Recipe" />
+            android:text="@string/AddRecipe" />
 
         <Button
             android:layout_width="wrap_content"
@@ -36,7 +36,7 @@
             android:layout_gravity="right"
             android:clickable="false"
             style="?android:attr/buttonBarButtonStyle"
-            android:text="Search for Recipes" />
+            android:text="@string/SearchForRecipes" />
     </LinearLayout>
 
 </LinearLayout>

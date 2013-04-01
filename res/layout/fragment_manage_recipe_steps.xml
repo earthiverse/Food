@@ -24,7 +24,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="addRecipe"
-            android:text="Add Step" />
+            android:text="@string/AddStep" />
     </LinearLayout>
 
 </LinearLayout>

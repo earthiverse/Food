@@ -15,7 +15,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:onClick="deleteIngredient"
-        android:text="Delete" />
+        android:text="@string/Delete" />
 
     <Button
         android:id="@+id/update"
@@ -25,7 +25,7 @@
         android:layout_alignParentRight="true"
         android:layout_alignTop="@+id/delete"
         android:onClick="editIngredient"
-        android:text="Update" />
+        android:text="@string/Update" />
 
     <TextView
         android:id="@+id/ingName"
@@ -34,7 +34,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="142dp"
-        android:text="Ingredient Name"
+        android:text="@string/IngredientName"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <TextView
@@ -44,7 +44,7 @@
         android:layout_alignLeft="@+id/ingName"
         android:layout_below="@+id/ingName"
         android:layout_marginTop="14dp"
-        android:text="Quantity (units)"
+        android:text="@string/Quantity"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <TextView
@@ -54,7 +54,7 @@
         android:layout_alignLeft="@+id/delete"
         android:layout_below="@+id/ingQuantity"
         android:layout_marginTop="44dp"
-        android:text="Description"
+        android:text="@string/description"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <ImageView
@@ -66,7 +66,8 @@
         android:layout_marginBottom="66dp"
         android:adjustViewBounds="true"
         android:paddingRight="@dimen/list_icon_margin"
-        android:src="@drawable/apple" />
+        android:src="@drawable/apple"
+		android:contentDescription="@string/Picture"/>
     
 	<ScrollView 
 	    android:id="@+id/ScrollView1"
@@ -79,6 +80,6 @@
 	    android:id="@+id/ingDescription"
 	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
-	    android:text="Art party swag messenger bag, ennui freegan skateboard fashion axe squid kogi high life mcsweeney&apos;s echo park direct trade hella gluten-free. Sartorial four loko gluten-free neutra, pinterest pug whatever authentic church-key intelligentsia mumblecore locavore YOLO. Tonx letterpress swag raw denim, DIY lomo meh hashtag intelligentsia readymade. Aesthetic yr banjo tousled, jean shorts banh mi sustainable. Selvage small batch portland, narwhal tousled cardigan bicycle rights church-key typewriter disrupt banh mi iphone ennui twee. Banh mi thundercats banjo, selfies +1 typewriter tofu cliche YOLO try-hard gluten-free. Dreamcatcher PBR vegan neutra jean shorts, etsy banksy thundercats. Meggings odd future 90&apos;s fashion axe. Whatever tousled fap flexitarian, wayfarers tattooed sriracha hashtag shoreditch." />
+	    android:text="@string/RecipeDescription" />
 	</ScrollView>
 </RelativeLayout>

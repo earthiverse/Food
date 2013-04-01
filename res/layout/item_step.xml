@@ -15,7 +15,7 @@
             android:id="@+id/step_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="1. "
+            android:text="@string/StepNumber"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textStyle="bold" />
 
@@ -23,7 +23,7 @@
             android:id="@+id/step_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Mix Ingredients"
+            android:text="@string/StepTitle"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textStyle="bold" />
     </LinearLayout>
@@ -33,7 +33,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingBottom="@dimen/step_padding"
-        android:text="Sugar, spice, and everything nice!"
+        android:text="@string/StepDescription"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
 </LinearLayout>

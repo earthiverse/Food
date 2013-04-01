@@ -18,7 +18,7 @@
             android:id="@+id/step_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="##."
+            android:hint="@string/hint1"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textIsSelectable="false" />
 
@@ -27,26 +27,26 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:hint="Step Name" />
+            android:hint="@string/StepName" />
     </LinearLayout>
 
     <EditText
         android:id="@+id/step_description"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Step Description"
+        android:hint="@string/StepDescription"
         android:inputType="textMultiLine" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="updateStep"
-        android:text="Finish Step" />
+        android:text="@string/FinishStep" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="removeStep"
-        android:text="Remove Step" />
+        android:text="@string/RemoveStep" />
 
 </LinearLayout>
