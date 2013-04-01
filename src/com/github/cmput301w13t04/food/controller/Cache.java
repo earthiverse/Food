@@ -209,6 +209,13 @@ public class Cache {
 	 *            The Recipe to be added
 	 */
 	public void addRecipe(Recipe r) {
+		// If recipe being added exists, old recipe is overwritten
+		for (int i = 0; i < this.recipeCount(); i++){
+			if (Recipes.get(i).getId() == r.getId()) {
+				Recipes.set(i, r);
+				return;
+			}
+		}
 		this.Recipes.add(r);
 	}
 

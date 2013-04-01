@@ -14,7 +14,6 @@ public class PhotoTest extends AndroidTestCase {
 		assertEquals(p1.getPhotographer(), Photographer);
 	}
 
-	
 	public void testValidPhotographer() throws Throwable{
 		Photo p2 = new Photo(null, null, null);
 		assertNull(p2.getPhotographer());

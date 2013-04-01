@@ -17,7 +17,7 @@
             android:id="@+id/recipe_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Recipe Name"
+            android:hint="@string/RecipeName"
             android:inputType="textCapWords" />
 
         <LinearLayout
@@ -30,21 +30,23 @@
                 style="@style/PhotoNavButton"
                 android:layout_width="wrap_content"
                 android:layout_height="96dp"
-                android:src="@drawable/navigation_previous_item" />
-
+                android:src="@drawable/navigation_previous_item" 
+				android:contentDescription="@string/Picture"/>
             <ImageView
                 android:id="@+id/recipe_image"
                 android:layout_width="0dp"
                 android:layout_height="160dp"
                 android:layout_weight="1"
-                android:src="@drawable/photo" />
+                android:src="@drawable/photo" 
+                android:contentDescription="@string/Picture"/>
 
             <ImageButton
                 android:id="@+id/button_next_photo"
                 style="@style/PhotoNavButton"
                 android:layout_width="wrap_content"
                 android:layout_height="96dp"
-                android:src="@drawable/navigation_next_item" />
+                android:src="@drawable/navigation_next_item" 
+                android:contentDescription="@string/Picture"/>
 
         </LinearLayout>
 
@@ -58,14 +60,14 @@
                 style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Delete Photo" />
+                android:text="@string/DeletePhoto" />
 
             <Button
                 android:id="@+id/button_add_photo"
                 style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Add Photo" />
+                android:text="@string/AddPhoto" />
         </LinearLayout>
 
         <LinearLayout
@@ -78,20 +80,22 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
-                android:src="@drawable/time" />
+                android:src="@drawable/time" 
+                android:contentDescription="@string/Picture"/>
 
             <EditText
                 android:id="@+id/recipe_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="#"
-                android:inputType="number" >
+                android:hint="@string/hint2"
+                android:inputType="number" 
+               >
             </EditText>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text=" Minutes"
+                android:text="@string/Minutes"
                 android:textAppearance="?android:attr/textAppearanceLarge" />
         </LinearLayout>
 
@@ -99,7 +103,7 @@
             android:id="@+id/recipe_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Recipe Description"
+            android:hint="@string/RecipeDescription"
             android:inputType="textMultiLine" >
         </EditText>
     </LinearLayout>

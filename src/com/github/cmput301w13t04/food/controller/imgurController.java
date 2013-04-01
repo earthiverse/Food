@@ -11,7 +11,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -26,7 +25,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.ParseException;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Environment;
 import android.util.Base64;
 import android.util.Log;
@@ -112,6 +110,7 @@ public class imgurController {
 				hpost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 			} catch (UnsupportedEncodingException e) {
 				e.toString();
+				return null;
 			}
 
 			DefaultHttpClient client = new DefaultHttpClient();
@@ -120,8 +119,10 @@ public class imgurController {
 				resp = client.execute(hpost);
 			} catch (ClientProtocolException e) {
 				Log.e("Testing", e.toString());
+				return null;
 			} catch (IOException e) {
 				Log.e("Testing", e.toString());
+				return null;
 			}
 			Log.d("Executed", "yes");
 
@@ -130,8 +131,10 @@ public class imgurController {
 				Log.d("YOYO", result);
 			} catch (ParseException e) {
 				e.toString();
+				return null;
 			} catch (IOException e) {
 				e.toString();
+				return null;
 			}
 			if (result.indexOf("original") >= 0)
 				result = result.substring(result.indexOf("original")
@@ -140,6 +143,7 @@ public class imgurController {
 			Log.d("Destination", result);
 		} catch (Exception e) {
 			// Something went terribly wrong, oh noes.
+			return null;
 		}
 		return result;
 	}
@@ -182,6 +186,7 @@ public class imgurController {
 			} catch (MalformedURLException e) {
 				Log.d("Testing", "Malformed");
 				e.printStackTrace();
+				path = null;
 			} catch (IOException e) {
 				Log.d("Testing", "IOException");
 				path = null;

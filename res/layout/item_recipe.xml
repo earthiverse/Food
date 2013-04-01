@@ -9,7 +9,8 @@
         android:layout_height="@dimen/list_item_height"
         android:adjustViewBounds="true"
         android:paddingRight="@dimen/list_icon_margin"
-        android:src="@drawable/note" />
+        android:src="@drawable/note" 
+        android:contentDescription="@string/Picture"/>
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -21,7 +22,7 @@
             android:id="@+id/recipe_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Apple Pie"
+            android:text="@string/RecipeName"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textIsSelectable="false" />
 
@@ -30,7 +31,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:singleLine="true"
-            android:text="Mmm, I like pie. Pie is good."
+            android:text="@string/RecipeDescription"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textIsSelectable="false" />
     </LinearLayout>

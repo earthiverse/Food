@@ -2,9 +2,9 @@ package com.github.cmput301w13t04.food.test;
 
 import java.io.IOException;
 
-import android.test.AndroidTestCase;
-
 import com.github.cmput301w13t04.food.controller.imgurController;
+
+import android.test.AndroidTestCase;
 
 public class ImgurTest extends AndroidTestCase {
 	
