@@ -16,8 +16,9 @@ import android.util.Log;
 import com.github.cmput301w13t04.food.model.Ingredient;
 import com.github.cmput301w13t04.food.model.Photo;
 import com.github.cmput301w13t04.food.model.Recipe;
-import com.github.cmput301w13t04.food.model.query.RecipeResult;
-import com.github.cmput301w13t04.food.model.query.UserQuery;
+import com.github.cmput301w13t04.food.model.query.QueryID;
+import com.github.cmput301w13t04.food.model.query.ResultsRecipe;
+import com.github.cmput301w13t04.food.model.query.QueryEmail;
 import com.google.gson.Gson;
 
 /**
@@ -29,13 +30,12 @@ import com.google.gson.Gson;
 public class Database {
 
 	public Database() {
-		// TODO: Figure out how we're doing things.
 	}
 
-	public ArrayList<Recipe> searchRecipe(String email) {
-		UserQuery query = new UserQuery(email.trim());
+	public Recipe searchByID(Long id) {
+		QueryID query = new QueryID(String.valueOf(id));
 		try {
-			return new SearchRecipeTask().execute(query).get();
+			return new SearchRecipeByIDTask().execute(query).get();
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -46,49 +46,125 @@ public class Database {
 		return null;
 	}
 
-	private class SearchRecipeTask extends AsyncTask<UserQuery, Void, ArrayList<Recipe>> {
+	private class SearchRecipeByIDTask extends AsyncTask<QueryID, Void, Recipe> {
 
 		@Override
-		protected ArrayList<Recipe> doInBackground(UserQuery... queries) {
+		protected Recipe doInBackground(QueryID... queries) {
 			try {
 				HttpClient httpClient = new DefaultHttpClient();
 				HttpPost httpPost = new HttpPost(
 						"http://earthiverse.ath.cx:9200/food/recipe/_search");
 
-				for (int i = 0; i < queries.length; i++) {
-					UserQuery query = queries[i];
+				QueryID query = queries[0];
 
-					StringEntity get = new StringEntity(
-							new Gson().toJson(query));
-					httpPost.setEntity(get);
+				StringEntity get = new StringEntity(new Gson().toJson(query));
+				httpPost.setEntity(get);
 
-					HttpResponse response = httpClient.execute(httpPost);
-					String responseBody = EntityUtils.toString(response
-							.getEntity());
-					Log.d("responseBody", responseBody);
-					
-					RecipeResult result = new Gson().fromJson(responseBody, RecipeResult.class);
-					
-					ArrayList<Recipe> recipes = result.getRecipes();
-					
-					// Download the first recipe pictures to device
-					imgurController imageHost = new imgurController();
-					for (int j = 0; j < recipes.size(); j++) {
-						Recipe recipe = recipes.get(i);
-						try {
-							Photo photo = recipe.getPhoto(0);
-							
-							// Save to device
-							String localPath = imageHost.fetch(photo.getPath());
-							// Set new path
-							photo.setPath(localPath);
-						} catch(Exception e) {
-							// No first photo
-						}
+				HttpResponse response = httpClient.execute(httpPost);
+				String responseBody = EntityUtils
+						.toString(response.getEntity());
+				Log.d("responseBody", responseBody);
+
+				ResultsRecipe result = new Gson().fromJson(responseBody,
+						ResultsRecipe.class);
+
+
+				// Download the recipe pictures to device
+				imgurController imageHost = new imgurController();
+				Recipe recipe = result.getRecipe(0);
+				for(int j = 0; j < recipe.getPhotos().size(); j++) {
+					try {
+						Photo photo = recipe.getPhoto(j);
+
+						// Save to device
+						String localPath = imageHost.fetch(photo.getPath());
+						// Set new path
+						photo.setPath(localPath);
+					} catch (Exception e) {
+						// Something went wrong
 					}
-					
-					return recipes;
 				}
+				
+				// Download the recipe ingredients
+				for(int j = 0; j < recipe.getIngredients().size(); j++) {
+					try {
+						Photo photo = recipe.getIngredients().get(j).getPhoto();
+
+						// Save to device
+						String localPath = imageHost.fetch(photo.getPath());
+						// Set new path
+						photo.setPath(localPath);
+					} catch(Exception e) {
+						// Something went wrong
+					}
+				}
+				
+
+				return recipe;
+			} catch (Exception e) {
+				// Something went wrong...
+			}
+			return null;
+		}
+
+	}
+
+	public ArrayList<Recipe> searchRecipeByEmail(String email) {
+		QueryEmail query = new QueryEmail(email.trim());
+		try {
+			return new SearchRecipeByEmailTask().execute(query).get();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ExecutionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	private class SearchRecipeByEmailTask extends
+			AsyncTask<QueryEmail, Void, ArrayList<Recipe>> {
+
+		@Override
+		protected ArrayList<Recipe> doInBackground(QueryEmail... queries) {
+			try {
+				HttpClient httpClient = new DefaultHttpClient();
+				HttpPost httpPost = new HttpPost(
+						"http://earthiverse.ath.cx:9200/food/recipe/_search");
+
+				QueryEmail query = queries[0];
+
+				StringEntity get = new StringEntity(new Gson().toJson(query));
+				httpPost.setEntity(get);
+
+				HttpResponse response = httpClient.execute(httpPost);
+				String responseBody = EntityUtils
+						.toString(response.getEntity());
+				Log.d("responseBody", responseBody);
+
+				ResultsRecipe result = new Gson().fromJson(responseBody,
+						ResultsRecipe.class);
+
+				ArrayList<Recipe> recipes = result.getRecipes();
+
+				// Download the first recipe pictures to device
+				imgurController imageHost = new imgurController();
+				for (int j = 0; j < recipes.size(); j++) {
+					Recipe recipe = recipes.get(j);
+					try {
+						Photo photo = recipe.getPhoto(0);
+
+						// Save to device
+						String localPath = imageHost.fetch(photo.getPath());
+						// Set new path
+						photo.setPath(localPath);
+					} catch (Exception e) {
+						// No first photo
+					}
+				}
+
+				return recipes;
 			} catch (Exception e) {
 				// Something went wrong...
 			}
@@ -157,9 +233,9 @@ public class Database {
 					StringEntity post = new StringEntity(
 							new Gson().toJson(recipe));
 					httpPost.setEntity(post);
-					
+
 					httpClient.execute(httpPost);
-					
+
 					// TODO: Verify response
 
 					// Restore Photo Paths

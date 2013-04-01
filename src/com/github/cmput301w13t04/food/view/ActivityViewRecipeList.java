@@ -2,16 +2,19 @@ package com.github.cmput301w13t04.food.view;
 
 import com.github.cmput301w13t04.food.R;
 import com.github.cmput301w13t04.food.controller.Cache;
-import com.github.cmput301w13t04.food.controller.Database;
 import com.github.cmput301w13t04.food.controller.RecipeAdapter;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.DialogFragment;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnLongClickListener;
 import android.widget.AdapterView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
@@ -45,6 +48,36 @@ public class ActivityViewRecipeList extends Activity {
 		ListView list = (ListView) findViewById(R.id.recipe_list);
 		list.setAdapter(new RecipeAdapter(list.getContext(),
 				R.layout.item_recipe, cache.getRecipes()));
+
+		list.setOnLongClickListener(new OnLongClickListener() {
+			public boolean onLongClick(View v) {
+				AlertDialog.Builder builder = new AlertDialog.Builder(
+						getApplication());
+
+				builder.setMessage("Remove Recipe?");
+				builder.setPositiveButton("Remove",
+						new DialogInterface.OnClickListener() {
+							public void onClick(DialogInterface dialog,
+									int which) {
+								
+								dialog.dismiss();
+							}
+						});
+				builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+
+					public void onClick(DialogInterface dialog, int which) {
+						dialog.dismiss();
+					}
+					
+				});
+				
+				builder.create();
+				builder.show();
+
+				// TODO Auto-generated method stub
+				return false;
+			}
+		});
 
 		list.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> arg0, View arg1,

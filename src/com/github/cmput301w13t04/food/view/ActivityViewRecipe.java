@@ -5,6 +5,7 @@ import java.util.Locale;
 
 import com.github.cmput301w13t04.food.R;
 import com.github.cmput301w13t04.food.controller.Cache;
+import com.github.cmput301w13t04.food.controller.Database;
 import com.github.cmput301w13t04.food.controller.IngredientAdapter;
 import com.github.cmput301w13t04.food.controller.StepAdapter;
 import com.github.cmput301w13t04.food.model.Ingredient;
@@ -24,13 +25,11 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.text.Html;
-import android.text.Spannable;
-import android.text.SpannableStringBuilder;
-import android.text.style.URLSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MenuItem.OnMenuItemClickListener;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -38,6 +37,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * View a Recipe and all of its properties
@@ -48,7 +48,8 @@ import android.widget.TextView;
 public class ActivityViewRecipe extends FragmentActivity implements
 		ActionBar.TabListener {
 
-	public static Recipe recipe;
+	private static Recipe recipe;
+	private boolean fromRemote;
 
 	SectionsPagerAdapter mSectionsPagerAdapter;
 	ViewPager mViewPager;
@@ -88,11 +89,15 @@ public class ActivityViewRecipe extends FragmentActivity implements
 
 		recipe = cache.getRecipe(recipeID);
 		if (recipe == null) {
-			// TODO: Get recipe from database
-
-			// ELSE ERROR:
-			// TODO: Toast 'Recipe not found!'
-			finish();
+			Database database = new Database();
+			recipe = database.searchByID(recipeID);
+			if(recipe == null) {
+				// TODO: Toast 'Recipe not found!'
+				finish();
+			} else {
+				// WOO, WE GOT IT!
+				fromRemote = true;
+			}
 		}
 
 		// ELSE: We've got our recipe!
@@ -122,6 +127,42 @@ public class ActivityViewRecipe extends FragmentActivity implements
 					.setText(mSectionsPagerAdapter.getPageTitle(i))
 					.setTabListener(this));
 		}
+	}
+	
+	@Override
+	public boolean onPrepareOptionsMenu(Menu menu) {
+		if(fromRemote) {
+			// Replace edit with save when we're viewing remote recipes
+			menu.getItem(0).setIcon(R.drawable.content_save);
+			menu.getItem(0).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+				public boolean onMenuItemClick(MenuItem item) {
+					// Save to cache on click
+					Cache cache = new Cache();
+					cache.load(getBaseContext());
+					
+					cache.addRecipe(recipe);
+					
+					cache.save(getBaseContext());
+					
+					// Show confirmation to user
+					Toast toast = Toast.makeText(getApplicationContext(), "Saved " + recipe.getTitle() + "!", Toast.LENGTH_SHORT);
+					toast.show();
+					
+					// Revert Our Changes
+					item.setIcon(R.drawable.content_edit);
+					item.setOnMenuItemClickListener(new OnMenuItemClickListener() {
+						public boolean onMenuItemClick(MenuItem item) {
+							manageRecipe(item);
+							fromRemote = false;
+							return true;
+						}
+					});
+					return true;
+				}
+			});
+			
+		}
+		return true;
 	}
 
 	@Override

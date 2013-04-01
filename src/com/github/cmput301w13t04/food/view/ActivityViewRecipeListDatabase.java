@@ -11,9 +11,13 @@ import com.github.cmput301w13t04.food.model.Recipe;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Intent;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.support.v4.app.NavUtils;
 
 public class ActivityViewRecipeListDatabase extends Activity {
@@ -31,7 +35,7 @@ public class ActivityViewRecipeListDatabase extends Activity {
 		String username = getIntent().getStringExtra("USER");
 		if (username != null) {
 			Database database = new Database();
-			recipes = database.searchRecipe(username);
+			recipes = database.searchRecipeByEmail(username);
 		}
 
 		// TODO: Handle query by ingredient
@@ -40,6 +44,16 @@ public class ActivityViewRecipeListDatabase extends Activity {
 		ListView list = (ListView) findViewById(R.id.recipe_list);
 		list.setAdapter(new RecipeAdapter(list.getContext(),
 				R.layout.item_recipe, recipes));
+
+		list.setOnItemClickListener(new OnItemClickListener() {
+			public void onItemClick(AdapterView<?> arg0, View arg1,
+					int position, long id) {
+				Intent intent = new Intent(ActivityViewRecipeListDatabase.this,
+						ActivityViewRecipe.class);
+				intent.putExtra("RECIPE_ID", id);
+				startActivity(intent);
+			}
+		});
 	}
 
 	@Override
