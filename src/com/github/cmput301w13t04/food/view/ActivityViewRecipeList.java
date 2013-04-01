@@ -6,6 +6,7 @@ import com.github.cmput301w13t04.food.controller.RecipeAdapter;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.app.DialogFragment;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -113,6 +114,12 @@ public class ActivityViewRecipeList extends Activity {
 
 		toast.show();
 		return;
+	}
+
+	public void showRecipeSearch(MenuItem menuItem) {
+		// Create the fragment and show it as a dialog.
+		DialogFragment newFragment = FragmentSearchRecipe.newInstance();
+		newFragment.show(getFragmentManager(), "SearchRecipe");
 	}
 
 }

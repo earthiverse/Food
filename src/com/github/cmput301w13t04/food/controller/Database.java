@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
@@ -15,6 +16,9 @@ import android.util.Log;
 import com.github.cmput301w13t04.food.model.Ingredient;
 import com.github.cmput301w13t04.food.model.Photo;
 import com.github.cmput301w13t04.food.model.Recipe;
+import com.github.cmput301w13t04.food.model.User;
+import com.github.cmput301w13t04.food.model.query.RecipeResult;
+import com.github.cmput301w13t04.food.model.query.UserQuery;
 import com.google.gson.Gson;
 
 /**
@@ -27,6 +31,41 @@ public class Database {
 
 	public Database() {
 		// TODO: Figure out how we're doing things.
+	}
+
+	public void searchRecipe(String email) {
+		UserQuery query = new UserQuery(email.trim());
+		new SearchRecipeTask().execute(query);
+	}
+
+	private class SearchRecipeTask extends AsyncTask<UserQuery, Void, Boolean> {
+
+		@Override
+		protected Boolean doInBackground(UserQuery... queries) {
+			try {
+				HttpClient httpClient = new DefaultHttpClient();
+				HttpPost httpPost = new HttpPost(
+						"http://earthiverse.ath.cx:9200/food/recipe/_search");
+
+				for (int i = 0; i < queries.length; i++) {
+					UserQuery query = queries[i];
+
+					StringEntity get = new StringEntity(
+							new Gson().toJson(query));
+					httpPost.setEntity(get);
+
+					HttpResponse response = httpClient.execute(httpPost);
+					String responseBody = EntityUtils.toString(response
+							.getEntity());
+					Log.d("responseBody", responseBody);
+				}
+			} catch (Exception e) {
+				// Something went wrong...
+				return false;
+			}
+			return true;
+		}
+
 	}
 
 	/**
@@ -45,7 +84,6 @@ public class Database {
 				HttpClient httpClient = new DefaultHttpClient();
 				imgurController imageHost = new imgurController();
 				for (int i = 0; i < recipes.length; i++) {
-					Log.d("Starting publish", "Haihai");
 					Recipe recipe = recipes[i];
 
 					HttpPost httpPost = new HttpPost(
@@ -55,7 +93,6 @@ public class Database {
 					// Post recipe photos
 					ArrayList<Photo> photos = recipe.getPhotos();
 					ArrayList<String> oldRecipePhotoPaths = new ArrayList<String>();
-					Log.d("Photo size", String.valueOf(photos.size()));
 					for (int j = 0; j < photos.size(); j++) {
 						// Post image to server, get new path
 						oldRecipePhotoPaths.add(photos.get(j).getPath());
@@ -66,7 +103,6 @@ public class Database {
 						// Assign new path
 						photos.get(j).setPath(remotePath);
 					}
-					Log.d("We get here?", "Yes");
 
 					// TODO: Post ingredient photos
 					ArrayList<Ingredient> ingredients = recipe.getIngredients();
@@ -96,6 +132,13 @@ public class Database {
 					HttpResponse response = httpClient.execute(httpPost);
 					String responseBody = EntityUtils.toString(response
 							.getEntity());
+					
+					Log.d("Testing", "Before JSON");
+					RecipeResult result = new Gson().fromJson(responseBody, RecipeResult.class);
+					ArrayList<Recipe> newList = result.getRecipes();
+					Log.d("Testing", "After JSON");
+					
+					Log.d("Testing", newList.get(0).getTitle());
 
 					// Restore Photo Paths
 					// Recipe Images
@@ -111,23 +154,18 @@ public class Database {
 							// No photo on ingredient
 						}
 					}
-
-					Log.d("Result", responseBody);
 				}
 			} catch (Exception e) {
 				// Something went wrong
 				e.printStackTrace();
 				return false;
 			}
-			Log.d("What?", "what.");
 
 			return true;
 		}
 
 		protected void onPostExecute(Boolean result) {
-			Log.d("Result onPostExecute", String.valueOf(result));
-			// This gets called on the interface (main) thread!
-			//
+			// TODO: Confirmation of success
 		}
 
 	}

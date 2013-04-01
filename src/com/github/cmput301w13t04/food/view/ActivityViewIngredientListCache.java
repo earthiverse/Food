@@ -21,7 +21,7 @@ import android.widget.ListView;
  * @author W13T04
  * 
  */
-public class ActivityViewIngredientList extends Activity {
+public class ActivityViewIngredientListCache extends Activity {
 
 	private static final int ACTION_ADD_INGREDIENT = 1;
 
@@ -30,9 +30,10 @@ public class ActivityViewIngredientList extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_view_ingredient_list);
+		setContentView(R.layout.activity_view_ingredient_list_cache);
 	}
 
+	@Override
 	public void onResume() {
 		super.onResume();
 
@@ -50,7 +51,7 @@ public class ActivityViewIngredientList extends Activity {
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
 				// View ingredient on item click.
-				Intent intent = new Intent(ActivityViewIngredientList.this,
+				Intent intent = new Intent(ActivityViewIngredientListCache.this,
 						ActivityViewIngredient.class);
 
 				intent.putExtra("INGREDIENT", cache.getIngredient(position));
@@ -66,7 +67,7 @@ public class ActivityViewIngredientList extends Activity {
 	 * @param view
 	 */
 	public void addIngredient(View view) {
-		Intent intent = new Intent(ActivityViewIngredientList.this,
+		Intent intent = new Intent(ActivityViewIngredientListCache.this,
 				ActivityManageIngredient.class);
 		startActivityForResult(intent, ACTION_ADD_INGREDIENT);
 	}

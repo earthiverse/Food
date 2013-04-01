@@ -1,7 +1,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
 
     <item
+        android:onClick="showRecipeSearch"
+        android:showAsAction="ifRoom"
+        android:title="Search for Recipe"/>
+    <item
         android:onClick="export"
+        android:showAsAction="ifRoom"
         android:title="Export Recipes"/>
 
 </menu>

@@ -147,7 +147,7 @@ public class ActivityMain extends Activity {
 	 */
 	public void showIngredientList(View view) {
 		Intent intent = new Intent(ActivityMain.this,
-				ActivityViewIngredientList.class);
+				ActivityViewIngredientListCache.class);
 		startActivity(intent);
 	}
 }
