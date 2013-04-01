@@ -222,7 +222,6 @@ public class ActivityViewRecipe extends FragmentActivity implements
 	/**
 	 * Menu button handler for editing recipe
 	 * 
-	 * @param menuitem
 	 */
 	public void manageRecipe(MenuItem menuitem) {
 		Intent intent = new Intent(ActivityViewRecipe.this,
