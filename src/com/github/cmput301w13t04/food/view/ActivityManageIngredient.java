@@ -65,12 +65,6 @@ public class ActivityManageIngredient extends Activity {
 			ingredient = new Ingredient();
 		}
 
-		// Populate Current Ingredient Values
-		if (ingredient == null) {
-
-			// TODO: Something went wrong
-			finish();
-		}
 	}
 
 	@Override

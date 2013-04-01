@@ -86,7 +86,7 @@ public class ActivityViewIngredientList extends Activity {
 				cache.save(this);
 			}
 		}
+		default: break;
 		}
-		;
 	}
 }
