@@ -22,6 +22,9 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.params.BasicHttpParams;
 import org.apache.http.params.HttpParams;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 
 import com.google.gson.Gson;
@@ -135,7 +138,6 @@ public class RecipeSearch extends AsyncTask<String, Void, Recipe[]> {
 		java.util.Scanner s = new java.util.Scanner(input).useDelimiter("\\A");
 	    return s.hasNext() ? s.next() : "";
 	}
-
 	
 
 
