@@ -47,34 +47,8 @@ public class ActivityTakePhoto extends Activity {
 	private AlbumDirFactory mAlbumStorageDirFactory = null;
 
 	/* Photo album for this application */
-	private String getAlbumName() {
+	public String getAlbumName() {
 		return getString(R.string.app_name);
-	}
-
-	private File getAlbumDir() {
-		File storageDir = null;
-
-		if (Environment.MEDIA_MOUNTED.equals(Environment
-				.getExternalStorageState())) {
-
-			storageDir = mAlbumStorageDirFactory
-					.getAlbumStorageDir(getAlbumName());
-
-			if (storageDir != null) {
-				if (!storageDir.mkdirs()) {
-					if (!storageDir.exists()) {
-						Log.d("CameraSample", "failed to create directory");
-						return null;
-					}
-				}
-			}
-
-		} else {
-			Log.v(getString(R.string.app_name),
-					"External storage is not mounted READ/WRITE.");
-		}
-
-		return storageDir;
 	}
 
 	private File createImageFile() throws IOException {
@@ -82,7 +56,7 @@ public class ActivityTakePhoto extends Activity {
 		String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US)
 		.format(new Date());
 		String imageFileName = JPEG_FILE_PREFIX + timeStamp + "_";
-		File albumF = getAlbumDir();
+		File albumF = mAlbumStorageDirFactory.getAlbumDir(this);
 		File imageF = File.createTempFile(imageFileName, JPEG_FILE_SUFFIX,
 				albumF);
 		return imageF;
