@@ -30,13 +30,6 @@
             style="?android:attr/buttonBarButtonStyle"
             android:text="@string/AddRecipe" />
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:clickable="false"
-            style="?android:attr/buttonBarButtonStyle"
-            android:text="@string/SearchForRecipes" />
     </LinearLayout>
 
 </LinearLayout>
