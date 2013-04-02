@@ -7,25 +7,19 @@ import com.github.cmput301w13t04.food.controller.imgurController;
 import android.test.AndroidTestCase;
 
 public class ImgurTest extends AndroidTestCase {
-	
-	public void testPost() throws Throwable{
+
+	public void testPost() throws Throwable {
 		imgurController ic1 = new imgurController();
 		String dummy = "dummy";
-		try
-		{
-			ic1.post(dummy);
-		} catch (IOException e)
-		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+
+		ic1.post(dummy);
 		assertNull(dummy);
 	}
 
-	public void testFetch() throws Throwable{
+	public void testFetch() throws Throwable {
 		imgurController ic1 = new imgurController();
 		String dummy = "dummy";
-		ic1.fetch(dummy);	
+		ic1.fetch(dummy);
 		assertNull(dummy);
 	}
 }

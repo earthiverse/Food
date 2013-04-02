@@ -29,33 +29,33 @@ import android.os.Environment;
 import android.util.Base64;
 import android.util.Log;
 
-/* 
- * NOTE: A lot of the code for imgur posting is taken from:
- *  http://stackoverflow.com/questions/7124484/android-uploading-a-photo-to-host-on-imgur-programatically
- *  
- *  Code for fetch:
- *  http://stackoverflow.com/questions/4875114/android-save-image-from-url-onto-sd-card
- */
-/* To implement, do something like this:
+/**
+ * An adapter that allows our project to use the IMGUR API to upload and
+ * download photos for publishing or downloading recipes.
  * 
- *Log.d("REALP",path);
- imgurController ic = new imgurController();
- String result = null;
- try
- {
- //To post an image
- result = 
- ic.post(path);
- Log.d("YATTA", result);
- } catch (IOException e)
- {
- // TODO Auto-generated catch block
- e.printStackTrace();
- }
- //To fetch an image.
- String fpath = ic.fetch(result);
- Log.d("imgur fetch result", fpath);
- * Where "path" is the string path of the photo.
+ * @author W13T04
+ * 
+ */
+
+/*
+ * NOTE: A lot of the code for imgur posting is taken from:
+ * http://stackoverflow.
+ * com/questions/7124484/android-uploading-a-photo-to-host-on
+ * -imgur-programatically
+ * 
+ * Code for fetch:
+ * http://stackoverflow.com/questions/4875114/android-save-image-
+ * from-url-onto-sd-card
+ */
+/*
+ * To implement, do something like this:
+ * 
+ * Log.d("REALP",path); imgurController ic = new imgurController(); String
+ * result = null; try { //To post an image result = ic.post(path);
+ * Log.d("YATTA", result); } catch (IOException e) { // TODO Auto-generated
+ * catch block e.printStackTrace(); } //To fetch an image. String fpath =
+ * ic.fetch(result); Log.d("imgur fetch result", fpath); Where "path" is the
+ * string path of the photo.
  */
 public class imgurController {
 	/*
@@ -65,16 +65,23 @@ public class imgurController {
 	 * new key for the 2nd version.
 	 */
 	private String DEV_KEY = "5a5141ca9354bf7929b98a1d7a4c26ae";
+
 	// private String DEV_KEY = "3c45563c813ad29";
 
-	/*
-	 * Constructor
+	/**
+	 * Unused because the controller has a hard-coded dev key instead of any
+	 * state objects
 	 */
 	public imgurController() {
 	}
 
-	/* Post method, returns the string result */
-	public String post(String path) throws IOException {
+	/**
+	 * Post a photo to IMGUR
+	 * 
+	 * @param path The path in the device of the photo to be posted
+	 * @return The URL of the posted photo
+	 */
+	public String post(String path) {
 		Log.d("Testing", "Started post...");
 		Bitmap bitmap = BitmapFactory.decodeFile(Uri.parse(path).getPath());
 		Log.d("Testing", "Decoded File...");
@@ -148,6 +155,11 @@ public class imgurController {
 		return result;
 	}
 
+	/**
+	 * Fetch a photo from IMGUR using the API
+	 * @param remoteURL The URL of the IMGUR photo
+	 * @return The path on the device where the photo has been saved
+	 */
 	public String fetch(String remoteURL) {
 		String path = null;
 		try {

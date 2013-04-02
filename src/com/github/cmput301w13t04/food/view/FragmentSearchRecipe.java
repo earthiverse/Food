@@ -11,6 +11,12 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+/**
+ * A fragment created for searching recipes by ingredient
+ * @author W13T04
+ *
+ */
+
 public class FragmentSearchRecipe extends DialogFragment {
 	static FragmentSearchRecipe newInstance() {
 		return new FragmentSearchRecipe();

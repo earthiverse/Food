@@ -14,6 +14,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.support.v4.app.NavUtils;
 
+/**
+ * A class for managing recipe steps in our UI
+ * @author W13T04
+ *
+ */
+
 public class ActivityManageStep extends Activity {
 
 	public final static int RESULT_DELETE = 10;
@@ -89,6 +95,9 @@ public class ActivityManageStep extends Activity {
 		return super.onOptionsItemSelected(item);
 	}
 
+	/**
+	 * Button listener for removing step
+	 */
 	public void removeStep(View view) {
 		// Remove Step
 		Intent result = new Intent();
@@ -97,6 +106,9 @@ public class ActivityManageStep extends Activity {
 		finish();
 	}
 
+	/**
+	 * Button listener for updating step
+	 */
 	public void updateStep(View view) {
 		// Get Name
 		EditText name = (EditText) findViewById(R.id.step_name);

@@ -163,6 +163,9 @@ public class ActivityViewRecipeList extends Activity {
 		return;
 	}
 
+	/**
+	 * Button handler for opening up search fragment
+	 */
 	public void showRecipeSearch(MenuItem menuItem) {
 		// Create the fragment and show it as a dialog.
 		DialogFragment newFragment = FragmentSearchRecipe.newInstance();

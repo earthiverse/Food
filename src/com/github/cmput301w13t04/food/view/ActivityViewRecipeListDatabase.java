@@ -26,6 +26,12 @@ import android.widget.ListView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.support.v4.app.NavUtils;
 
+/**
+ * An activity for viewing recipes that are returned as ssearch results
+ * @author W13t04
+ *
+ */
+
 public class ActivityViewRecipeListDatabase extends Activity {
 
 	@Override
