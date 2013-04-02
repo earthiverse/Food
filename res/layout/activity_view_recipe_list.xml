@@ -18,18 +18,16 @@
     </ListView>
 
     <LinearLayout
-        style="?android:attr/buttonBarStyle"
         android:layout_width="match_parent"
+        android:gravity="center"
         android:layout_height="wrap_content" >
 
         <Button
-            android:layout_width="wrap_content"
+            style="@style/BottomButton"
+            android:layout_width="240dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="left"
             android:onClick="addRecipe"
-            style="?android:attr/buttonBarButtonStyle"
             android:text="@string/AddRecipe" />
-
     </LinearLayout>
 
 </LinearLayout>
