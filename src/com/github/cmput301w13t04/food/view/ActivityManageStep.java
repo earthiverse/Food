@@ -102,7 +102,7 @@ public class ActivityManageStep extends Activity {
 		EditText name = (EditText) findViewById(R.id.step_name);
 		String stepName = name.getText().toString();
 		if (stepName.isEmpty()) {
-			Toast.makeText(view.getContext(), "Missing Ingredient Name!",
+			Toast.makeText(view.getContext(), "Missing Step Name!",
 					Toast.LENGTH_SHORT).show();
 			return;
 		}
@@ -112,7 +112,7 @@ public class ActivityManageStep extends Activity {
 		EditText description = (EditText) findViewById(R.id.step_description);
 		String stepDescription = description.getText().toString();
 		if (stepDescription.isEmpty()) {
-			Toast.makeText(view.getContext(), "Missing Ingredient Name!",
+			Toast.makeText(view.getContext(), "Missing Step Description!",
 					Toast.LENGTH_SHORT).show();
 			return;
 		}
