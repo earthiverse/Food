@@ -2,12 +2,12 @@
 <resources>
 
     <!-- General -->
+    <string name="action_settings">Settings</string>
     <string name="app_name">Reasonable Recipes</string>
 
     <!-- Main -->
     <string name="RecipeBook">Recipe Book</string>
     <string name="Pantry">Pantry</string>
-    
 
     <!-- Recipe Viewer/Manager -->
     <string name="name">Name</string>
@@ -16,76 +16,62 @@
     <string name="finish">Finish</string>
     <string name="optional">Optional</string>
     <string name="AddPhoto">Add Photo</string>
-    <string name ="RemoveIngredient">Remove Ingredient</string>
-
+    <string name="RemoveIngredient">Remove Ingredient</string>
     <string name="title_activity_activity_manage_recipe">Manage Recipe</string>
     <string name="title_activity_view_recipe">Recipe Viewer</string>
     <string name="title_activity_view_recipe_list">Recipe List</string>
     <string name="recipe_title_description">Description</string>
     <string name="recipe_title_ingredients">Ingredients</string>
     <string name="recipe_title_steps">Steps</string>
-    
+
     <!-- Manage Step -->
-	<string name ="StepName">Step Name</string>
-	<string name= "StepDescription">Step Description</string>
-	<string name= "FinishStep">Finish Step</string>
-	<string name= "RemoveStep">Remove Step</string>
-	<string name= "hint1">##.</string>
-	
-	<!-- Photo Intent -->
-	<string name= "EnterDescription">Enter Description</string>
-	<string name= "picture">picture</string>
-	
-	<!--  View Ingredients -->
-	<string name= "AddIngredient">Add Ingredient</string>
-	
+    <string name="StepName">Step Name</string>
+    <string name="StepDescription">Step Description</string>
+    <string name="FinishStep">Finish Step</string>
+    <string name="RemoveStep">Remove Step</string>
+    <string name="hint1">##.</string>
+
+    <!-- Photo Intent -->
+    <string name="EnterDescription">Enter Description</string>
+    <string name="picture">picture</string>
+
+    <!-- View Ingredients -->
+    <string name="AddIngredient">Add Ingredient</string>
+
     <!-- Ingredient Viewer/Manager -->
     <string name="title_activity_view_ingredient_list">Pantry</string>
     <string name="title_activity_view_ingredient">Ingredient</string>
     <string name="title_activity_manage_ingredient">Edit Ingredient</string>
-    <string name= "Delete">Delete</string>
-    <string name= "Update">Update</string>
-    <string name= "IngredientName">Ingredient Name</string>
-    <string name= "Quantity">Quantity (units)</string>
-    <string name= "RecipeDescription">Recipe Description</string>
-    
+    <string name="Delete">Delete</string>
+    <string name="Update">Update</string>
+    <string name="IngredientName">Ingredient Name</string>
+    <string name="Quantity">Quantity (units)</string>
+    <string name="RecipeDescription">Recipe Description</string>
+
     <!-- View Recipe -->
-    <string name= "AddRecipe">Add Recipe</string>
-    <string name= "SearchForRecipes">Search For Recipes</string>
-    
+    <string name="AddRecipe">Add Recipe</string>
+    <string name="SearchForRecipes">Search For Recipes</string>
+
     <!-- Manage Recipe -->
-    <string name= "RecipeName">Recipe Name</string>
+    <string name="RecipeName">Recipe Name</string>
     <string name="AddStep">Add Step</string>
-    <string name= "Minutes"> Minutes</string>
-    <string name= "hint2">#</string>
-    <string name = "DeletePhoto">Delete Photo</string>
-    <string name ="Picture">Picture</string>
-    <string name ="Time">Time</string>
+    <string name="Minutes"> Minutes</string>
+    <string name="hint2">#</string>
+    <string name="DeletePhoto">Delete Photo</string>
+    <string name="Picture">Picture</string>
+    <string name="Time">Time</string>
 
     <!-- Ingredient -->
     <string name="add_ingredient">Add Ingredient</string>
-    <string name ="IngredientQ">Ingredient Quantity</string>
+    <string name="IngredientQ">Ingredient Quantity</string>
 
     <!-- Step -->
     <string name="title_activity_activity_manage_step">Manage Step</string>
-    <string name= "StepNumber">#. </string>
-    <string name= "StepTitle">Step Title</string>
+    <string name="StepNumber">#. </string>
+    <string name="StepTitle">Step Title</string>
 
     <!-- Photo -->
     <string name="title_activity_photo_intent">Add a Photo</string>
-</resources>
-
-    <!-- Ingredient -->
-    <string name="add_ingredient">Add Ingredient</string>
-
-    <!-- Step -->
-    <string name="title_activity_activity_manage_step">Manage Step</string>
-
-    <!-- Photo -->
-    <string name="title_activity_photo_intent">Add a Photo</string>
-    <string name="title_activity_activity_search_recipe">Search for Recipes</string>
-    <string name="action_settings">Settings</string>
-    <string name="hello_world">Hello world!</string>
     <string name="title_activity_fragment_search_recipe">Search for Recipe</string>
     <string name="title_activity_activity_view_ingredient_list_database">ActivityViewIngredientListDatabase</string>
     <string name="title_activity_activity_search_ingredient">ActivitySearchIngredient</string>

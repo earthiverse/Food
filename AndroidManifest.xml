@@ -110,9 +110,4 @@
                 android:value="com.github.cmput301w13t04.food.view.ActivityViewRecipeList" />
         </activity>
     </application>
-<<<<<<< HEAD
 </manifest>
-=======
-
-</manifest>
->>>>>>> SearchRecipeFix
