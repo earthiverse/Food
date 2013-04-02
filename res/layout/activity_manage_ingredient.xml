@@ -67,7 +67,7 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:hint="@string/optional"
-            android:inputType="textMultiLine" />
+            android:inputType="textCapSentences|textMultiLine" />
     </LinearLayout>
     
     <Button
