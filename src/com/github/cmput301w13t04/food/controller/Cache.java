@@ -249,36 +249,38 @@ public class Cache {
 		Ingredient ingredient = null;
 		try {
 			ingredient = this.Ingredients.get(pos);
-		} catch(Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return ingredient;
 	}
-	
+
 	/**
 	 * Export the current Recipe list to .json format for use in other apps
-	 * @return 0 on success, -1 of there are no recipes or an exception is raised
+	 * 
+	 * @return 0 on success, -1 of there are no recipes or an exception is
+	 *         raised
 	 */
-	public int exportRecipes(Context context){
-		
-		if(this.Recipes.isEmpty())
+	public int exportRecipes(Context context) {
+
+		if (this.Recipes.isEmpty())
 			return -1;
-		
+
 		Gson gson = new Gson();
 
 		try {
 			String jsonRecipes = gson.toJson(this.Recipes);
-			File file = new File(Environment.getExternalStorageDirectory(), "MyRecipes.json");
+			File file = new File(Environment.getExternalStorageDirectory(),
+					"MyRecipes.json");
 			FileOutputStream fout = new FileOutputStream(file);
 			fout.write(jsonRecipes.getBytes(Charset.forName("UTF-8")));
 			fout.flush();
 			fout.close();
-			
+
 		} catch (Exception e) {
 			return -1;
 		}
 
-		
 		return 0;
 	}
 
@@ -304,6 +306,16 @@ public class Cache {
 			Log.i("Ingredient", "Name: " + Ingredients.get(i).getName()
 					+ "\nDescription:" + Ingredients.get(i).getDescription());
 		}
+	}
+
+	/**
+	 * Removes a recipe from the recipe list at the given position
+	 * 
+	 * @param position
+	 *            Given position of recipe in array list
+	 */
+	public void removeRecipe(int position) {
+		this.Recipes.remove(position);
 	}
 
 }

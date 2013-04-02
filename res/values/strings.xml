@@ -38,7 +38,6 @@
 	<!--  View Ingredients -->
 	<string name= "AddIngredient">Add Ingredient</string>
 	
-	
     <!-- Ingredient Viewer/Manager -->
     <string name="title_activity_view_ingredient_list">Pantry</string>
     <string name="title_activity_view_ingredient">Ingredient</string>
@@ -61,14 +60,16 @@
     <string name = "DeletePhoto">Delete Photo</string>
     <string name ="Picture">Picture</string>
     <string name ="Time">Time</string>
+
     <!-- Ingredient -->
     <string name="add_ingredient">Add Ingredient</string>
     <string name ="IngredientQ">Ingredient Quantity</string>
+
     <!-- Step -->
     <string name="title_activity_activity_manage_step">Manage Step</string>
     <string name= "StepNumber">#. </string>
     <string name= "StepTitle">Step Title</string>
+
     <!-- Photo -->
     <string name="title_activity_photo_intent">Add a Photo</string>
-
 </resources>

@@ -3,14 +3,21 @@ package com.github.cmput301w13t04.food.view;
 import com.github.cmput301w13t04.food.R;
 import com.github.cmput301w13t04.food.controller.Cache;
 import com.github.cmput301w13t04.food.controller.RecipeAdapter;
+import com.github.cmput301w13t04.food.model.Recipe;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.DialogFragment;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnLongClickListener;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
@@ -30,7 +37,6 @@ public class ActivityViewRecipeList extends Activity {
 		setContentView(R.layout.activity_view_recipe_list);
 		// Show the Up button in the action bar.
 		setupActionBar();
-
 	}
 
 	@Override
@@ -44,6 +50,48 @@ public class ActivityViewRecipeList extends Activity {
 		ListView list = (ListView) findViewById(R.id.recipe_list);
 		list.setAdapter(new RecipeAdapter(list.getContext(),
 				R.layout.item_recipe, cache.getRecipes()));
+
+		list.setOnItemLongClickListener(new OnItemLongClickListener() {
+
+			public boolean onItemLongClick(AdapterView<?> arg0, View arg1,
+					final int position, long id) {
+				Log.d("Testing", "On Clicked!");
+				AlertDialog.Builder builder = new AlertDialog.Builder(ActivityViewRecipeList.this);
+				
+				final Cache cache = new Cache();
+				cache.load(ActivityViewRecipeList.this);
+				
+				final Recipe recipe = cache.getRecipe(id);
+
+				builder.setMessage("Remove " + recipe.getTitle() + "?");
+				builder.setPositiveButton("Remove",
+						new DialogInterface.OnClickListener() {
+							public void onClick(DialogInterface dialog,
+									int which) {
+								
+								cache.removeRecipe(recipe);
+								
+								cache.save(ActivityViewRecipeList.this);
+
+								onResume();
+								
+								dialog.dismiss();
+							}
+						});
+				builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+
+					public void onClick(DialogInterface dialog, int which) {
+						dialog.dismiss();
+					}
+					
+				});
+				
+				builder.create();
+				builder.show();
+
+				return true;
+			}
+		});
 
 		list.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> arg0, View arg1,
@@ -113,6 +161,12 @@ public class ActivityViewRecipeList extends Activity {
 
 		toast.show();
 		return;
+	}
+
+	public void showRecipeSearch(MenuItem menuItem) {
+		// Create the fragment and show it as a dialog.
+		DialogFragment newFragment = FragmentSearchRecipe.newInstance();
+		newFragment.show(getFragmentManager(), "SearchRecipe");
 	}
 
 }
