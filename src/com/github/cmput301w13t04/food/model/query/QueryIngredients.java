@@ -46,7 +46,6 @@ public class QueryIngredients {
 				for (int i = 0; i < ingredients.size(); i++) {
 					must.add(new Must(ingredients.get(i).getName()));
 				}
-				// TODO Auto-generated constructor stub
 			}
 
 			public ArrayList<Must> getMust() {
