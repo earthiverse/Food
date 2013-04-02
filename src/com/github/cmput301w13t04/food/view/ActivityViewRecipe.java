@@ -145,7 +145,10 @@ public class ActivityViewRecipe extends FragmentActivity implements
 					cache.save(getBaseContext());
 					
 					// Show confirmation to user
-					Toast toast = Toast.makeText(getApplicationContext(), "Saved " + recipe.getTitle() + "!", Toast.LENGTH_SHORT);
+					String message = String.format(
+						    getResources().getString(R.string.add_recipe_confirmation),
+						    recipe.getTitle());
+					Toast toast = Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT);
 					toast.show();
 					
 					// Revert Our Changes

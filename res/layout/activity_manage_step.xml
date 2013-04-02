@@ -18,17 +18,22 @@
             android:id="@+id/step_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:gravity="right"
             android:hint="@string/hint1"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textIsSelectable="false" />
+            android:textIsSelectable="false"
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/step_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:gravity="top"
             android:layout_weight="1"
-            android:hint="@string/StepName" 
-            android:inputType="textCapWords"/>
+            android:hint="@string/StepName"
+            android:inputType="textCapWords" />
+
     </LinearLayout>
 
     <EditText
@@ -36,6 +41,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/StepDescription"
+        android:minLines="4"
         android:inputType="textCapSentences|textMultiLine" />
 
     <Button

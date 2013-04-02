@@ -11,8 +11,6 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
 
 import android.os.AsyncTask;
-import android.util.Log;
-import android.widget.Toast;
 
 import com.github.cmput301w13t04.food.model.Ingredient;
 import com.github.cmput301w13t04.food.model.Photo;
@@ -70,7 +68,6 @@ public class Database {
 				HttpResponse response = httpClient.execute(httpPost);
 				String responseBody = EntityUtils
 						.toString(response.getEntity());
-				Log.d("responseBody", responseBody);
 
 				ResultsRecipe result = new Gson().fromJson(responseBody,
 						ResultsRecipe.class);
@@ -151,7 +148,6 @@ public class Database {
 				HttpResponse response = httpClient.execute(httpPost);
 				String responseBody = EntityUtils
 						.toString(response.getEntity());
-				Log.d("responseBody", responseBody);
 
 				ResultsRecipe result = new Gson().fromJson(responseBody,
 						ResultsRecipe.class);
@@ -222,7 +218,6 @@ public class Database {
 				HttpResponse response = httpClient.execute(httpPost);
 				String responseBody = EntityUtils
 						.toString(response.getEntity());
-				Log.d("responseBody", responseBody);
 
 				ResultsRecipe result = new Gson().fromJson(responseBody,
 						ResultsRecipe.class);
@@ -299,7 +294,6 @@ public class Database {
 						photos.get(j).setPath(remotePath);
 					}
 
-					// TODO: Post ingredient photos
 					ArrayList<Ingredient> ingredients = recipe.getIngredients();
 					ArrayList<String> oldIngredientPhotoPaths = new ArrayList<String>();
 					for (int j = 0; j < ingredients.size(); j++) {

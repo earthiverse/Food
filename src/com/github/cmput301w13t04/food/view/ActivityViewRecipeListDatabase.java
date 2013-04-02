@@ -2,23 +2,15 @@ package com.github.cmput301w13t04.food.view;
 
 import java.util.ArrayList;
 
-import org.apache.http.entity.StringEntity;
-
 import com.github.cmput301w13t04.food.R;
-import com.github.cmput301w13t04.food.R.layout;
-import com.github.cmput301w13t04.food.R.menu;
 import com.github.cmput301w13t04.food.controller.Database;
 import com.github.cmput301w13t04.food.controller.RecipeAdapter;
 import com.github.cmput301w13t04.food.model.Ingredient;
 import com.github.cmput301w13t04.food.model.Recipe;
-import com.github.cmput301w13t04.food.model.query.QueryIngredients;
-import com.google.gson.Gson;
 
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
-import android.util.Log;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -44,16 +36,15 @@ public class ActivityViewRecipeListDatabase extends Activity {
 		ArrayList<Recipe> recipes = null;
 
 		// Handle query by Username
+		Database database = new Database();
 		String username = getIntent().getStringExtra("USER");
 		if (username != null) {
-			Database database = new Database();
 			recipes = database.searchRecipeByEmail(username);
 		}
 
 		ArrayList<Ingredient> ingredients = getIntent()
 				.getParcelableArrayListExtra("INGREDIENTS");
 		if(ingredients != null) {
-			Database database = new Database();
 			recipes = database.searchByIngredients(ingredients);
 		}
 

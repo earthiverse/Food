@@ -1,17 +1,37 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
     <style name="AppTheme" parent="android:Theme.Holo.Light.DarkActionBar" />
-    
-    <!-- Main Activity -->
+
+    <!-- Buttons -->
     <style name="MainButton">
-        <item name="android:background">@drawable/border_button</item>
+        <item name="android:background">@drawable/border_button_gray</item>
         <item name="android:textSize">32sp</item>
         <item name="android:textColor">#333</item>
     </style>
-    
-    <!-- Recipe Viewer/Manager -->
+
     <style name="PhotoNavButton">
-        <item name="android:background">@drawable/border_button</item>
+        <item name="android:background">@drawable/border_button_gray</item>
+    </style>
+
+    <style name="BlueButton">
+        <item name="android:background">@drawable/border_button_blue</item>
+        <item name="android:textColor">#333</item>
+        <item name="android:paddingLeft">9dp</item>
+        <item name="android:paddingRight">9dp</item>
+    </style>
+    
+    <style name="SearchButton">
+        <item name="android:background">@drawable/border_button_gray</item>
+        <item name="android:textColor">#333</item>
+        <item name="android:paddingLeft">9dp</item>
+        <item name="android:paddingRight">9dp</item>
+    </style>
+    
+    <style name="GreenButton">
+        <item name="android:background">@drawable/border_button_green</item>
+        <item name="android:textColor">#333</item>
+        <item name="android:paddingLeft">9dp</item>
+        <item name="android:paddingRight">9dp</item>
     </style>
 
 </resources>
