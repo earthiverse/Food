@@ -37,5 +37,6 @@
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_fragment_search_recipe">Search for Recipe</string>
     <string name="title_activity_activity_view_ingredient_list_database">ActivityViewIngredientListDatabase</string>
+    <string name="title_activity_activity_search_ingredient">ActivitySearchIngredient</string>
 
 </resources>

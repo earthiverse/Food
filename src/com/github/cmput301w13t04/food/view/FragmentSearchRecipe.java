@@ -4,6 +4,7 @@ import com.github.cmput301w13t04.food.R;
 
 import android.os.Bundle;
 import android.app.DialogFragment;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -28,8 +29,10 @@ public class FragmentSearchRecipe extends DialogFragment {
 				.findViewById(R.id.button_search_by_ingredient);
 		byIngredient.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
-				// TODO Open searchByIngredient Dialog Fragment
-				
+				Intent intent = new Intent(v.getContext(),
+						ActivitySearchIngredient.class);
+				startActivity(intent);
+				dismiss();
 			}
 		});
 

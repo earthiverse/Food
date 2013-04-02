@@ -109,6 +109,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.github.cmput301w13t04.food.view.ActivityViewIngredientListCache" />
         </activity>
+        <activity
+            android:name="com.github.cmput301w13t04.food.view.ActivitySearchIngredient"
+            android:label="@string/title_activity_activity_search_ingredient"
+            android:parentActivityName="com.github.cmput301w13t04.food.view.ActivityViewRecipeList" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.github.cmput301w13t04.food.view.ActivityViewRecipeList" />
+        </activity>
     </application>
 
 </manifest>

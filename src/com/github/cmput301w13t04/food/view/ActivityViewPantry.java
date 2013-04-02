@@ -30,7 +30,7 @@ public class ActivityViewPantry extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_view_ingredient_list_cache);
+		setContentView(R.layout.activity_view_ingredient_list);
 	}
 
 	@Override

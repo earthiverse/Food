@@ -17,6 +17,7 @@ import com.github.cmput301w13t04.food.model.Ingredient;
 import com.github.cmput301w13t04.food.model.Photo;
 import com.github.cmput301w13t04.food.model.Recipe;
 import com.github.cmput301w13t04.food.model.query.QueryID;
+import com.github.cmput301w13t04.food.model.query.QueryIngredients;
 import com.github.cmput301w13t04.food.model.query.ResultsRecipe;
 import com.github.cmput301w13t04.food.model.query.QueryEmail;
 import com.google.gson.Gson;
@@ -68,11 +69,10 @@ public class Database {
 				ResultsRecipe result = new Gson().fromJson(responseBody,
 						ResultsRecipe.class);
 
-
 				// Download the recipe pictures to device
 				imgurController imageHost = new imgurController();
 				Recipe recipe = result.getRecipe(0);
-				for(int j = 0; j < recipe.getPhotos().size(); j++) {
+				for (int j = 0; j < recipe.getPhotos().size(); j++) {
 					try {
 						Photo photo = recipe.getPhoto(j);
 
@@ -84,9 +84,9 @@ public class Database {
 						// Something went wrong
 					}
 				}
-				
+
 				// Download the recipe ingredients
-				for(int j = 0; j < recipe.getIngredients().size(); j++) {
+				for (int j = 0; j < recipe.getIngredients().size(); j++) {
 					try {
 						Photo photo = recipe.getIngredients().get(j).getPhoto();
 
@@ -94,11 +94,10 @@ public class Database {
 						String localPath = imageHost.fetch(photo.getPath());
 						// Set new path
 						photo.setPath(localPath);
-					} catch(Exception e) {
+					} catch (Exception e) {
 						// Something went wrong
 					}
 				}
-				
 
 				return recipe;
 			} catch (Exception e) {
@@ -170,7 +169,70 @@ public class Database {
 			}
 			return null;
 		}
+	}
 
+	public ArrayList<Recipe> searchByIngredients(
+			ArrayList<Ingredient> ingredients) {
+		QueryIngredients query = new QueryIngredients(ingredients);
+		try {
+			return new SearchRecipeByIngredientsTask().execute(query).get();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ExecutionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	private class SearchRecipeByIngredientsTask extends
+			AsyncTask<QueryIngredients, Void, ArrayList<Recipe>> {
+
+		@Override
+		protected ArrayList<Recipe> doInBackground(QueryIngredients... queries) {
+			try {
+				HttpClient httpClient = new DefaultHttpClient();
+				HttpPost httpPost = new HttpPost(
+						"http://earthiverse.ath.cx:9200/food/recipe/_search");
+
+				QueryIngredients query = queries[0];
+
+				StringEntity get = new StringEntity(new Gson().toJson(query));
+				httpPost.setEntity(get);
+
+				HttpResponse response = httpClient.execute(httpPost);
+				String responseBody = EntityUtils
+						.toString(response.getEntity());
+				Log.d("responseBody", responseBody);
+
+				ResultsRecipe result = new Gson().fromJson(responseBody,
+						ResultsRecipe.class);
+
+				ArrayList<Recipe> recipes = result.getRecipes();
+
+				// Download the first recipe pictures to device
+				imgurController imageHost = new imgurController();
+				for (int j = 0; j < recipes.size(); j++) {
+					Recipe recipe = recipes.get(j);
+					try {
+						Photo photo = recipe.getPhoto(0);
+
+						// Save to device
+						String localPath = imageHost.fetch(photo.getPath());
+						// Set new path
+						photo.setPath(localPath);
+					} catch (Exception e) {
+						// No first photo
+					}
+				}
+
+				return recipes;
+			} catch (Exception e) {
+				// Something went wrong...
+			}
+			return null;
+		}
 	}
 
 	/**
@@ -261,10 +323,5 @@ public class Database {
 
 			return true;
 		}
-
-		protected void onPostExecute(Boolean result) {
-			// TODO: Confirmation of success
-		}
-
 	}
 }

@@ -2,16 +2,22 @@ package com.github.cmput301w13t04.food.view;
 
 import java.util.ArrayList;
 
+import org.apache.http.entity.StringEntity;
+
 import com.github.cmput301w13t04.food.R;
 import com.github.cmput301w13t04.food.R.layout;
 import com.github.cmput301w13t04.food.R.menu;
 import com.github.cmput301w13t04.food.controller.Database;
 import com.github.cmput301w13t04.food.controller.RecipeAdapter;
+import com.github.cmput301w13t04.food.model.Ingredient;
 import com.github.cmput301w13t04.food.model.Recipe;
+import com.github.cmput301w13t04.food.model.query.QueryIngredients;
+import com.google.gson.Gson;
 
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -36,6 +42,24 @@ public class ActivityViewRecipeListDatabase extends Activity {
 		if (username != null) {
 			Database database = new Database();
 			recipes = database.searchRecipeByEmail(username);
+		}
+
+		ArrayList<Ingredient> ingredients = getIntent()
+				.getParcelableArrayListExtra("INGREDIENTS");
+		if(ingredients != null) {
+			Database database = new Database();
+			recipes = database.searchByIngredients(ingredients);
+		}
+
+		QueryIngredients lolwut = new QueryIngredients(ingredients);
+		String resultsmaybeidk = new Gson().toJson(lolwut);
+		Log.d("Testing", resultsmaybeidk);
+
+		Log.d("Ingredients Size",
+				"Ingredients Size: " + String.valueOf(ingredients.size()));
+		for (int i = 0; i < ingredients.size(); i++) {
+			Log.d("Testing", "We found ingredient"
+					+ ingredients.get(i).getName());
 		}
 
 		// TODO: Handle query by ingredient
