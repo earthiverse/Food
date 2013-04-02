@@ -18,12 +18,13 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:gravity="center" >
 
         <Button
-            android:layout_width="wrap_content"
+            style="@style/BlueButton"
+            android:layout_width="240dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="left"
             android:onClick="addIngredient"
             android:text="@string/AddIngredient" />
     </LinearLayout>

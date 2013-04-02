@@ -5,8 +5,8 @@
 
     <ImageView
         android:id="@+id/ingredient_image"
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/list_item_height"
+        android:layout_width="@dimen/list_icon"
+        android:layout_height="@dimen/list_icon"
         android:adjustViewBounds="true"
         android:paddingRight="@dimen/list_icon_margin"
         android:src="@drawable/apple"
