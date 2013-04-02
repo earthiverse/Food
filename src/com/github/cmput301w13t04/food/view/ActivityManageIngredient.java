@@ -73,6 +73,12 @@ public class ActivityManageIngredient extends Activity {
 		return true;
 	}
 
+	/**
+	 * Remove the specified ingredient from the recipe
+	 * 
+	 * @param view
+	 *            View returned by button handler
+	 */
 	public void removeIngredient(View view) {
 		Intent result = new Intent();
 		result.putExtra("POSITION", position);
@@ -86,6 +92,9 @@ public class ActivityManageIngredient extends Activity {
 
 	/**
 	 * Update the ingredient based on any new input from the user
+	 * 
+	 * @param view
+	 *            View returned by button handler
 	 */
 	public void updateIngredient(View view) {
 		// Get Name
