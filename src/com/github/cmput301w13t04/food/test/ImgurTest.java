@@ -1,6 +1,5 @@
 package com.github.cmput301w13t04.food.test;
 
-import java.io.IOException;
 
 import com.github.cmput301w13t04.food.controller.imgurController;
 
@@ -12,14 +11,14 @@ public class ImgurTest extends AndroidTestCase {
 		imgurController ic1 = new imgurController();
 		String dummy = "dummy";
 
-		ic1.post(dummy);
-		assertNull(dummy);
+		String dummer = ic1.post(dummy);
+		assertNull(dummer);
 	}
 
 	public void testFetch() throws Throwable {
 		imgurController ic1 = new imgurController();
 		String dummy = "dummy";
-		ic1.fetch(dummy);
-		assertNull(dummy);
+		String dummer = ic1.fetch(dummy);
+		assertNull(dummer);
 	}
 }
