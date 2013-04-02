@@ -20,6 +20,7 @@
     <string name="title_activity_activity_manage_recipe">Manage Recipe</string>
     <string name="title_activity_view_recipe">Recipe Viewer</string>
     <string name="title_activity_view_recipe_list">Recipe List</string>
+    <string name="title_activity_search_ingredient">Search by Ingredients</string>
     <string name="recipe_title_description">Description</string>
     <string name="recipe_title_ingredients">Ingredients</string>
     <string name="recipe_title_steps">Steps</string>
@@ -73,7 +74,7 @@
     <!-- Photo -->
     <string name="title_activity_photo_intent">Add a Photo</string>
     <string name="title_activity_fragment_search_recipe">Search for Recipe</string>
-    <string name="title_activity_activity_view_ingredient_list_database">ActivityViewIngredientListDatabase</string>
-    <string name="title_activity_activity_search_ingredient">ActivitySearchIngredient</string>
+    <string name="title_activity_activity_view_ingredient_list_database">Recipe Search Results</string>
+    <string name="title_activity_activity_search_ingredient">Search by Ingredients</string>
 
 </resources>
