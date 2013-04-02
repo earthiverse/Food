@@ -41,6 +41,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
 /* A class for viewing a recipe in our UI */
@@ -147,7 +148,15 @@ public class ActivityManageRecipe extends FragmentActivity implements
 	
 	public void publishRecipe(MenuItem menuitem) {
 		Database database = new Database();
-		database.publishRecipe(recipe);
+		Boolean check = database.publishRecipe(recipe);
+		
+		if(check){
+			Toast.makeText(this, "Publish Sucessful!", Toast.LENGTH_SHORT).show();
+		}
+		else
+			Toast.makeText(this, "Publish Failed", Toast.LENGTH_SHORT).show();
+	
+		
 	}
 
 	/* Handle Page Switching */

@@ -1,6 +1,7 @@
 package com.github.cmput301w13t04.food.controller;
 
 import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -11,6 +12,7 @@ import org.apache.http.util.EntityUtils;
 
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.github.cmput301w13t04.food.model.Ingredient;
 import com.github.cmput301w13t04.food.model.Photo;
@@ -34,8 +36,18 @@ public class Database {
 	 * 
 	 * @param recipe
 	 */
-	public void publishRecipe(Recipe recipe) {
-		new PublishRecipeTask().execute(recipe);
+	public Boolean publishRecipe(Recipe recipe) {
+		try {
+			Boolean check = new PublishRecipeTask().execute(recipe).get();
+			return check;
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ExecutionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
 		// TODO: Post this JSON to the server
 	}
 
@@ -120,7 +132,7 @@ public class Database {
 				return false;
 			}
 			Log.d("What?", "what.");
-
+			
 			return true;
 		}
 
