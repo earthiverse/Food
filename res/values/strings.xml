@@ -17,6 +17,7 @@
     <string name="optional">Optional</string>
     <string name="AddPhoto">Add Photo</string>
     <string name ="RemoveIngredient">Remove Ingredient</string>
+
     <string name="title_activity_activity_manage_recipe">Manage Recipe</string>
     <string name="title_activity_view_recipe">Recipe Viewer</string>
     <string name="title_activity_view_recipe_list">Recipe List</string>
@@ -72,4 +73,21 @@
 
     <!-- Photo -->
     <string name="title_activity_photo_intent">Add a Photo</string>
+</resources>
+
+    <!-- Ingredient -->
+    <string name="add_ingredient">Add Ingredient</string>
+
+    <!-- Step -->
+    <string name="title_activity_activity_manage_step">Manage Step</string>
+
+    <!-- Photo -->
+    <string name="title_activity_photo_intent">Add a Photo</string>
+    <string name="title_activity_activity_search_recipe">Search for Recipes</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_fragment_search_recipe">Search for Recipe</string>
+    <string name="title_activity_activity_view_ingredient_list_database">ActivityViewIngredientListDatabase</string>
+    <string name="title_activity_activity_search_ingredient">ActivitySearchIngredient</string>
+
 </resources>
