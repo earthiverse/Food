@@ -51,19 +51,6 @@ public class ActivityViewRecipeListDatabase extends Activity {
 			recipes = database.searchByIngredients(ingredients);
 		}
 
-		QueryIngredients lolwut = new QueryIngredients(ingredients);
-		String resultsmaybeidk = new Gson().toJson(lolwut);
-		Log.d("Testing", resultsmaybeidk);
-
-		Log.d("Ingredients Size",
-				"Ingredients Size: " + String.valueOf(ingredients.size()));
-		for (int i = 0; i < ingredients.size(); i++) {
-			Log.d("Testing", "We found ingredient"
-					+ ingredients.get(i).getName());
-		}
-
-		// TODO: Handle query by ingredient
-
 		// Populate Recipe List
 		ListView list = (ListView) findViewById(R.id.recipe_list);
 		list.setAdapter(new RecipeAdapter(list.getContext(),
