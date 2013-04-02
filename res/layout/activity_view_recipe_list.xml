@@ -23,7 +23,7 @@
         android:layout_height="wrap_content" >
 
         <Button
-            style="@style/BottomButton"
+            style="@style/BlueButton"
             android:layout_width="240dp"
             android:layout_height="wrap_content"
             android:onClick="addRecipe"
