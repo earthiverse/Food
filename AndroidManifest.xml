@@ -86,14 +86,6 @@
                 android:value="com.github.cmput301w13t04.food.view.ActivityManageRecipe" />
         </activity>
         <activity
-            android:name="com.github.cmput301w13t04.food.view.ActivitySearchRecipe"
-            android:label="@string/title_activity_activity_search_recipe"
-            android:parentActivityName="com.github.cmput301w13t04.food.view.ActivityViewRecipeList" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.github.cmput301w13t04.food.view.ActivityViewRecipeList" />
-        </activity>
-        <activity
             android:name="com.github.cmput301w13t04.food.view.FragmentSearchRecipe"
             android:label="@string/title_activity_fragment_search_recipe"
             android:parentActivityName="com.github.cmput301w13t04.food.view.ActivityViewPantry" >
