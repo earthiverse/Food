@@ -30,24 +30,24 @@
                 style="@style/PhotoNavButton"
                 android:layout_width="wrap_content"
                 android:layout_height="96dp"
-                android:src="@drawable/navigation_previous_item" 
-				android:contentDescription="@string/Picture"/>
+                android:contentDescription="@string/Picture"
+                android:src="@drawable/navigation_previous_item" />
+
             <ImageView
                 android:id="@+id/recipe_image"
                 android:layout_width="0dp"
                 android:layout_height="160dp"
                 android:layout_weight="1"
-                android:src="@drawable/photo" 
-                android:contentDescription="@string/Picture"/>
+                android:contentDescription="@string/Picture"
+                android:src="@drawable/photo" />
 
             <ImageButton
                 android:id="@+id/button_next_photo"
                 style="@style/PhotoNavButton"
                 android:layout_width="wrap_content"
                 android:layout_height="96dp"
-                android:src="@drawable/navigation_next_item" 
-                android:contentDescription="@string/Picture"/>
-
+                android:contentDescription="@string/Picture"
+                android:src="@drawable/navigation_next_item" />
         </LinearLayout>
 
         <LinearLayout
@@ -60,6 +60,7 @@
                 style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginRight="3dp"
                 android:text="@string/DeletePhoto" />
 
             <Button
@@ -67,6 +68,7 @@
                 style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="3dp"
                 android:text="@string/AddPhoto" />
         </LinearLayout>
 
@@ -80,16 +82,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
-                android:src="@drawable/time" 
-                android:contentDescription="@string/Picture"/>
+                android:contentDescription="@string/Picture"
+                android:src="@drawable/time" />
 
             <EditText
                 android:id="@+id/recipe_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:hint="@string/hint2"
-                android:inputType="number" 
-               >
+                android:inputType="number" >
             </EditText>
 
             <TextView

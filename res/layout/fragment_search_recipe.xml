@@ -11,14 +11,14 @@
     tools:context=".ActivitySearchRecipe" >
 
     <Button
-        style="@style/SearchButton"
+        style="@style/GrayButton"
         android:id="@+id/button_search_by_ingredient"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="By Ingredient" />
 
     <Button
-        style="@style/SearchButton"
+        style="@style/GrayButton"
         android:layout_marginTop="9dp"
         android:id="@+id/button_search_by_user"
         android:layout_width="match_parent"

@@ -22,7 +22,7 @@
         android:gravity="center" >
 
         <Button
-            style="@style/BlueButton"
+            style="@style/GreenButton"
             android:layout_width="240dp"
             android:layout_height="wrap_content"
             android:onClick="addIngredient"

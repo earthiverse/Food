@@ -1,85 +1,80 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".ViewIngredient" >
 
-    <Button
-        android:id="@+id/delete"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:onClick="deleteIngredient"
-        android:text="@string/Delete" />
-
-    <Button
-        android:id="@+id/update"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignTop="@+id/delete"
-        android:onClick="editIngredient"
-        android:text="@string/Update" />
+    <ImageView
+        android:id="@+id/ingredient_image"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:adjustViewBounds="true"
+        android:layout_weight="0.5"
+        android:contentDescription="@string/Picture"
+        android:paddingRight="@dimen/list_icon_margin"
+        android:src="@drawable/apple" />
 
     <TextView
         android:id="@+id/ingName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="142dp"
         android:text="@string/IngredientName"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:layout_weight="0.1"
+        android:textSize="32sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/ingQuantity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/ingName"
-        android:layout_below="@+id/ingName"
-        android:layout_marginTop="14dp"
+        android:layout_marginBottom="12dp"
+        android:layout_weight="0.1"
         android:text="@string/Quantity"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:textSize="16sp" />
 
-    <TextView
-        android:id="@+id/Description"
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.3"
+        android:gravity="left" >
+
+        <TextView
+            android:id="@+id/ingDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minLines="3"
+            android:text="@string/RecipeDescription" />
+    </ScrollView>
+
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/delete"
-        android:layout_below="@+id/ingQuantity"
-        android:layout_marginTop="44dp"
-        android:text="@string/description"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:layout_weight="0"
+        android:layout_marginTop="12dp" >
 
-    <ImageView
-        android:id="@+id/ingredient_image"
-        android:layout_width="250dp"
-        android:layout_height="250dp"
-        android:layout_alignBottom="@+id/ingName"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="66dp"
-        android:adjustViewBounds="true"
-        android:paddingRight="@dimen/list_icon_margin"
-        android:src="@drawable/apple"
-		android:contentDescription="@string/Picture"/>
-    
-	<ScrollView 
-	    android:id="@+id/ScrollView1"
-	     android:layout_width="wrap_content"
-	    android:layout_height="250dp"
-	    android:layout_alignLeft="@+id/Description"
-	    android:layout_below="@+id/Description">
+        <Button
+            style="@style/RedButton"
+            android:id="@+id/delete"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="12dp"
+            android:onClick="deleteIngredient"
+            android:text="@string/Delete" />
 
-	<TextView
-	    android:id="@+id/ingDescription"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:text="@string/RecipeDescription" />
-	</ScrollView>
-</RelativeLayout>
+        <Button
+            style="@style/BlueButton"
+            android:id="@+id/update"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:onClick="editIngredient"
+            android:text="@string/Update" />
+    </LinearLayout>
+
+</LinearLayout>

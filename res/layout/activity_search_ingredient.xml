@@ -17,10 +17,12 @@
 
     <LinearLayout
         android:layout_width="match_parent"
+        android:gravity="center"
         android:layout_height="wrap_content" >
 
         <Button
-            android:layout_width="wrap_content"
+            style="@style/BlueButton"
+            android:layout_width="240dp"
             android:layout_height="wrap_content"
             android:onClick="searchIngredients"
             android:text="Search" />
