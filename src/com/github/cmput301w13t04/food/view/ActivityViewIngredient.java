@@ -48,8 +48,8 @@ public class ActivityViewIngredient extends Activity {
 		// Populate Current Ingredient
 		if (ingredient == null) {
 
-			Toast.makeText(getApplicationContext(), "Sorry Ingredient not found",
-					Toast.LENGTH_SHORT).show();
+			Toast.makeText(getApplicationContext(),
+					"Sorry Ingredient not found", Toast.LENGTH_SHORT).show();
 			finish();
 
 		} else {
@@ -105,16 +105,17 @@ public class ActivityViewIngredient extends Activity {
 		cache.load(this);
 
 		Photo p = cache.getIngredient(position).getPhoto();
-		File file = new File(p.getAbsolutePath());
+		if (p != null) {
+			File file = new File(p.getAbsolutePath());
 
-		if (file.exists())
-			file.delete();
+			if (file.exists())
+				file.delete();
 
-		// clear devices cache
-		sendBroadcast(new Intent(
-				Intent.ACTION_MEDIA_MOUNTED,
-				Uri.parse("file://" + Environment.getExternalStorageDirectory())));
-
+			// clear devices cache
+			sendBroadcast(new Intent(Intent.ACTION_MEDIA_MOUNTED,
+					Uri.parse("file://"
+							+ Environment.getExternalStorageDirectory())));
+		}
 		cache.removeIngredient(position);
 		cache.save(this);
 
@@ -139,7 +140,7 @@ public class ActivityViewIngredient extends Activity {
 				if (position != -1) {
 					cache.updateIngredient(ingredient, position);
 					cache.save(this);
-				} 
+				}
 			} else if (resultCode == ActivityManageIngredient.RESULT_DELETE) {
 				// Remove Ingredient
 				Cache cache = new Cache();
