@@ -434,6 +434,7 @@ public class ActivityViewRecipe extends FragmentActivity implements
 			View v = this.getView();
 
 			ListView list = (ListView) v.findViewById(R.id.ingredient_list);
+			list.setSelector(android.R.color.transparent); 
 			list.setAdapter(new IngredientAdapter(list.getContext(),
 					R.layout.item_ingredient, recipe.getIngredients()));
 		}
@@ -461,6 +462,7 @@ public class ActivityViewRecipe extends FragmentActivity implements
 			View v = this.getView();
 
 			ListView list = (ListView) v.findViewById(R.id.step_list);
+			list.setSelector(android.R.color.transparent); 
 			list.setAdapter(new StepAdapter(list.getContext(),
 					R.layout.item_step, recipe.getSteps()));
 		}
