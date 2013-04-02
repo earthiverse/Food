@@ -44,7 +44,11 @@ import android.widget.ListView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
-/* A class for viewing a recipe in our UI */
+/**
+ * A class for managing recipes in our UI
+ * @author W13T04
+ *
+ */
 public class ActivityManageRecipe extends FragmentActivity implements
 		ActionBar.TabListener {
 
@@ -146,6 +150,9 @@ public class ActivityManageRecipe extends FragmentActivity implements
 		finish();
 	}
 	
+	/**
+	 * Button listener for publishing the recipem
+	 */
 	public void publishRecipe(MenuItem menuitem) {
 		Database database = new Database();
 		Boolean check = database.publishRecipe(recipe);

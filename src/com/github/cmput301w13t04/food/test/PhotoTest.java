@@ -77,16 +77,4 @@ public class PhotoTest extends AndroidTestCase {
 		assertEquals(resultPath, "Path ");
 	}
 
-	
-	public void testParcel() throws Throwable{
-		User Photographer = new User("Photographer");
-		Photo p1 = new Photo("Path", "Description", Photographer);
-
-		Parcel parcel = Parcel.obtain();
-		p1.writeToParcel(parcel, 0);
-		parcel.setDataPosition(0);
-		Photo resultP = Photo.CREATOR.createFromParcel(parcel);
-		assertEquals(p1, resultP);
-		parcel.recycle();
-	}
 }

@@ -14,6 +14,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 
+/**
+ * A fragment created for searching Recipes by user
+ * @author W13T04
+ *
+ */
+
 public class FragmentSearchRecipeUser extends DialogFragment {
 
 	private EditText searchUser;

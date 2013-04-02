@@ -32,6 +32,11 @@ public class Database {
 	public Database() {
 	}
 
+	/**
+	 * Search the database by recipe id
+	 * @param id The id that we're searching for
+	 * @return The recipe if found, null otherwise
+	 */
 	public Recipe searchByID(Long id) {
 		QueryID query = new QueryID(String.valueOf(id));
 		try {
@@ -106,6 +111,11 @@ public class Database {
 
 	}
 
+	/**
+	 * Search a recipe by the creator's email address
+	 * @param email The creator's email to be searched
+	 * @return The list of recipes that match, or null if none exist
+	 */
 	public ArrayList<Recipe> searchRecipeByEmail(String email) {
 		QueryEmail query = new QueryEmail(email.trim());
 		try {
@@ -168,6 +178,13 @@ public class Database {
 		}
 	}
 
+	/**
+	 * Search a recipe using a list of ingredients. The result is the recipes that use all of 
+	 * the ingredients provided
+	 * @param ingredients The ingredient list that will be used to query recipes
+	 * @return The list of recipes that use all of the ingredients provided, or null 
+	 * if there are no matches
+	 */
 	public ArrayList<Recipe> searchByIngredients(
 			ArrayList<Ingredient> ingredients) {
 		QueryIngredients query = new QueryIngredients(ingredients);
@@ -234,7 +251,7 @@ public class Database {
 	/**
 	 * Publish a recipe to the online database
 	 * 
-	 * @param recipe
+	 * @param recipe The recipe that will be published to the database
 	 */
 	public Boolean publishRecipe(Recipe recipe) {
 		try {

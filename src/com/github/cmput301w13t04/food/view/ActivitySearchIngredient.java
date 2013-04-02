@@ -20,6 +20,12 @@ import com.github.cmput301w13t04.food.controller.Cache;
 import com.github.cmput301w13t04.food.controller.IngredientAdapter;
 import com.github.cmput301w13t04.food.model.Ingredient;
 
+/**
+ * A class used for searching ingredients off of the online database
+ * @author solinas
+ *
+ */
+
 public class ActivitySearchIngredient extends Activity {
 
 	private Cache cache;
@@ -100,6 +106,10 @@ public class ActivitySearchIngredient extends Activity {
 		return super.onOptionsItemSelected(item);
 	}
 
+	/**
+	 * Button handler for searching
+	 * @param view
+	 */
 	public void searchIngredients(View view) {
 		Intent intent = new Intent(ActivitySearchIngredient.this,
 				ActivityViewRecipeListDatabase.class);
