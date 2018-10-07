@@ -1,4 +1,5 @@
 # Reasonable Recipes
+CMPUT 304 Project - An android app for managing recipes.
 
 ## License
 
